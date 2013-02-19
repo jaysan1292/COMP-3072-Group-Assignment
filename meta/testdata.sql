@@ -2,45 +2,42 @@ SET autocommit=0;
 START TRANSACTION;
 
 -- Drop everything from all tables
-DELETE FROM `UserType`;
-DELETE FROM `User`;
-DELETE FROM `Login`;
-DELETE FROM `RoomType`;
-DELETE FROM `Room`;
-DELETE FROM `Course`;
-DELETE FROM `ProfessorCourse`;
-DELETE FROM `Section`;
-DELETE FROM `SectionCourse`;
-DELETE FROM `Schedule`;
-DELETE FROM `CourseType`;
 DELETE FROM `ScheduleCourse`;
+DELETE FROM `CourseType`;
+DELETE FROM `Schedule`;
+DELETE FROM `SectionCourse`;
+DELETE FROM `Section`;
+DELETE FROM `ProfessorCourse`;
+DELETE FROM `Course`;
+DELETE FROM `Room`;
+DELETE FROM `RoomType`;
+DELETE FROM `Login`;
+DELETE FROM `User`;
+DELETE FROM `UserType`;
 
 -- Reset auto-increment counters
-ALTER TABLE `UserType`        AUTO_INCREMENT=0;
 ALTER TABLE `User`            AUTO_INCREMENT=0;
 ALTER TABLE `Login`           AUTO_INCREMENT=0;
-ALTER TABLE `RoomType`        AUTO_INCREMENT=0;
 ALTER TABLE `Room`            AUTO_INCREMENT=0;
 ALTER TABLE `Course`          AUTO_INCREMENT=0;
 ALTER TABLE `ProfessorCourse` AUTO_INCREMENT=0;
 ALTER TABLE `Section`         AUTO_INCREMENT=0;
 ALTER TABLE `SectionCourse`   AUTO_INCREMENT=0;
 ALTER TABLE `Schedule`        AUTO_INCREMENT=0;
-ALTER TABLE `CourseType`      AUTO_INCREMENT=0;
 ALTER TABLE `ScheduleCourse`  AUTO_INCREMENT=0;
 
 -- The actual data
-INSERT INTO `UserType` (`type_desc`) VALUES
-    ('Professor'),
-    ('Administrator');
+INSERT INTO `UserType` VALUES
+    (1, 'Professor'),
+    (2, 'Administrator');
     
-INSERT INTO `RoomType` (`name`) VALUES
-    ('Lab'),
-    ('Classroom');
+INSERT INTO `RoomType` VALUES
+    (1, 'Lab'),
+    (2, 'Classroom');
 
-INSERT INTO `CourseType` (`type_desc`) VALUES
-    ('Lab'),
-    ('Lecture');
+INSERT INTO `CourseType` VALUES
+    (1, 'Lab'),
+    (2, 'Lecture');
 
 INSERT INTO `User` (`first_name`,`last_name`,`u_type`) VALUES
     ('John',       'Smith',   2),
@@ -65,10 +62,10 @@ INSERT INTO `Room` (`rm_size`,`rm_number`,`rm_type`) VALUES
     (100, 'E218', 2);
 
 INSERT INTO `Course` (`c_code`,`c_description`,`c_crn`) VALUES
-    ('COMP3072', 'Open Source Application Development',             '00001'),
-    ('COMP3064', 'PC Game Development',                             '00002'),
-    ('COMP3071', 'Designing and Implementing Database',             '00003'),
-    ('COMP3073', 'System Implementation, Testing, and Maintenance', '00004');
+    ('COMP3072', 'Open Source Application Development',             '60001'),
+    ('COMP3064', 'PC Game Development',                             '60002'),
+    ('COMP3071', 'Designing and Implementing Database',             '60003'),
+    ('COMP3073', 'System Implementation, Testing, and Maintenance', '60004');
 
 INSERT INTO `ProfessorCourse` (`u_id`,`c_id`) VALUES
     (2, 1),
@@ -91,19 +88,19 @@ INSERT INTO `Schedule` (`u_id`) VALUES
     (4), -- ppawluk
     (5); -- bvucetic
 
-INSERT INTO `ScheduleCourse` (`s_id`,`c_id`,`type_id`,`start_time`,`finish_time`) VALUES
-    (1, 1, 2, 1600, 1800), -- rverma,   COMP3072, Lecture,  4PM,  6PM
-    (1, 1, 1, 1600, 1800), -- rverma,   COMP3072, Lab,      4PM,  6PM
-    (2, 3, 2, 1000, 1200), -- arana,    COMP3071, Lecture, 10AM, 12PM
-    (2, 3, 1, 1200, 1400), -- arana,    COMP3071, Lab,     12PM,  2PM
-    (3, 2, 2, 1200, 1400), -- ppawluk,  COMP3064, Lecture, 12PM,  2PM
-    (3, 2, 1, 1400, 1600), -- ppawluk,  COMP3064, Lab,      2PM,  4PM
-    (4, 4, 2,  800, 1000), -- bvucetic, COMP3073, Lecture,  8AM, 10AM
-    (4, 4, 1, 1000, 1200); -- bvucetic, COMP3073, Lab,     10AM, 12PM
+INSERT INTO `ScheduleCourse` (`s_id`,`c_id`,`room`,`type_id`,`start_time`,`finish_time`) VALUES
+    (1, 1, 1, 2, 1600, 1800), -- rverma,   C418, COMP3072, Lecture,  4PM,  6PM
+    (1, 1, 2, 1, 1600, 1800), -- rverma,   C416, COMP3072, Lab,      4PM,  6PM
+    (2, 3, 1, 2, 1000, 1200), -- arana,    C418, COMP3071, Lecture, 10AM, 12PM
+    (2, 3, 1, 1, 1200, 1400), -- arana,    C418, COMP3071, Lab,     12PM,  2PM
+    (3, 2, 3, 2, 1200, 1400), -- ppawluk,  C422, COMP3064, Lecture, 12PM,  2PM
+    (3, 2, 3, 1, 1400, 1600), -- ppawluk,  C422, COMP3064, Lab,      2PM,  4PM
+    (4, 4, 2, 2,  800, 1000), -- bvucetic, C416, COMP3073, Lecture,  8AM, 10AM
+    (4, 4, 2, 1, 1000, 1200); -- bvucetic, C416, COMP3073, Lab,     10AM, 12PM
 UPDATE `ScheduleCourse` SET `monday`   = 1 WHERE `c_id` = 4; -- COMP3073 on Mondays
 UPDATE `ScheduleCourse` SET `thursday` = 1 WHERE `c_id` = 2; -- COMP3064 on Thursdays
 UPDATE `ScheduleCourse` SET `friday`   = 1 WHERE `c_id` = 3; -- COMP3071 on Fridays
-UPDATE `ScheduleCourse` SET `thursday` = 1 WHERE `c_id` = 1 AND `type_id` = 2; -- COMP3072 lecture on Thursday
-UPDATE `ScheduleCourse` SET `friday`   = 1 WHERE `c_id` = 1 AND `type_id` = 1; -- COMP3072 lab on Friday
+UPDATE `ScheduleCourse` SET `thursday` = 1 WHERE `c_id` = 1 AND `type_id` = 2; -- COMP3072 Lecture on Thursday
+UPDATE `ScheduleCourse` SET `friday`   = 1 WHERE `c_id` = 1 AND `type_id` = 1; -- COMP3072 Lab on Friday
 
 COMMIT;

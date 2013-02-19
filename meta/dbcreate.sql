@@ -1,8 +1,10 @@
+CREATE DATABASE IF NOT EXISTS bohhls;
+
+USE bohhls;
+
 SET autocommit=0;
 START TRANSACTION;
 
-DROP TABLE IF EXISTS `Room`;
-DROP TABLE IF EXISTS `RoomType`;
 DROP TABLE IF EXISTS `ScheduleCourse`;
 DROP TABLE IF EXISTS `CourseType`;
 DROP TABLE IF EXISTS `Schedule`;
@@ -10,13 +12,28 @@ DROP TABLE IF EXISTS `SectionCourse`;
 DROP TABLE IF EXISTS `Section`;
 DROP TABLE IF EXISTS `ProfessorCourse`;
 DROP TABLE IF EXISTS `Course`;
+DROP TABLE IF EXISTS `Room`;
+DROP TABLE IF EXISTS `RoomType`;
 DROP TABLE IF EXISTS `Login`;
 DROP TABLE IF EXISTS `User`;
 DROP TABLE IF EXISTS `UserType`;
 
+-- Professor or Administrator
 CREATE TABLE `UserType`(
-type_id     TINYINT PRIMARY KEY AUTO_INCREMENT,
+type_id     TINYINT PRIMARY KEY,
 type_desc   VARCHAR(128)
+);
+
+-- Lab or Lecture
+CREATE TABLE `CourseType`(
+type_id     TINYINT PRIMARY KEY,
+type_desc   TEXT
+);
+
+-- Lab or Classroom
+CREATE TABLE `RoomType`(
+type_id     TINYINT PRIMARY KEY,
+name        TEXT
 );
 
 CREATE TABLE `User`(
@@ -69,42 +86,30 @@ u_id    BIGINT,
 FOREIGN KEY (u_id) REFERENCES `User`(u_id)
 );
 
--- Lab or Lecture
-CREATE TABLE `CourseType`(
-type_id     TINYINT PRIMARY KEY AUTO_INCREMENT,
-type_desc   TEXT
-);
-
-CREATE TABLE `ScheduleCourse`(
-s_id        BIGINT,
-c_id        BIGINT,
-type_id     TINYINT,
-sunday      BOOLEAN DEFAULT 0 NOT NULL,
-monday      BOOLEAN DEFAULT 0 NOT NULL,
-tuesday     BOOLEAN DEFAULT 0 NOT NULL,
-wednesday   BOOLEAN DEFAULT 0 NOT NULL,
-thursday    BOOLEAN DEFAULT 0 NOT NULL,
-friday      BOOLEAN DEFAULT 0 NOT NULL,
-saturday    BOOLEAN DEFAULT 0 NOT NULL,
-start_time  INTEGER NOT NULL,
-finish_time INTEGER NOT NULL,
-FOREIGN KEY (s_id) REFERENCES `Schedule`(s_id),
-FOREIGN KEY (c_id) REFERENCES `Course`(c_id),
-FOREIGN KEY (type_id) REFERENCES `CourseType`(type_id)
-);
-
--- Lab or Classroom
-CREATE TABLE `RoomType`(
-type_id     TINYINT PRIMARY KEY AUTO_INCREMENT,
-name        TEXT
-);
-
 CREATE TABLE `Room`(
 rm_id       BIGINT PRIMARY KEY AUTO_INCREMENT,
 rm_number   CHAR(4),
 rm_size     INTEGER,
 rm_type     TINYINT,
 FOREIGN KEY (rm_type) REFERENCES `RoomType`(type_id)
+);
+
+CREATE TABLE `ScheduleCourse`(
+s_id        BIGINT,
+c_id        BIGINT,
+room        BIGINT,
+type_id     TINYINT,
+monday      BOOLEAN DEFAULT 0 NOT NULL,
+tuesday     BOOLEAN DEFAULT 0 NOT NULL,
+wednesday   BOOLEAN DEFAULT 0 NOT NULL,
+thursday    BOOLEAN DEFAULT 0 NOT NULL,
+friday      BOOLEAN DEFAULT 0 NOT NULL,
+start_time  INTEGER NOT NULL,
+finish_time INTEGER NOT NULL,
+FOREIGN KEY (s_id) REFERENCES `Schedule`(s_id),
+FOREIGN KEY (c_id) REFERENCES `Course`(c_id),
+FOREIGN KEY (room) REFERENCES `Room`(rm_id),
+FOREIGN KEY (type_id) REFERENCES `CourseType`(type_id)
 );
 
 COMMIT;

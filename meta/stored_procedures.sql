@@ -148,6 +148,8 @@ END //
 -- authentication system expects passwords to be hashed with the
 -- SHA256 algorithm.
 --
+-- In PHP: hash('sha256', $password)
+--
 CREATE PROCEDURE CreateUserPrehashed(IN FirstName VARCHAR(64),
                                      IN LastName VARCHAR(64),
                                      IN UserType TINYINT,

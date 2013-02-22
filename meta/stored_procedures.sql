@@ -83,7 +83,7 @@ BEGIN
       INNER JOIN Course ON Course.c_id = ScheduleCourse.c_id
       INNER JOIN CourseType ON ScheduleCourse.type_id = CourseType.type_id
   WHERE
-    Schedule.s_id = ScheduleId;
+    Schedule.u_id = ProfessorId;
 END //
 
 --

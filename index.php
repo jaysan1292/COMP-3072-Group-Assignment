@@ -7,7 +7,7 @@ require_once('lib/php-markdown/markdown.php');
 <link href="css/GitHub2.css" rel="stylesheet"/>
 </head>
 <body>
-<?
+<?php
 $text = '# H1
 ## H2
 ### H3
@@ -71,7 +71,7 @@ $raw_table = preg_replace("/\n/", "\n    ", $table);
 echo Markdown('    ' . $raw_table);
 ?>
 <hr/>
-<?
+<?php
 $max_x = 5;
 $max_y = 11;
 

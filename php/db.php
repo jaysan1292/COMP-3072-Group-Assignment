@@ -1,4 +1,4 @@
-<?
+<?php
 require_once('classes.php');
 
 function open_connection() {
@@ -76,8 +76,8 @@ class LoginProvider extends UserProvider {
     }
 }
 
+require_once('functions.php');
+
 $u = new LoginProvider();
 $user = $u->get(1);
-echo '<pre>';
-var_dump($user);
-echo '</pre>';
+code_dump($user);

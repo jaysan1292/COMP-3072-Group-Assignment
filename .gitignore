@@ -31,3 +31,5 @@ $RECYCLE.BIN/
 *.iws
 .idea/
 
+### Compass
+.sass-cache

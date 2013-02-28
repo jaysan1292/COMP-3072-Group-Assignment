@@ -30,7 +30,7 @@ ALTER TABLE `ScheduleCourse`  AUTO_INCREMENT=0;
 INSERT INTO `UserType` VALUES
     (1, 'Professor'),
     (2, 'Administrator');
-    
+
 INSERT INTO `RoomType` VALUES
     (1, 'Lab'),
     (2, 'Classroom');
@@ -53,7 +53,7 @@ INSERT INTO `Login` VALUES
     (3, 'arana',    '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92'),
     (4, 'ppawluk',  '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92'),
     (5, 'bvucetic', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92');
-    
+
 INSERT INTO `Room` (`rm_size`,`rm_number`,`rm_type`) VALUES
     (50,  'C418', 1),
     (50,  'C416', 1),

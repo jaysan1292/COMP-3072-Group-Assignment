@@ -42,7 +42,7 @@ function day($day) {
         case 5: return 'Friday';
         case 6: return 'Saturday';
         default: return '';
-    }    
+    }
 }
 
 // Test generate table

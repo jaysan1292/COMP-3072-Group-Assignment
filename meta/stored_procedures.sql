@@ -107,7 +107,7 @@ BEGIN
     Room
       INNER JOIN RoomType ON Room.rm_type = RoomType.type_id
       INNER JOIN ScheduleCourse ON ScheduleCourse.room = Room.rm_id
-      INNER JOIN Course ON ScheduleCourse.c_id = Course.c_id  
+      INNER JOIN Course ON ScheduleCourse.c_id = Course.c_id
       INNER JOIN ProfessorCourse ON ProfessorCourse.c_id = Course.c_id
       INNER JOIN User ON ProfessorCourse.u_id = User.u_id
   WHERE
@@ -116,8 +116,8 @@ END //
 
 --
 -- Inserts a new user into the database
--- 
--- NOTE: This procedure will only function on MySQL 5.5+, 
+--
+-- NOTE: This procedure will only function on MySQL 5.5+,
 -- as it uses the SHA2() function, which is not available on older versions.
 --
 CREATE PROCEDURE CreateUser(IN FirstName VARCHAR(64),

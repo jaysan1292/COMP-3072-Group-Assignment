@@ -1,6 +1,5 @@
 <?php
 require_once '../php/functions.php';
-require_once '../php/classes.php';
 
 $width = 500;
 $height = 500;
@@ -38,6 +37,7 @@ for ($i=0; $i < $rows * $cellWidth; $i += $cellHeight) {
     imageline($image, 0, $i, $width, $i, $lightLineColor);
 }
 
+// Write table headers
 $days = array('Monday','Tuesday','Wednesday','Thursday','Friday');
 for ($i=0; $i < $cols; $i++) {
     $d = $days[$i];
@@ -53,6 +53,7 @@ for ($i=0; $i < $cols; $i++) {
 }
 unset($bbox);
 
+// Fill in the schedule
 for($y=1, $time=0.0; $y < $rows; $y++, $time+=0.5) {
     for($x=0, $day=0; $x < $cols; $x++, $day++) {
         if($schedule[$day][$time] != 0) {
@@ -61,7 +62,7 @@ for($y=1, $time=0.0; $y < $rows; $y++, $time+=0.5) {
             $rightX = $leftX + $cellWidth;
             $rightY = $leftY + $cellHeight;
 
-            // Test information for now, will get from Course object eventually
+            // TODO: Test information for now, will get from Course object eventually
             $cname = "COMP0000\nCRN: 12345\nProf Name\n8:00AM-10:00AM";
             $size = 8.0;
 

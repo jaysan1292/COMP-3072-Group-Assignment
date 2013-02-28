@@ -1,5 +1,6 @@
 <?php
-require_once 'classes.php';
+require_once 'global.php';
+
 function code_dump($var) {
     echo '<pre><code>';
     var_dump($var);

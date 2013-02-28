@@ -19,9 +19,6 @@ $schedule = array([1, 1, 0, 0, 0],  // Monday
                   [0, 0, 1, 1, 1],  // Thursday
                   [0, 1, 1, 0, 1]); // Friday
 
-// set background
-imagefilledrectangle($image, 0, 0, $width, $height, $mainBackground);
-
 // set line thickness
 imagesetthickness($image, 1);
 

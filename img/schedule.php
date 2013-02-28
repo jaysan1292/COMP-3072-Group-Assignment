@@ -10,14 +10,15 @@ $secondaryBackground = imagecolorallocate($image, 224, 224, 224);
 $textColor = imagecolorallocate($image, 20, 20, 20);
 $darkLineColor = imagecolorallocate($image, 10, 10, 10);
 $lightLineColor = imagecolorallocate($image, 192, 192, 192);
+$font = './droidsans.ttf';
 
 // schedule to test
 // TODO: replace each 1 in this array to an instance of Course
-$schedule = array(array(1, 1, 0, 0, 0),  // Monday
-                  array(0, 0, 0, 0, 0),  // Tuesday
-                  array(0, 0, 0, 0, 0),  // Wednesday
-                  array(0, 0, 1, 1, 1),  // Thursday
-                  array(0, 1, 1, 0, 1)); // Friday
+$schedule = array([1, 1, 0, 0, 0],  // Monday
+                  [0, 0, 0, 0, 0],  // Tuesday
+                  [0, 0, 0, 0, 0],  // Wednesday
+                  [0, 0, 1, 1, 1],  // Thursday
+                  [0, 1, 1, 0, 1]); // Friday
 
 // set background
 imagefilledrectangle($image, 0, 0, $width, $height, $mainBackground);
@@ -37,6 +38,21 @@ for ($i=0; $i < $rows * $cellWidth; $i += $cellHeight) {
     imageline($image, 0, $i, $width, $i, $lightLineColor);
 }
 
+$days = array('Monday','Tuesday','Wednesday','Thursday','Friday');
+for ($i=0; $i < $cols; $i++) {
+    $d = $days[$i];
+    $size = 11.0;
+    $bbox = imageftbbox($size, 0, $font, $d);
+
+    $textWidth = $bbox[2];
+    $cellCenterX = ($cellWidth / 2) + ($cellWidth * $i);
+    $x = $cellCenterX - round(($bbox[4] / 2));
+    $y = ($cellHeight / 2) + 5;
+
+    imagettftext($image, $size, 0, $x, $y, $textColor, $font, $d);
+}
+unset($bbox);
+
 for($y=1, $time=0.0; $y < $rows; $y++, $time+=0.5) {
     for($x=0, $day=0; $x < $cols; $x++, $day++) {
         if($schedule[$day][$time] != 0) {
@@ -47,7 +63,6 @@ for($y=1, $time=0.0; $y < $rows; $y++, $time+=0.5) {
 
             // Test information for now, will get from Course object eventually
             $cname = "COMP0000\nCRN: 12345\nProf Name\n8:00AM-10:00AM";
-            $font = './droidsans.ttf';
             $size = 8.0;
 
             $bbox = imagettfbbox($size, 0, $font, $cname);

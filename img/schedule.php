@@ -10,6 +10,7 @@ $textColor = imagecolorallocate($image, 20, 20, 20);
 $darkLineColor = imagecolorallocate($image, 10, 10, 10);
 $lightLineColor = imagecolorallocate($image, 192, 192, 192);
 $font = './droidsans.ttf';
+$font_bold = './droidsans-bold.ttf';
 
 // schedule to test
 // TODO: replace each 1 in this array to an instance of Course
@@ -39,14 +40,14 @@ $days = array('Monday','Tuesday','Wednesday','Thursday','Friday');
 for ($i=0; $i < $cols; $i++) {
     $d = $days[$i];
     $size = 11.0;
-    $bbox = imageftbbox($size, 0, $font, $d);
+    $bbox = imageftbbox($size, 0, $font_bold, $d);
 
     $textWidth = $bbox[2];
     $cellCenterX = ($cellWidth / 2) + ($cellWidth * $i);
     $x = $cellCenterX - round(($bbox[4] / 2));
     $y = ($cellHeight / 2) + 5;
 
-    imagettftext($image, $size, 0, $x, $y, $textColor, $font, $d);
+    imagettftext($image, $size, 0, $x, $y, $textColor, $font_bold, $d);
 }
 unset($bbox);
 

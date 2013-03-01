@@ -8,7 +8,7 @@ Jason Recillo, Peter Le, John Jess Migia, Raven Gaspar, James Mackin, Jerome Aga
 
 ---
 
-A "live" preview can be seen [here](http://home.jaysan1292.com/jd).
+A "live" preview can be seen [here](http://home.jaysan1292.com/jd/3072).
 
 ---
 

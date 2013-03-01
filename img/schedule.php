@@ -12,13 +12,27 @@ $lightLineColor = imagecolorallocate($image, 192, 192, 192);
 $font = './droidsans.ttf';
 $font_bold = './droidsans-bold.ttf';
 
+// test data
+
+$cdb = new CourseDbProvider;
+$c1 = $cdb->get(4, 2);
+$c2 = $cdb->get(4, 1);
+$c3 = $cdb->get(2, 2);
+$c4 = $cdb->get(2, 1);
+$c5 = $cdb->get(3, 2);
+$c6 = $cdb->get(3, 1);
+$c7 = $cdb->get(1, 2);
+$c8 = $cdb->get(1, 1);
+
+// end test data
+
 // schedule to test
 // TODO: replace each 1 in this array to an instance of Course
-$schedule = array([1, 1, 0, 0, 0],  // Monday
-                  [0, 0, 0, 0, 0],  // Tuesday
-                  [0, 0, 0, 0, 0],  // Wednesday
-                  [0, 0, 1, 1, 1],  // Thursday
-                  [0, 1, 1, 0, 1]); // Friday
+$schedule = array([$c1, $c2, 0,   0,   0  ],  // Monday
+                  [0,   0,   0,   0,   0  ],  // Tuesday
+                  [0,   0,   0,   0,   0  ],  // Wednesday
+                  [0,   0,   $c3, $c4, $c7],  // Thursday
+                  [0,   $c5, $c6, 0,   $c8]); // Friday
 
 // set line thickness
 imagesetthickness($image, 1);
@@ -52,16 +66,17 @@ for ($i=0; $i < $cols; $i++) {
 unset($bbox);
 
 // Fill in the schedule
-for($y=1, $time=0.0; $y < $rows; $y++, $time+=0.5) {
-    for($x=0, $day=0; $x < $cols; $x++, $day++) {
-        if($schedule[$day][$time] != 0) {
+for($y = 1, $time = 0.0; $y < $rows; $y++, $time += 0.5) {
+    for($x = 0, $day = 0; $x < $cols; $x++, $day++) {
+        if(($slot = $schedule[$day][$time])) {
             $leftX = $cellWidth * $x;
             $leftY = $cellHeight * $y;
             $rightX = $leftX + $cellWidth;
             $rightY = $leftY + $cellHeight;
 
             // TODO: Test information for now, will get from Course object eventually
-            $cname = "COMP0000\nCRN: 12345\nProf Name\n8:00AM-10:00AM";
+            $cname = "$slot->courseCode\nCRN: $slot->crn\n$slot->room\n" .
+                    $slot->startToString() . '-' . $slot->finishToString();
             $size = 8.0;
 
             $bbox = imagettfbbox($size, 0, $font, $cname);

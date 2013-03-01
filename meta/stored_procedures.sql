@@ -3,6 +3,7 @@ START TRANSACTION;
 
 DROP PROCEDURE IF EXISTS CreateUser;
 DROP PROCEDURE IF EXISTS CreateUserPrehashed;
+DROP PROCEDURE IF EXISTS GetCourseInfo;
 DROP PROCEDURE IF EXISTS GetLoginUser;
 DROP PROCEDURE IF EXISTS GetLoginUserWithId;
 DROP PROCEDURE IF EXISTS GetProfessorSchedule;
@@ -112,6 +113,28 @@ BEGIN
       INNER JOIN User ON ProfessorCourse.u_id = User.u_id
   WHERE
     Room.rm_id = RoomId;
+END //
+
+--
+-- Retrieves information on a single course
+-- i.e., a single timetable block
+--
+CREATE PROCEDURE GetCourseInfo(IN CourseId BIGINT, IN TypeId TINYINT)
+BEGIN
+  SELECT
+    Course.c_id,
+    Course.c_code,
+    Course.c_crn,
+    Room.rm_number,
+    ScheduleCourse.type_id,
+    ScheduleCourse.start_time,
+    ScheduleCourse.finish_time
+  FROM
+    Course
+      INNER JOIN ScheduleCourse ON Course.c_id = ScheduleCourse.c_id
+      INNER JOIN Room ON ScheduleCourse.room = Room.rm_id
+  WHERE
+    Course.c_id = CourseId AND ScheduleCourse.type_id = TypeId;
 END //
 
 --

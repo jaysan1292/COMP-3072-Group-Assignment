@@ -1,11 +1,7 @@
 <?php
-require_once('lib/php-markdown/markdown.php');
+$pagetitle = 'Markdown Test';
+include 'php/includes/htmlheader.php';
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-<link href="css/GitHub2.css" rel="stylesheet"/>
-</head>
 <body>
 <?php
 $text = '# H1

@@ -33,3 +33,6 @@ $RECYCLE.BIN/
 
 ### Compass
 .sass-cache
+
+### SublimeText project files
+*.sublime-workspace

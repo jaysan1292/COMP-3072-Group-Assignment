@@ -12,21 +12,10 @@ class Course extends Entity {
     }
 
     public function startToString() {
-        return $this->timeToString('start');
+        return time24_to_string($this->start);
     }
 
     public function finishToString() {
-        return $this->timeToString('finish');
-    }
-
-    private function timeToString($varname) {
-        $time = $this->$varname;
-        $min = substr($time, -2);
-        $hour = intval(substr($time, 0, -2));
-        $pm = $hour >= 12;
-
-        if($pm && $hour != 12) $hour -= 12;
-
-        return "$hour:$min" . ($pm ? 'PM' : 'AM');
+        return time24_to_string($this->finish);
     }
 }

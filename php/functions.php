@@ -21,3 +21,15 @@ function to_rectangle($bbox) {
 
     return new Rectangle($x, $y, $width, $height);
 }
+
+function time24_to_string($time) {
+    $time = str_replace(':', '', $time);
+    $min = substr($time, -2);
+    $hour = intval(substr($time, 0, -2));
+    $pm = $hour >= 12;
+
+    if($pm && $hour != 12) $hour -= 12;
+
+    return "$hour:$min" . ($pm ? 'PM' : 'AM');
+
+}

@@ -104,6 +104,9 @@ echo Markdown($table);
 echo Markdown('### Generated table');
 $raw_table = preg_replace("/\n/", "\n    ", $table);
 echo Markdown('    ' . $raw_table);
+
+$i = '![](img/schedule.php)';
+echo Markdown($i);
 ?>
 </body>
 </html>

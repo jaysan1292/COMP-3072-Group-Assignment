@@ -2,15 +2,20 @@
 /* Metroesque Font Style */
 /* line 6, ../sass/screen.scss */
 body {
-  font-family: 'Open Sans', sans-serif;
-  font-family: 'Open Sans Condensed', sans-serif;
-  font-family: 'Open Sans Condensed', sans-serif; }
+  font-family: "Open Sans", sans-serif;
+}
 
-/* line 11, ../sass/screen.scss */
+/* line 9, ../sass/screen.scss */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Open Sans Condensed", sans-serif;
+}
+
+/* line 12, ../sass/screen.scss */
 footer {
   background-color: #efefef;
   position: absolute;
   bottom: 0;
   font-size: 1.22em;
   text-align: center;
-  padding-top: 5px; }
+  padding-top: 5px;
+}

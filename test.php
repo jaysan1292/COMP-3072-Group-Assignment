@@ -4,7 +4,8 @@ include 'php/includes/htmlheader.php';
 ?>
 <body>
 <?php
-$text = '# H1
+$text = '[Log out](logout.php)
+# H1
 ## H2
 ### H3
 #### H4

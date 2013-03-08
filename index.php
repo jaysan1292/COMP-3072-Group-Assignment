@@ -1,5 +1,11 @@
 <?php
 require_once 'php\global.php';
+session_start();
+if(isset($_SESSION['logged_in'])) {
+    if($_SESSION['logged_in'] === TRUE) {
+        redirect_to_page(HOME_PAGE);
+    }
+}
 ?>
 <!doctype html>
 <html>

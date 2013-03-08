@@ -1,25 +1,15 @@
 <?php
+
+// If you include this file, no need to include global.php
 require_once 'global.php';
 
+/*
+ * var_dump, but echo'd inside <pre> and <code> tags
+ */
 function code_dump($var) {
     echo '<pre><code>';
     var_dump($var);
     echo '</code></pre>';
-}
-
-function to_rectangle($bbox) {
-    code_dump($bbox);
-    $lowLeft = new Point($bbox[0], $bbox[1]);
-    $lowRight = new Point($bbox[2], $bbox[3]);
-    $upLeft = new Point($bbox[4], $bbox[5]);
-    $upRight = new Point($bbox[6], $bbox[7]);
-
-    $x = $upLeft->x;
-    $y = $upLeft->y;
-    $width = $upRight->x - $x;
-    $height = $lowLeft->y - $y;
-
-    return new Rectangle($x, $y, $width, $height);
 }
 
 /*
@@ -43,6 +33,9 @@ function redirect_to_page($page) {
     }
 }
 
+/*
+ * Converts a 24-hour time into the equivalent 12-hour format.
+ */
 function time24_to_string($time) {
     $time = str_replace(':', '', $time);
     $min = substr($time, -2);

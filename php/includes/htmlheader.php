@@ -14,11 +14,10 @@ require_once __DIR__ . '/../lib/php-markdown/markdown.php';
         echo "<title>$pagetitle</title>\n";
     }
     ?>
-    <link rel="stylesheet" type="text/css" href="<?=ROOT_DIR?>/stylesheets/GitHub2.css">
+    <link rel="stylesheet" type="text/css" href="<?=ROOT_DIR?>/stylesheets/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="<?=ROOT_DIR?>/stylesheets/bootstrap-responsive.css">
     <link rel="stylesheet" type="text/css" href="<?=ROOT_DIR?>/stylesheets/print.css" media="print">
-    <link rel="stylesheet" href="stylesheets/bootstrap.css">
-    <link rel="stylesheet" href="stylesheets/bootstrap-responsive.css">
-    <link rel="stylesheet" href="stylesheets/screen.css">
+    <link rel="stylesheet" type="text/css" href="<?=ROOT_DIR?>/stylesheets/application.css">
     <!--[if IE]>
         <link href="<?=ROOT_DIR?>/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
     <![endif]-->

@@ -1,0 +1,21 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300);
+/* Metroesque Font Style */
+/* line 3, ../sass/application.scss */
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+/* line 6, ../sass/application.scss */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Open Sans Condensed", sans-serif;
+}
+
+/* line 9, ../sass/application.scss */
+footer {
+  background-color: #efefef;
+  position: absolute;
+  bottom: 0;
+  font-size: 1.22em;
+  text-align: center;
+  padding-top: 5px;
+}

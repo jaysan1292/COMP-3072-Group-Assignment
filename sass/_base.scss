@@ -1,0 +1,11 @@
+// Everything you want available from every
+// stylesheet, put here and @import "base";
+// in your stylesheet
+
+// @import "compass/reset";
+@import "compass/utilities";
+@import "compass/layout/sticky-footer";
+@import "compass/css3";
+
+/* Metroesque Font Style */
+@import url(http://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300);

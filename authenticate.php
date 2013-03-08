@@ -17,5 +17,5 @@ if($success) {
 
     // Redirect to login screen, with an error message
     $errmsg = urlencode('Incorrect username or password.');
-    header('Location: http://' . $_SERVER['HTTP_HOST'] . ROOT_DIR . "/login.php?msg=$errmsg");
+    header('Location: http://' . $_SERVER['HTTP_HOST'] . ROOT_DIR . "/test.php?msg=$errmsg");
 }

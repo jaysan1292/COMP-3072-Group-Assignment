@@ -1,6 +1,10 @@
 <?php
 $pagetitle = 'Markdown Test';
 include 'php/includes/htmlheader.php';
+?>
+<div class="container-fluid">
+<div class="row-fluid">
+<?php
 
 $text = '[Log out](logout.php)
 # H1
@@ -107,5 +111,9 @@ echo Markdown('    ' . $raw_table);
 $i = '![](img/schedule.php)';
 echo Markdown($i);
 
+?>
+</div>
+</div>
+<?php
 include 'php/includes/htmlfooter.php';
 ?>

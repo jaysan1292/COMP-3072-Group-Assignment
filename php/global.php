@@ -9,9 +9,15 @@ function __autoload($class_name) {
     }
 }
 
-/*
- * Configuration section
- */
+/* * * * * * * * * * * * *
+ * Configuration section *
+ * * * * * * * * * * * * */
 
 // The root directory of the site
 define('ROOT_DIR', '/3072');
+
+// Where to redirect users upon successful login
+define('HOME_PAGE', '/test.php');
+
+// Login page
+define('LOGIN_PAGE', '/index.php');

@@ -4,9 +4,9 @@ abstract class DbProvider {
     abstract protected function doQuery(PDO $db, $id);
 
     public static function openConnection() {
-        $db = new PDO('mysql:host=home.jaysan1292.com;dbname=bohhls',
-                      'bohhls',
-                      'parallelline');
+        $db = new PDO('mysql:host=127.0.0.1;dbname=bohhls',
+                      'root',
+                      '');
         return $db;
     }
 

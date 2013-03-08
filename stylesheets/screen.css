@@ -3,11 +3,14 @@
 /* line 6, ../sass/screen.scss */
 body {
   font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans Condensed', sans-serif;
   font-family: 'Open Sans Condensed', sans-serif; }
 
-/* line 10, ../sass/screen.scss */
+/* line 11, ../sass/screen.scss */
 footer {
   background-color: #efefef;
   position: absolute;
   bottom: 0;
-  font-size: 1.22em; }
+  font-size: 1.22em;
+  text-align: center;
+  padding-top: 5px; }

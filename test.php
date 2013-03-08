@@ -1,9 +1,7 @@
 <?php
 $pagetitle = 'Markdown Test';
 include 'php/includes/htmlheader.php';
-?>
-<body>
-<?php
+
 $text = '[Log out](logout.php)
 # H1
 ## H2
@@ -108,6 +106,6 @@ echo Markdown('    ' . $raw_table);
 
 $i = '![](img/schedule.php)';
 echo Markdown($i);
+
+include 'php/includes/htmlfooter.php';
 ?>
-</body>
-</html>

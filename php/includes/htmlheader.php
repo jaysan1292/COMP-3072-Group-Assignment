@@ -6,15 +6,26 @@ require_once __DIR__ . '/../lib/php-markdown/markdown.php';
 <!DOCTYPE html>
 <html>
 <head>
-<?php
-if (!empty($pagetitle)) {
-    echo "<title>$pagetitle</title>\n";
-}
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php
+    if (!empty($pagetitle)) {
+        echo "<title>$pagetitle</title>\n";
+    }
+    ?>
+    <link rel="stylesheet" type="text/css" href="<?=ROOT_DIR?>/stylesheets/GitHub2.css">
+    <link rel="stylesheet" type="text/css" href="<?=ROOT_DIR?>/stylesheets/print.css" media="print">
+    <link rel="stylesheet" href="stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="stylesheets/bootstrap-responsive.css">
+    <link rel="stylesheet" href="stylesheets/screen.css">
+    <!--[if IE]>
+        <link href="<?=ROOT_DIR?>/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
+    <![endif]-->
 
-?>
-<link rel="stylesheet" type="text/css" href="<?=ROOT_DIR?>/stylesheets/GitHub2.css">
-<link rel="stylesheet" type="text/css" href="<?=ROOT_DIR?>/stylesheets/print.css" media="print">
-<!--[if IE]>
-    <link href="<?=ROOT_DIR?>/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
-<![endif]-->
+    <!-- HTML5 shim for IE backwards compatibility -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 </head>
+<body>

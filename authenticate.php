@@ -10,7 +10,7 @@ $success = $auth->authenticateUser($user, $pass, $login);
 if($success) {
     session_start();
     $_SESSION['current_user'] = $login;
-    // redirect to home page
+    header('LocationL<index.php>');
 } else {
-    // redirect to login page
+    header('LocationL<login.php>');
 }

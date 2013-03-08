@@ -34,7 +34,7 @@
     <div class="row">
         <div class="span3 offset1 pull-right well">
             <legend><strong>Sign In</strong></legend>
-            <form method="POST" action="php/classes/LoginUser.php" accept-charset="UTF-8">
+            <form method="POST" action="authenticate.php" accept-charset="UTF-8">
             <input type="text" id="username" class="span6" name="username" placeholder="Username"><br>
             <input type="password" id="password" class="span6" name="password" placeholder="Password">
             <label class="checkbox">

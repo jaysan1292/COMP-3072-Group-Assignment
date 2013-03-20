@@ -1,1 +1,69 @@
 @import "base";
+$foot_var: 1em;
+$foot_color: #efefef;
+$color_blue: #2d89ef;
+$color_yellow: #ffc40d;
+$color_green: #00a300;
+$color_gray: #efefef;
+* {
+	margin: 0;
+}
+html, body {
+	height: 100%;
+}
+.wrap{
+	width:960px;
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: auto; /* the bottom margin is the negative value of the footer's height */
+}
+.push, footer{
+	clear: both;
+	background: $foot_color;
+	height: $foot_var;
+	text-align: center;
+	position:absolute;
+	bottom: 0%;
+}
+
+.name{
+	font-size: 1.2em;
+	line-height: 20px;
+}
+
+.bb-icon, .gbc-icon{
+	width:24px;
+	height:24px;
+}
+
+header{
+	margin-bottom:20px;
+	.navbar {.brand{
+	color: $color_gray;
+	text-shadow:none;
+	}
+	.nav > li > a{
+		color: $color_gray;
+		text-shadow:none;
+		}
+		.divider-vertical{
+			height:43px;
+		}
+	.nav li.dropdown.open > .dropdown-toggle,
+	.navbar .nav li.dropdown.active>.dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle{
+		background: transparent;
+		margin-bottom:2px;
+		color: silver;
+	}	
+	}
+	.navbar .nav > li > {
+		a:focus, a:hover{
+			color: white;
+		}
+	}
+	.navbar-inner{
+		background: #155FA7;
+	}
+}
+

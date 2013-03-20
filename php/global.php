@@ -17,7 +17,7 @@ function __autoload($class_name) {
 define('ROOT_DIR', '/3072');
 
 // Where to redirect users upon successful login
-define('HOME_PAGE', '/test.php');
+define('HOME_PAGE', '/professor.php');
 
 // Login page
 define('LOGIN_PAGE', '/index.php');

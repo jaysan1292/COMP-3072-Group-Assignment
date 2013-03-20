@@ -1,5 +1,5 @@
 <?php
-require_once 'php\global.php';
+require_once 'php/global.php';
 session_start();
 ?>
 <!doctype html>

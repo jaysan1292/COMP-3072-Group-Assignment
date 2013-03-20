@@ -16,6 +16,7 @@ if($success) {
 } else {
     // TODO: I really don't like the fact that the message is sent in the query string... it's a little thing, but it's too easy for the user to modify :p
 
+    // Redirect to login screen, with an error message
     $errmsg = urlencode('Incorrect username or password.');
     redirect_to_page(LOGIN_PAGE . "?msg=$errmsg");
 }

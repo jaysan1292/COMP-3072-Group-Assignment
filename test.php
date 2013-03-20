@@ -110,7 +110,6 @@ echo Markdown('    ' . $raw_table);
 
 $i = '![](img/schedule.php)';
 echo Markdown($i);
-
 ?>
 </div>
 </div>

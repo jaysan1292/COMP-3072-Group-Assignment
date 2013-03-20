@@ -13,7 +13,7 @@ session_start();
         <link rel="stylesheet" href="stylesheets/bootstrap-responsive.css">
         <link rel=stylesheet href="stylesheets/screen.css">
         <link rel="stylesheet" href="stylesheets/custom.css">
-        
+
         <!-- HTML5 shim for IE backwards compatibility -->
         <!--[if lt IE 9]>
 <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -33,7 +33,7 @@ session_start();
                                         <span class="icon-bar"></span>
                                     </a>
                                     <a class="brand" href="index.php">Bohhls Schedulr</a>
-                                    
+
                                     <div class="nav-collapse collapse">
                                         <ul class="nav">
                                             <li class="divider-vertical"></li>
@@ -58,7 +58,7 @@ session_start();
                             </div>
                         </div>
                     </div>
-                    
+
                 </header>
                 <br>
                 <!-- Dashboard Tab Pane -->
@@ -68,7 +68,7 @@ session_start();
                         <li><a href="#schedule" data-toggle="tab"><i class="icon-calendar"></i>Schedule</a></li>
                         <li><a href="#update" data-toggle="tab"><i class="icon-info-sign"></i>News</a></li>
                     </ul>
-                    
+
                     <section class="tab-content">
                         <!-- Profile Tab -->
                         <article class="tab-pane active" id="profile">
@@ -77,7 +77,7 @@ session_start();
                                 <div class="row-fluid">
                                     <div class="span4">
                                         <span class="name"><?=$_SESSION['current_user'] ?> </span>
-                                        <br> 
+                                        <br>
                                         <img src="img/hero-image.jpg" class="img-polaroid pull-left">
                                         <div class="box"></div>
                                     </div>
@@ -96,7 +96,7 @@ session_start();
                                                 </div>
                                                 <div class="row">
                                                     <dd class="span4 offset2">Course 2</dd>
-                                                    <dd class="span4 offset2">Course 4</dd> 
+                                                    <dd class="span4 offset2">Course 4</dd>
                                                 </div>
                                                 <br>
                                                 <dt>Account Type:</dt>
@@ -126,10 +126,10 @@ session_start();
                                     </form>
                                 </div>
                             </div>
-                            
+
                         </article>
                         <!-- Schedule Tab -->
-                        <article class="tab-pane" id="schedule"> 
+                        <article class="tab-pane" id="schedule">
                             <h3>Schedule</h3>
                             <?php
     $x = new CourseDbProvider;
@@ -143,16 +143,16 @@ echo $c->finishToString();
                             <h1>Sample Schedule</h1>
                             <img src="<?=ROOT_DIR?>/img/schedule.php"/>
                             <span class="span12"> <br> </span>
-                            
+
                         </article>
                         <!-- New Tab -->
                         <article class="tab-pane" id="update">
                             <h3>Class Updates</h3>
-                            
+
                         </article>
                     </section>
                 </div>
-                
+
             </div>
         </div>
         <div class="push"></div>
@@ -165,10 +165,10 @@ echo $c->finishToString();
             </footer>
         </div>
     </div>
-    
+
     <!-- Le Scripts -->
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    
+
 </body>
 </html>

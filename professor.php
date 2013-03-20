@@ -78,9 +78,9 @@ session_start();
             <h3>Profile</h3>
             <div><?php include('profile.php');?></div>
           </article>
-          <article class="tab-pane" id="schedule"> 
+          <article class="tab-pane" id="schedule">
             <h3>Schedule</h3>
-            <?php include('schedule.php');?> 
+            <?php include('schedule.php');?>
           </article>
           <article class="tab-pane" id="update">
             <h3>Class Updates</h3>

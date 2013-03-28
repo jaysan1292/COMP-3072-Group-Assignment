@@ -1,33 +1,100 @@
 <?php
 require_once 'php\global.php';
+session_start();
 ?>
 <!doctype html>
 <html>
 <head>
-    <meta charset=utf-8>
-    <meta name=description content="">
-    <meta name=viewport content="width=device-width, initial-scale=1">
-    <title>Bohhls Login</title>
-    <link rel="stylesheet" href="stylesheets/bootstrap.css">
-    <link rel="stylesheet" href="stylesheets/bootstrap-responsive.css">
-    <link rel=stylesheet href="stylesheets/screen.css">
-    <link rel="stylesheet" href="stylesheets/custom.css">
+  <meta charset=utf-8>
+  <meta name=description content="">
+  <meta name=viewport content="width=device-width, initial-scale=1">
+  <title>Bohhls Schedulr - Professor</title>
+  <link rel="stylesheet" href="stylesheets/bootstrap.css">
+  <link rel="stylesheet" href="stylesheets/bootstrap-responsive.css">
+  <link rel=stylesheet href="stylesheets/screen.css">
 
-    <!-- HTML5 shim for IE backwards compatibility -->
-    <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-</head>
-<body>
-    <div class="row-fluid">
-        <footer class="span12">
-            &copy; Bohhls Schedulr 2013.
-        </footer>
+  <!-- Le Scripts -->
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <!-- x-editable -->
+  <link href="bootstrap-editable/css/bootstrap-editable.css" rel="stylesheet">
+  <script src="bootstrap-editable/js/bootstrap-editable.js"></script>
+  <script src="js/moment.min.js"></script>
+      <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <![endif]-->
+    </head>
+    <body>
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <header class="span12"><div class="navbar navbar-fixed-top">
+            <div class="navbar-inner">
+              <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="/">Bohhls Schedulr</a>
+
+                <div class="nav-collapse collapse">
+                  <ul class="nav">
+                    <li class="divider-vertical"></li>
+                    <li><a href="#"><i class="icon-home icon-white"></i> Home</a></li>
+                    <li><a href="http://www.georgebrown.ca/" class="a-hover"><img src="img/icon-gbc.png" class="gbc-icon" /> GBC</a></li>
+                    <li><a href="https://bb-gbc.blackboard.com" class="a-hover"><img src="img/icon-bb.png" class="bb-icon"> Blackboard</img></a></li>
+                  </ul>
+                  <div class="pull-right">
+                    <ul class="nav pull-right">
+                      <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, <?=$_SESSION['current_user'] ?><b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                          <li class="divider"></li>
+                          <li><a href="logout.php"><i class="icon-off"></i> Logout</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div class="wrap">
+
+        <!-- Dashboard Tab Pane -->
+        <div id="dashboard">
+         <ul class="nav nav-tabs">
+          <li class="active"><a href="#aProfessor" data-toggle="tab"><i class="icon-user"></i>Professors</a></li>
+          <li><a href="#aClasses" data-toggle="tab"><i class="icon-calendar"></i>Classes</a></li>
+          <li><a href="#aRequest" data-toggle="tab"><i class="icon-info-sign"></i>Time-Off Requests</a></li>
+        </ul>
+
+        <section class="tab-content">
+          <article class="tab-pane active" id="aProfessor">
+            <h3>Professors</h3>
+            <div><?php include('aProfessor.php');?></div>
+          </article>
+          <article class="tab-pane" id="aClasses"> 
+            <h3>Classes</h3>
+            <?php include('aClasses.php');?> 
+          </article>
+          <article class="tab-pane" id="aRequest">
+            <h3>Time-Off Requests</h3>
+            <?php include('aRequest.php');?>
+          </article>
+        </section>
+      </div>
+
     </div>
-    <!-- Le Scripts -->
-    <script src="js/main.js"></script>
-    <!-- Bootstrap JS -->
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="js/bootsrap.min.js"></script>
+  </div>
+</div>
+<!-- Le Footer -->
+<div class="row-fluid">
+  <footer class="span12">
+    &copy; Bohhls Schedulr 2013.
+  </footer>
+</div>
 </body>
 </html>

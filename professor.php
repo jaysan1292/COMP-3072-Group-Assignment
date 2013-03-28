@@ -41,15 +41,13 @@ session_start();
                   <ul class="nav">
                     <li class="divider-vertical"></li>
                     <li><a href="#"><i class="icon-home icon-white"></i> Home</a></li>
-                    <li><a href="#"><img src="img/icon-gbc.png" class="gbc-icon" /> GBC</a></li>
-                    <li><a href="#"><img src="img/icon-bb.png" class="bb-icon"> Blackboard</img></a></li>
+                    <li><a href="http://www.georgebrown.ca/" class="a-hover"><img src="img/icon-gbc.png" class="gbc-icon" /> GBC</a></li>
+                    <li><a href="https://bb-gbc.blackboard.com" class="a-hover"><img src="img/icon-bb.png" class="bb-icon"> Blackboard</img></a></li>
                   </ul>
                   <div class="pull-right">
                     <ul class="nav pull-right">
-                      <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, <!-- <?=$_SESSION['current_user'] ?> --><b class="caret"></b></a>
+                      <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">Welcome, <?=$_SESSION['current_user'] ?><b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                          <li><a href="#"><i class="icon-cog"></i> Notifications <i class="icon-exclamation-sign"></i></a></li>
-                          <li><a href="#"><i class="icon-envelope"></i> Contact Support</a></li>
                           <li class="divider"></li>
                           <li><a href="logout.php"><i class="icon-off"></i> Logout</a></li>
                         </ul>
@@ -83,7 +81,7 @@ session_start();
             <?php include('schedule.php');?> 
           </article>
           <article class="tab-pane" id="update">
-            <h3>Class Updates</h3>
+            <h3>Class Status</h3>
             <?php include('update.php');?>
           </article>
         </section>

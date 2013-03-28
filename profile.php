@@ -1,4 +1,4 @@
-<div class="row-fluid">
+<div id="profile" class="row-fluid">
 	<div class="span12">
 		<div class="widget no-margin">
 			<div class="widget-body">
@@ -9,7 +9,8 @@
 							<div class="thumbnail">
 								<img alt="300x200" src="img/hero-image.jpg">
 								<div class="caption">
-									<span class="name"> <!-- <?=$_SESSION['current_user'] ?>  --></span>
+									<span class="name"> <?=$_SESSION['current_user'] ?> </span> <br>
+									<span class="e_id"> <?= "Employee Number" ?> </span>
 								</div>
 							</div>
 						</div>
@@ -17,7 +18,8 @@
 						<div class="span9">
 							<form class="form-inline">
 								<table id="user" class="table table-bordered table-striped">
-									<tbody> 
+									<tbody>
+									<caption>**Click text to Edit**</caption> 
 										<tr>         
 											<td width="40%">Contact Number:</td>
 											<td><a href="#" class="myeditable editable editable-click editable-empty" id="contact_number" data-type="text"><?= "contact_number"?></a></td>

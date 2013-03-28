@@ -4,6 +4,9 @@ require_once 'php/global.php';
 $user = $_POST['username'];
 $pass = $_POST['password'];
 
+// TODO: Set cookie to remember user login info
+$remember = $_POST['remember'];
+
 $auth = new Authenticator();
 $success = $auth->authenticateUser($user, $pass, $login);
 

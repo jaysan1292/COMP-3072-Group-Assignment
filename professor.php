@@ -35,7 +35,7 @@ session_start();
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                 </a>
-                <a class="brand" href="/">Bohhls Schedulr</a>
+                <a class="brand" href="<?=ROOT_DIR?>">Bohhls Schedulr</a>
 
                 <div class="nav-collapse collapse">
                   <ul class="nav">

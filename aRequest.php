@@ -48,7 +48,7 @@
 $(function(){
 	$.fn.editable.defaults.mode = 'inline';
 	$('.decision').editable({
-		value: 1,    
+		value: 3,    
 		source: [
 		{value: 1, text: 'Approved'},
 		{value: 2, text: 'Declined'},

@@ -3,38 +3,59 @@
 		<tbody> 
 			<tr>         
 				<th>Professor</th>
+				<th>Contact Number</th>
+				<th>Email Address</th>
 				<th>Course(s)</th>
 				<th>EmployeeID</th>
 				<th>Department</th>
 			</tr>
 			<tr class="success">         
 				<td>Professor 1</td>
+				<td>getContact()</td>
+				<td>getEmail()</td>
 				<td>getCourses()</td>
 				<td>getEmployeeID()</td>
 				<td><a href="#" class="department" data-type="select" data-pk="1" data-url="" data-original-title="Make a department"></a></td>
 			</tr>
 			<tr class="warning">         
 				<td>Professor 2</td>
+				<td>getContact()</td>
+				<td>getEmail()</td>
 				<td>getCourses()</td>
 				<td>getEmployeeID()</td>
 				<td><a href="#" class="department" data-type="select" data-pk="1" data-url="" data-original-title="Make a department"></a></td>
 			</tr>
 			<tr class="error">         
 				<td>Professor 3</td>
+				<td>getContact()</td>
+				<td>getEmail()</td>
 				<td>getCourses()</td>
 				<td>getEmployeeID()</td>
 				<td><a href="#" class="department" data-type="select" data-pk="1" data-url="" data-original-title="Make a department"></a></td>
 			</tr>
 			<tr class="info">         
 				<td>Professor 4</td>
+				<td>getContact()</td>
+				<td>getEmail()</td>
 				<td>getCourses()</td>
 				<td>getEmployeeID()</td>
 				<td ><a href="#" class="department" data-type="select" data-pk="1" data-url="" data-original-title="Make a department"></a></td>
 			</tr>
 
+			
+<div class="pagination pagination-centered">
+  <ul>
+    <li class="disabled"><a href="#">&laquo;</a></li>
+    <li class="active"><a href="#">1</a></li>
+  	<li><a href="#">2</a></li>
+  	<li><a href="#">3</a></li>
+  	<li><a href="#">4</a></li>
+  	<li><a href="#">5</a></li>
+  </ul>
+</div>
+
 		</tbody>
 	</table>
-
 	<div>
 		<button id="save-btn" class="btn btn-primary">Update Changes</button>
 	</div>

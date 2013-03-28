@@ -6,24 +6,44 @@
 	<table class="table table-condensed">
 		<tbody> 
 			<tr>         
-				<th>Class</th>
-				<th>Status</th>
+				<th>Course Code</th>
+				<th>Code Description</th>
+				<th>Course CRN</th>
+				<th>Room Number</th>
+				<th>Room Type</th>
+				<th>Section</th>
 			</tr>
 			<tr class="success">         
-				<td>Course 1</td>
-				<td><a href="#" class="status" data-type="select" data-pk="1" data-url="" data-original-title="Select Class Status"></a></td>
+				<td>getCourseCode()</td>
+				<td>getCOurseDesc()</td>
+				<td>getCRN()</td>
+				<td>getRoomNumber()</td>
+				<td>getRoomType()</td>
+				<td><a href="#" class="sect" data-type="select" data-pk="1" data-url="" data-original-title="Select Class Section"></a></td>
 			</tr>
 			<tr class="warning">         
-				<td>Course 2</td>
-				<td><a href="#" class="status" data-type="select" data-pk="1" data-url="" data-original-title="Select Class Status"></a></td>
+				<td>getCourseCode()</td>
+				<td>getCOurseDesc()</td>
+				<td>getCRN()</td>
+				<td>getRoomNumber()</td>
+				<td>getRoomType()</td>
+				<td><a href="#" class="sect" data-type="select" data-pk="1" data-url="" data-original-title="Select Class Section"></a></td>
 			</tr>
 			<tr class="error">         
-				<td>Course 3</td>
-				<td><a href="#" class="status" data-type="select" data-pk="1" data-url="" data-original-title="Select Class Status"></a></td>
+				<td>getCourseCode()</td>
+				<td>getCOurseDesc()</td>
+				<td>getCRN()</td>
+				<td>getRoomNumber()</td>
+				<td>getRoomType()</td>
+				<td><a href="#" class="sect" data-type="select" data-pk="1" data-url="" data-original-title="Select Class Section"></a></td>
 			</tr>
 			<tr class="info">         
-				<td>Course 4</td>
-				<td ><a href="#" class="status" data-type="select" data-pk="1" data-url="" data-original-title="Select Class Status"></a></td>
+				<td>getCourseCode()</td>
+				<td>getCOurseDesc()</td>
+				<td>getCRN()</td>
+				<td>getRoomNumber()</td>
+				<td>getRoomType()</td>
+				<td><a href="#" class="sect" data-type="select" data-pk="1" data-url="" data-original-title="Select Class Section"></a></td>
 			</tr>
 
 		</tbody>
@@ -37,13 +57,13 @@
 <script>
 $(function(){
 	$.fn.editable.defaults.mode = 'inline';
-	$('.status').editable({
+	$('.sect').editable({
 		value: 1,    
 		source: [
-		{value: 1, text: 'In-Progress'},
-		{value: 2, text: 'Delayed'},
-		{value: 3, text: 'Canceled'},
-		{value: 4, text: 'Moved'}
+		{value: 1, text: 'T127-6A0'},
+		{value: 2, text: 'T141-9C3'},
+		{value: 3, text: 'T154-1P8'},
+		{value: 4, text: 'T169-6T9'}
 		]
 	});
 });

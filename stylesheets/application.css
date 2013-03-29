@@ -2,12 +2,12 @@
 /* Metroesque Font Style */
 /* line 4, ../sass/application.scss */
 body {
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 /* line 7, ../sass/application.scss */
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Open Sans Condensed", sans-serif;
+  font-family: 'Open Sans Condensed', sans-serif;
 }
 
 /* line 10, ../sass/application.scss */

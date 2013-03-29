@@ -12,6 +12,7 @@ $success = $auth->authenticateUser($user, $pass, $login);
 
 if($success) {
     session_start();
+    session_regenerate_id(true);
     $_SESSION['current_user'] = $login;
     $_SESSION['logged_in'] = TRUE;
 

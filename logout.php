@@ -4,10 +4,15 @@ require_once 'php/functions.php';
 
 session_start();
 
-if(isset($_SESSION['current_user']))
-    unset($_SESSION['current_user']);
+$_SESSION = array();
 
-if(isset($_SESSION['logged_in']))
-    unset($_SESSION['logged_in']);
+if(ini_get('session.use_cookies')) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 42000,
+              $params["path"], $params["domain"],
+              $params["secure"], $params["httponly"]);
+}
+
+session_destroy();
 
 redirect_to_page(LOGIN_PAGE);

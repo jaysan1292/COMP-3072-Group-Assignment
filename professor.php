@@ -6,7 +6,6 @@ if($_SESSION['current_user']->isAdmin) {
     redirect_to_page(ADMIN_PAGE);
 }
 ?>
-?>
 <!doctype html>
 <html>
 <head>

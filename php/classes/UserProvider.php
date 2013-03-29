@@ -12,7 +12,7 @@ class UserProvider extends DbProvider {
             default: throw new Exception('Invalid user type: '.$results['u_type'], 1);
         }
 
-        if($id && $fn && $ln && $admin) {
+        if($id && $fn && $ln) {
             $out = new User($id, $fn, $ln, $admin);
             return $out;
         }

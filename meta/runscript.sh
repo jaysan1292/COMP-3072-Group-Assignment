@@ -6,6 +6,8 @@
 # Get the directory this script is located in
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+FILES="dbcreate stored_procedures testdata"
+
 if [[ -z $(which mysql) ]]; then
     echo MySQL is not installed, or is not in your PATH.
     exit 1
@@ -20,16 +22,13 @@ checkfile() {
     fi
 }
 
-checkfile "$DIR/dbcreate.sql"
-checkfile "$DIR/stored_procedures.sql"
-checkfile "$DIR/testdata.sql"
-
-cat "$DIR/dbcreate.sql" > "$filename"
-cat "$DIR/stored_procedures.sql" >> "$filename"
-cat "$DIR/testdata.sql" >> "$filename"
+for i in $FILES; do
+    checkfile "$DIR/$i.sql"
+    cat "$DIR/$i.sql" >> "$filename"
+done
 
 while [[ -z $pass ]]; do
-    echo Enter database password for user '"'bohhls'"':
+    echo 'Enter database password for user "bohhls":'
     read -s pass
 done
 

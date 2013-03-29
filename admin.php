@@ -1,6 +1,10 @@
 <?php
 require_once 'php/global.php';
 session_start();
+
+if(!$_SESSION['current_user']->isAdmin) {
+    redirect_to_page(HOME_PAGE);
+}
 ?>
 <!doctype html>
 <html>

@@ -5,8 +5,17 @@ class UserProvider extends DbProvider {
         $id = $results['u_id'];
         $fn = $results['first_name'];
         $ln = $results['last_name'];
-        if($id && $fn && $ln)
-            return new User($id, $fn, $ln);
+
+        switch($results['u_type']) {
+            case 1:  $admin = false; break;
+            case 2:  $admin = true;  break;
+            default: throw new Exception('Invalid user type: '.$results['u_type'], 1);
+        }
+
+        if($id && $fn && $ln && $admin) {
+            $out = new User($id, $fn, $ln, $admin);
+            return $out;
+        }
     }
 
     protected function doQuery(PDO $db, $id) {

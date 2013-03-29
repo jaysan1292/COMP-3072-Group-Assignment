@@ -4,11 +4,11 @@
 require_once 'global.php';
 
 /*
- * var_dump, but echo'd inside <pre> and <code> tags
+ * var_export(), but echo'd inside <pre> and <code> tags
  */
 function code_dump($var) {
     echo '<pre><code>';
-    var_dump($var);
+    var_export($var);
     echo '</code></pre>';
 }
 
@@ -45,5 +45,4 @@ function time24_to_string($time) {
     if($pm && $hour != 12) $hour -= 12;
 
     return "$hour:$min" . ($pm ? 'PM' : 'AM');
-
 }

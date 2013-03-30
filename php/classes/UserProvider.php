@@ -33,11 +33,10 @@ class UserProvider extends DbProvider {
     public function getAllUsers() {
         $db = DbProvider::openConnection();
         $db->beginTransaction();
-        if($cmd = $db->prepare('SELECT u_id from User ORDER BY u_id ASC')) {
+        if($cmd = $db->prepare('SELECT * from User ORDER BY u_id ASC')) {
             $cmd->execute();
             while($result = $cmd->fetch()) {
-                $u_id = $result['u_id'];
-                $users[] = $this->doQuery($db, $u_id);
+                $users[] = $this->buildObject($result);
             }
         }
         $db->commit();

@@ -33,7 +33,7 @@ class ScheduleProvider extends DbProvider {
                         'friday'    => $results['friday']
                     );
                     $day = array_filter($days);
-                    $day = ucwords(array_keys($day)[0]);
+                    $day = ucwords(key($day));
                     $start = $results['start_time'];
                     $finish = $results['finish_time'];
                     $courses[] = new Course($c_id, $code, $crn, $desc, $room, $type, $day, $start, $finish);

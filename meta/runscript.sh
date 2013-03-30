@@ -6,7 +6,7 @@
 # Get the directory this script is located in
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-FILES="dbcreate stored_procedures testdata"
+FILES="dbcreate stored_procedures views testdata"
 
 if [[ -z $(which mysql) ]]; then
     echo MySQL is not installed, or is not in your PATH.

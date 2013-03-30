@@ -1,30 +1,32 @@
 <?php
 require_once '../php/functions.php';
 
-// test data
+function fail() {
+    global $width, $height;
+    $x = imagecreate(160, 40);
+    $bg = imagecolorallocate($x, 192, 192, 192);
+    $tex = imagecolorallocate($x, 20, 20, 20);
+    $f = './droidsans.ttf';
+    imagettftext($x, 12, 0, 10, 25, $tex, $f, 'Schedule not found.');
+    header('Content-type: image/png');
+    imagepng($x);
+    imagedestroy($x);
+    die;
+}
 
-$cdb = new CourseDbProvider;
-$c1 = $cdb->get(4, 2);
-$c2 = $cdb->get(4, 1);
-$c3 = $cdb->get(2, 2);
-$c4 = $cdb->get(2, 1);
-$c5 = $cdb->get(3, 2);
-$c6 = $cdb->get(3, 1);
-$c7 = $cdb->get(1, 2);
-$c8 = $cdb->get(1, 1);
+// Image dimensions (default 600 x 425)
+$aspect = 1.41176471;
+$width = isset($_GET['width']) ? (int)$_GET['width'] : 600;
+$height = ceil($width / $aspect);
 
-// end test data
+if(!isset($_GET['id'])) fail();
+$s_id = $_GET['id'];
 
-// schedule to test
-// TODO: replace each 1 in this array to an instance of Course
-$schedule = array([$c1, $c2, 0,   0,   0  ],  // Monday
-                  [0,   0,   0,   0,   0  ],  // Tuesday
-                  [0,   0,   0,   0,   0  ],  // Wednesday
-                  [0,   0,   $c3, $c4, $c7],  // Thursday
-                  [0,   $c5, $c6, 0,   $c8]); // Friday
+$s = new ScheduleProvider;
+$schedule = $s->get($s_id);
 
-$width = 600;
-$height = 425;
+if(is_null($schedule)) fail();
+
 $image = imagecreate($width, $height);
 $mainBackground = imagecolorallocate($image, 255, 255, 255);
 $secondaryBackground = imagecolorallocate($image, 224, 224, 224);
@@ -52,14 +54,14 @@ for ($i=0; $i < $rows * $cellWidth; $i += $cellHeight) {
 
 // Write table headers
 $days = array(
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday'
+    'Monday'    => 0,
+    'Tuesday'   => 1,
+    'Wednesday' => 2,
+    'Thursday'  => 3,
+    'Friday'    => 4,
 );
 for ($i = 0; $i < $cols - 1; $i++) {
-    $d = $days[$i];
+    $d = array_keys($days)[$i];
     $size = 11.0;
     $bbox = imagettfbbox($size, 0, $font_bold, $d);
 
@@ -97,17 +99,25 @@ for($y = 1, $i = 0; $y < $rows; $y++, $i++) {
 }
 
 // Fill in the schedule
-for($y = 1, $time = 0.0; $y < $rows; $y++, $time += 0.5) {
+for($y = 1, $time = 800; $y < $rows; $y++, $time += 100) {
     for($x = 1, $day = 0; $x < $cols; $x++, $day++) {
-        if(($slot = $schedule[$day][$time])) {
+        $course = array_filter($schedule->courses, function($var) {
+            global $time, $day, $days;
+            $correctDay = $days[$var->day] == $day;
+            $correctTime = $var->start == $time;
+
+            return $correctDay and $correctTime;
+        });
+        $course = array_shift($course);
+        if($course) {
             $leftX = $cellWidth * $x;
             $leftY = $cellHeight * $y;
             $rightX = $leftX + $cellWidth;
             $rightY = $leftY + $cellHeight;
 
             $size = 8.0;
-            $cname = "$slot->courseCode\nCRN: $slot->crn\n$slot->room\n" .
-                    $slot->startToString() . '-' . $slot->finishToString();
+            $cname = "$course->courseCode\nCRN: $course->crn\n$course->room\n".
+                     $course->startToString() . '-' . $course->finishToString();
 
             $bbox = imagettfbbox($size, 0, $font, $cname);
 

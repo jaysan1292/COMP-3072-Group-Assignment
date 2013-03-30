@@ -3,15 +3,16 @@ class CourseDbProvider {
     private $query = 'CALL GetCourseInfo(?, ?)';
 
     protected function buildObject($results) {
-        $id = $results['c_id'];
-        $code = $results['c_code'];
-        $crn = $results['c_crn'];
-        $rnum = $results['rm_number'];
-        $start = $results['start_time'];
+        $id     = $results['c_id'];
+        $code   = $results['c_code'];
+        $crn    = $results['c_crn'];
+        $rnum   = $results['rm_number'];
+        $type   = $results['type_id'];
+        $start  = $results['start_time'];
         $finish = $results['finish_time'];
 
-        if($id && $code && $crn && $rnum && $start && $finish)
-            return new Course($id, $code, $crn, $rnum, $start, $finish);
+        if($id && $code && $crn && $rnum && $type && $start && $finish)
+            return new Course($id, $code, $crn, $rnum, $type, $start, $finish);
     }
 
     public function get($id, $type) {

@@ -65,11 +65,13 @@ BEGIN
     Schedule.s_id,
     User.first_name,
     User.last_name,
+    Course.c_id,
     Course.c_code,
     Course.c_crn,
     Course.c_description,
     CourseType.type_id,
     CourseType.type_desc,
+    Room.rm_number,
     ScheduleCourse.monday,
     ScheduleCourse.tuesday,
     ScheduleCourse.wednesday,
@@ -83,6 +85,7 @@ BEGIN
       INNER JOIN ScheduleCourse ON Schedule.s_id = ScheduleCourse.s_id
       INNER JOIN Course ON Course.c_id = ScheduleCourse.c_id
       INNER JOIN CourseType ON ScheduleCourse.type_id = CourseType.type_id
+      INNER JOIN Room ON ScheduleCourse.room = Room.rm_id
   WHERE
     Schedule.u_id = ProfessorId;
 END //
@@ -127,6 +130,11 @@ BEGIN
     Course.c_crn,
     Room.rm_number,
     ScheduleCourse.type_id,
+    ScheduleCourse.monday,
+    ScheduleCourse.tuesday,
+    ScheduleCourse.wednesday,
+    ScheduleCourse.thursday,
+    ScheduleCourse.friday,
     ScheduleCourse.start_time,
     ScheduleCourse.finish_time
   FROM

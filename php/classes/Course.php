@@ -1,12 +1,15 @@
 <?php
 class Course extends Entity {
-    public $courseCode, $crn, $room, $start, $finish;
+    public $courseCode, $crn, $desc, $room, $type, $day, $start, $finish;
 
-    public function __construct($id, $courseCode, $crn, $room, $start, $finish) {
+    public function __construct($id, $courseCode, $crn, $desc, $room, $type, $day, $start, $finish) {
         parent::__construct($id);
         $this->courseCode = $courseCode;
         $this->crn = $crn;
+        $this->desc = $desc;
         $this->room = $room;
+        $this->type = $type;
+        $this->day = $day;
         $this->start = $start;
         $this->finish = $finish;
     }

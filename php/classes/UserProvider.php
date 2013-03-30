@@ -29,4 +29,19 @@ class UserProvider extends DbProvider {
             return $user;
         }
     }
+
+    public function getAllUsers() {
+        $db = DbProvider::openConnection();
+        $db->beginTransaction();
+        if($cmd = $db->prepare('SELECT u_id from User ORDER BY u_id ASC')) {
+            $cmd->execute();
+            while($result = $cmd->fetch()) {
+                $u_id = $result['u_id'];
+                $users[] = $this->doQuery($db, $u_id);
+            }
+        }
+        $db->commit();
+
+        return $users;
+    }
 }

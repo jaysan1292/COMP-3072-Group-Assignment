@@ -13,6 +13,7 @@ DELETE FROM `Room`;
 DELETE FROM `RoomType`;
 DELETE FROM `Login`;
 DELETE FROM `User`;
+DELETE FROM `Department`;
 DELETE FROM `UserType`;
 
 -- Reset auto-increment counters
@@ -39,12 +40,18 @@ INSERT INTO `CourseType` VALUES
     (1, 'Lab'),
     (2, 'Lecture');
 
-INSERT INTO `User` (`first_name`,`last_name`,`u_type`) VALUES
-    ('John',       'Smith',   2),
-    ('Rajib',      'Verma',   1),
-    ('Abid',       'Rana',    1),
-    ('Przemyslaw', 'Pawluk',  1),
-    ('Biljana',    'Vucetic', 1);
+INSERT INTO `Department` VALUES
+    (1, 'None'),
+    (2, 'Technology'),
+    (3, 'Construction'),
+    (4, 'Fashion');
+
+INSERT INTO `User` (`first_name`,`last_name`,`u_type`,`email`,`dept_id`) VALUES
+    ('John',       'Smith',   2, 'jsmith@example.com',   1),
+    ('Rajib',      'Verma',   1, 'rverma@example.com',   2),
+    ('Abid',       'Rana',    1, 'arana@example.com',    2),
+    ('Przemyslaw', 'Pawluk',  1, 'ppawluk@example.com',  2),
+    ('Biljana',    'Vucetic', 1, 'bvucetic@example.com', 2);
 
 -- Passwords are all '123456', hashed with hash('sha256', $password)
 INSERT INTO `Login` VALUES

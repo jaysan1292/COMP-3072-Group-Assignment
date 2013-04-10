@@ -16,6 +16,7 @@ DROP TABLE IF EXISTS `Room`;
 DROP TABLE IF EXISTS `RoomType`;
 DROP TABLE IF EXISTS `Login`;
 DROP TABLE IF EXISTS `User`;
+DROP TABLE IF EXISTS `Department`;
 DROP TABLE IF EXISTS `UserType`;
 
 -- Professor or Administrator
@@ -36,12 +37,20 @@ type_id     TINYINT PRIMARY KEY,
 name        TEXT
 );
 
+CREATE TABLE `Department`(
+dept_id     INT PRIMARY KEY,
+name        VARCHAR(64)
+);
+
 CREATE TABLE `User`(
 u_id        BIGINT PRIMARY KEY AUTO_INCREMENT,
 first_name  VARCHAR(64),
 last_name   VARCHAR(64),
 u_type      TINYINT,
-FOREIGN KEY (u_type) REFERENCES `UserType`(type_id)
+email       VARCHAR(64),
+dept_id     INT,
+FOREIGN KEY (u_type) REFERENCES `UserType`(type_id),
+FOREIGN KEY (dept_id) REFERENCES `Department`(dept_id)
 );
 
 CREATE TABLE `Login`(

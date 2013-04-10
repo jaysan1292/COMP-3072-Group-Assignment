@@ -1,8 +1,9 @@
 <?php
 class User extends Entity {
-    public $firstName;
-    public $lastName;
-    public $isAdmin;
+    public $firstName,  // string
+           $lastName,   // string
+           $department, // string
+           $isAdmin;    // boolean
 
     public function __construct($id, $firstName, $lastName, $isAdmin) {
         parent::__construct($id);

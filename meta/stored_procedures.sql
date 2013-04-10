@@ -19,10 +19,12 @@ CREATE PROCEDURE GetUser(IN UserId BIGINT)
 BEGIN
   SELECT
     User.*,
-    UserType.type_desc
+    UserType.type_desc,
+    Department.name AS dept_name
   FROM
     User
       INNER JOIN UserType ON User.u_type = UserType.type_id
+      INNER JOIN Department ON User.dept_id = Department.dept_id
   WHERE User.u_id = UserId;
 END //
 
@@ -33,10 +35,12 @@ CREATE PROCEDURE GetLoginUser(IN LoginName VARCHAR(32))
 BEGIN
   SELECT
     User.*,
-    Login.*
+    Login.*,
+    Department.name AS dept_name
   FROM
     User
       INNER JOIN Login ON User.u_id = Login.u_id
+      INNER JOIN Department ON User.dept_id = Department.dept_id
   WHERE
     Login.login_name = LoginName;
 END //
@@ -48,10 +52,12 @@ CREATE PROCEDURE GetLoginUserWithId(IN UserId BIGINT)
 BEGIN
   SELECT
     User.*,
-    Login.*
+    Login.*,
+    Department.name AS dept_name
   FROM
     User
       INNER JOIN Login ON User.u_id = Login.u_id
+      INNER JOIN Department ON User.dept_id = Department.dept_id
   WHERE
     User.u_id = UserId;
 END //

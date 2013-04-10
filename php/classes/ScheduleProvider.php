@@ -16,7 +16,7 @@ class ScheduleProvider extends DbProvider {
                 $s_id = $results['s_id'];
                 $fn = $results['first_name'];
                 $ln = $results['last_name'];
-                $user = new User($id, $fn, $ln, false);
+                $user = User::create($id, $fn, $ln);
 
                 do {
                     $c_id = $results['c_id'];

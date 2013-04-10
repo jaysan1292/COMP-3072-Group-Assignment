@@ -5,15 +5,17 @@ class UserProvider extends DbProvider {
         $id = $results['u_id'];
         $fn = $results['first_name'];
         $ln = $results['last_name'];
+        $em = $results['email'];
+        $de = $results['dept_name'];
 
         switch($results['u_type']) {
             case 1:  $admin = false; break;
             case 2:  $admin = true;  break;
-            default: throw new Exception('Invalid user type: '.$results['u_type'], 1);
+            default: $admin = false; break;
         }
 
-        if($id && $fn && $ln) {
-            $out = new User($id, $fn, $ln, $admin);
+        if($id && $fn && $ln && $em && $de) {
+            $out = User::create($id, $fn, $ln, $em, $de, $admin);
             return $out;
         }
     }

@@ -12,6 +12,12 @@ function code_dump($var) {
     echo '</code></pre>';
 }
 
+function func_die($var) {
+    header('Content-Type: text/plain');
+    var_export($var);
+    die;
+}
+
 /*
  * Redirects to the specified page. Please note, however,
  * that it will only redirect to pages within the application

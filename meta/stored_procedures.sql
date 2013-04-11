@@ -1,20 +1,12 @@
 SET autocommit=0;
 START TRANSACTION;
 
-DROP PROCEDURE IF EXISTS CreateUser;
-DROP PROCEDURE IF EXISTS CreateUserPrehashed;
-DROP PROCEDURE IF EXISTS GetCourseInfo;
-DROP PROCEDURE IF EXISTS GetLoginUser;
-DROP PROCEDURE IF EXISTS GetLoginUserWithId;
-DROP PROCEDURE IF EXISTS GetProfessorSchedule;
-DROP PROCEDURE IF EXISTS GetRoomClasses;
-DROP PROCEDURE IF EXISTS GetUser;
-
 DELIMITER //
 
 --
 -- Retrieves user information, given a User ID
 --
+DROP PROCEDURE IF EXISTS GetUser;
 CREATE PROCEDURE GetUser(IN UserId BIGINT)
 BEGIN
   SELECT
@@ -31,6 +23,7 @@ END //
 --
 -- Retrieves login and user information, given their login name
 --
+DROP PROCEDURE IF EXISTS GetLoginUser;
 CREATE PROCEDURE GetLoginUser(IN LoginName VARCHAR(32))
 BEGIN
   SELECT
@@ -48,6 +41,7 @@ END //
 --
 -- Retrieves the same information as GetLoginUser(), but with an ID instead
 --
+DROP PROCEDURE IF EXISTS GetLoginUserWithId;
 CREATE PROCEDURE GetLoginUserWithId(IN UserId BIGINT)
 BEGIN
   SELECT
@@ -65,6 +59,7 @@ END //
 --
 -- Retrieves a professor's schedule, given his/her ID
 --
+DROP PROCEDURE IF EXISTS GetProfessorSchedule;
 CREATE PROCEDURE GetProfessorSchedule(IN ProfessorId BIGINT)
 BEGIN
   SELECT
@@ -99,6 +94,7 @@ END //
 --
 -- Retrieves all classes that take place in a given room (by ID)
 --
+DROP PROCEDURE IF EXISTS GetRoomClasses;
 CREATE PROCEDURE GetRoomClasses(IN RoomId BIGINT)
 BEGIN
   SELECT
@@ -128,6 +124,7 @@ END //
 -- Retrieves information on a single course
 -- i.e., a single timetable block
 --
+DROP PROCEDURE IF EXISTS GetCourseInfo;
 CREATE PROCEDURE GetCourseInfo(IN CourseId BIGINT, IN TypeId TINYINT)
 BEGIN
   SELECT
@@ -157,6 +154,7 @@ END //
 -- NOTE: This procedure will only function on MySQL 5.5+,
 -- as it uses the SHA2() function, which is not available on older versions.
 --
+DROP PROCEDURE IF EXISTS CreateUser;
 CREATE PROCEDURE CreateUser(IN FirstName VARCHAR(64),
                             IN LastName VARCHAR(64),
                             IN UserType TINYINT,
@@ -187,6 +185,7 @@ END //
 --
 -- In PHP: hash('sha256', $password)
 --
+DROP PROCEDURE IF EXISTS CreateUserPrehashed;
 CREATE PROCEDURE CreateUserPrehashed(IN FirstName VARCHAR(64),
                                      IN LastName VARCHAR(64),
                                      IN UserType TINYINT,

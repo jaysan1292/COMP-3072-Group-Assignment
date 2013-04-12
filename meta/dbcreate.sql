@@ -15,6 +15,8 @@ DROP TABLE IF EXISTS `Course`;
 DROP TABLE IF EXISTS `Room`;
 DROP TABLE IF EXISTS `RoomType`;
 DROP TABLE IF EXISTS `Login`;
+DROP TABLE IF EXISTS `TimeOff`;
+DROP TABLE IF EXISTS `TimeOffStatus`;
 DROP TABLE IF EXISTS `User`;
 DROP TABLE IF EXISTS `Department`;
 DROP TABLE IF EXISTS `UserType`;
@@ -119,6 +121,22 @@ FOREIGN KEY (s_id) REFERENCES `Schedule`(s_id),
 FOREIGN KEY (c_id) REFERENCES `Course`(c_id),
 FOREIGN KEY (room) REFERENCES `Room`(rm_id),
 FOREIGN KEY (type_id) REFERENCES `CourseType`(type_id)
+);
+
+CREATE TABLE `TimeOffStatus`(
+status_id   INT PRIMARY KEY,
+name        VARCHAR(32) NOT NULL
+);
+
+CREATE TABLE `TimeOff`(
+t_id        BIGINT PRIMARY KEY AUTO_INCREMENT,
+u_id        BIGINT, -- User ID of the professor that requested this time off
+start_date  DATE,
+finish_date DATE,
+reason      TEXT,
+status_id   INT, -- Current status of this time off (i.e., Under Review, Accepted, Rejected)
+FOREIGN KEY (u_id) REFERENCES `User`(u_id),
+FOREIGN KEY (status_id) REFERENCES `TimeOffStatus`(status_id)
 );
 
 COMMIT;

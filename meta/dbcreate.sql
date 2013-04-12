@@ -51,6 +51,7 @@ last_name   VARCHAR(64),
 u_type      TINYINT,
 email       VARCHAR(64),
 dept_id     INT,
+contact     CHAR(10),
 FOREIGN KEY (u_type) REFERENCES `UserType`(type_id),
 FOREIGN KEY (dept_id) REFERENCES `Department`(dept_id)
 );

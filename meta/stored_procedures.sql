@@ -246,6 +246,22 @@ BEGIN
     Course.c_id = CourseId;
 END //
 
+DROP PROCEDURE IF EXISTS GetAdminProfessorInfo //
+CREATE PROCEDURE GetAdminProfessorInfo (IN ProfessorId BIGINT)
+BEGIN
+  SELECT
+    CONCAT(User.first_name, ' ', User.last_name) AS 'Professor',
+    User.contact AS 'ContactNumber',
+    User.email AS 'EmailAddress',
+    User.u_id AS 'EmployeeId',
+    Department.name AS 'Department'
+  FROM
+    User
+      INNER JOIN Department ON User.dept_id = Department.dept_id
+  WHERE
+    User.u_id = ProfessorId;
+END //
+
 DELIMITER ;
 
 COMMIT;

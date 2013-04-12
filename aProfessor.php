@@ -9,15 +9,18 @@
 				<th>EmployeeID</th>
 				<th>Department</th>
 			</tr>
+			<?php /* Same deal as aClasses.php, but with professors instead. */ ?>
+			<?php admin_init_professors(); global $professors; foreach($professors as $professor): ?>
 			<tr class="success">
-				<td>Professor 1</td>
-				<td>getContact()</td>
-				<td>getEmail()</td>
+				<td><?=$professor['Name']?></td>
+				<td><?=$professor['ContactNumber']?></td>
+				<td><?=$professor['EmailAddress']?></td>
 				<td>getCourses()</td>
-				<td>getEmployeeID()</td>
+				<td><?=$professor['EmployeeId']?></td>
 				<td><a href="#" class="department" data-type="select" data-pk="1" data-url="" data-original-title="Make a department"></a></td>
 			</tr>
-			<tr class="warning">
+			<?php endforeach; ?>
+			<!-- <tr class="warning">
 				<td>Professor 2</td>
 				<td>getContact()</td>
 				<td>getEmail()</td>
@@ -40,7 +43,7 @@
 				<td>getCourses()</td>
 				<td>getEmployeeID()</td>
 				<td ><a href="#" class="department" data-type="select" data-pk="1" data-url="" data-original-title="Make a department"></a></td>
-			</tr>
+			</tr> -->
 
 
 <div class="pagination pagination-centered">

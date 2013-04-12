@@ -18,7 +18,6 @@ function func_die($var) {
     die;
 }
 
-
 function admin_init_courses() {
     global $courses;
 
@@ -54,8 +53,38 @@ function admin_init_courses() {
     $db->commit();
 }
 
-function admin_get_courses() {
+function admin_init_professors() {
+    global $professors;
 
+    $db = DbProvider::openConnection();
+    $db->beginTransaction();
+
+    $cmd = $db->prepare('SELECT u_id FROM User WHERE u_type = 1');
+    if($cmd->execute()) {
+        while(($result = $cmd->fetch())) {
+            $ids[] = $result['u_id'];
+        }
+    }
+    unset($cmd);
+
+    foreach ($ids as $id) {
+        $cmd = $db->prepare('CALL GetAdminProfessorInfo(?)');
+        $cmd->bindParam(1, $id);
+        if($cmd->execute()) {
+            while(($result = $cmd->fetch())) {
+                $professors[] = array(
+                    'Name'          => $result['Professor'],
+                    'ContactNumber' => $result['ContactNumber'],
+                    'EmailAddress'  => $result['EmailAddress'],
+                    'EmployeeId'    => $result['EmployeeId'],
+                    'Department'    => $result['Department'],
+                );
+            }
+        }
+    }
+
+    $db->commit();
+}
 }
 
 /*

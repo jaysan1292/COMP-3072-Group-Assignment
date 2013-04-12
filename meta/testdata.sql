@@ -51,12 +51,12 @@ INSERT INTO `TimeOffStatus` VALUES
     (2, 'Approved'),
     (3, 'Rejected');
 
-INSERT INTO `User` (`first_name`,`last_name`,`u_type`,`email`,`dept_id`) VALUES
-    ('John',       'Smith',   2, 'jsmith@example.com',   1),
-    ('Rajib',      'Verma',   1, 'rverma@example.com',   2),
-    ('Abid',       'Rana',    1, 'arana@example.com',    2),
-    ('Przemyslaw', 'Pawluk',  1, 'ppawluk@example.com',  2),
-    ('Biljana',    'Vucetic', 1, 'bvucetic@example.com', 2);
+INSERT INTO `User` (`first_name`,`last_name`,`u_type`,`email`,`dept_id`,`contact`) VALUES
+    ('John',       'Smith',   2, 'jsmith@example.com',   1, '6475551234'),
+    ('Rajib',      'Verma',   1, 'rverma@example.com',   2, '6475551234'),
+    ('Abid',       'Rana',    1, 'arana@example.com',    2, '6475551234'),
+    ('Przemyslaw', 'Pawluk',  1, 'ppawluk@example.com',  2, '6475551234'),
+    ('Biljana',    'Vucetic', 1, 'bvucetic@example.com', 2, '6475551234');
 
 -- Passwords are all '123456', hashed with hash('sha256', $password)
 INSERT INTO `Login` VALUES

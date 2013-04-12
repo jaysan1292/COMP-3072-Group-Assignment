@@ -7,7 +7,7 @@
 
 /* line 13, ../sass/screen.scss */
 html, body {
-  height: 100%;
+  padding-bottom: 10px;
 }
 
 /* line 17, ../sass/screen.scss */
@@ -26,7 +26,7 @@ html, body {
   background: #B3C9E1;
   height: 1em;
   text-align: center;
-  position: absolute;
+  position: fixed;
   bottom: 0%;
 }
 

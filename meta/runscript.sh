@@ -15,6 +15,8 @@ fi
 
 filename="$DIR/script.sql"
 
+rm "$filename" >/dev/null 2>&1
+
 checkfile() {
     if [[ ! -f $1 ]]; then
         echo $1 is missing!

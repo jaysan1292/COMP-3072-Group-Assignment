@@ -225,6 +225,27 @@ BEGIN
       INNER JOIN TimeOffDate ON TimeOffDate.t_id = TimeOff.t_id;
 END //
 
+DROP PROCEDURE IF EXISTS GetAdminCourseInfo //
+CREATE PROCEDURE GetAdminCourseInfo (IN CourseId BIGINT)
+BEGIN
+  SELECT
+    Course.c_code AS 'CourseCode',
+    Course.c_description AS 'CourseDescription',
+    Course.c_crn AS 'CRN',
+    Room.rm_number AS 'RoomNumber',
+    RoomType.name AS 'RoomType',
+    Section.s_name AS 'Section'
+  FROM
+    Course
+      INNER JOIN ScheduleCourse ON Course.c_id = ScheduleCourse.c_id
+      INNER JOIN Room ON Room.rm_id = ScheduleCourse.room
+      INNER JOIN RoomType ON Room.rm_type = RoomType.type_id
+      INNER JOIN SectionCourse ON Course.c_id = SectionCourse.c_id
+      INNER JOIN Section ON SectionCourse.s_id = Section.s_id
+  WHERE
+    Course.c_id = CourseId;
+END //
+
 DELIMITER ;
 
 COMMIT;

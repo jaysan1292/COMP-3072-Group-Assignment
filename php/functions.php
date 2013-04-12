@@ -18,6 +18,46 @@ function func_die($var) {
     die;
 }
 
+
+function admin_init_courses() {
+    global $courses;
+
+    // fuck it I'm too tired to make a well-structured data access layer for this
+    $db = DbProvider::openConnection();
+    $db->beginTransaction();
+
+    $cmd = $db->prepare('SELECT c_id FROM Course');
+    if($cmd->execute()) {
+        while(($result = $cmd->fetch())) {
+            $ids[] = $result['c_id'];
+        }
+    }
+    unset($cmd);
+
+    foreach ($ids as $id) {
+        $cmd = $db->prepare('CALL GetAdminCourseInfo(?)');
+        $cmd->bindParam(1, $id);
+        if($cmd->execute()) {
+            while(($result = $cmd->fetch())) {
+                $courses[] = array(
+                    'CourseCode'        => $result['CourseCode'],
+                    'CourseDescription' => $result['CourseDescription'],
+                    'CRN'               => $result['CRN'],
+                    'RoomNumber'        => $result['RoomNumber'],
+                    'RoomType'          => $result['RoomType'],
+                    'Section'           => $result['Section'],
+                );
+            }
+        }
+    }
+
+    $db->commit();
+}
+
+function admin_get_courses() {
+
+}
+
 /*
  * Redirects to the specified page. Please note, however,
  * that it will only redirect to pages within the application

@@ -13,17 +13,21 @@
 				<th>Room Type</th>
 				<th>Section</th>
 			</tr>
+			<?php/* Fuck it, I'm tired. This will be an associative array, not a class object. */?>
+			<?php admin_init_courses(); global $courses; foreach($courses as $course): ?>
 			<tr class="success">
-				<td>getCourseCode()</td>
-				<td>getCOurseDesc()</td>
-				<td>getCRN()</td>
-				<td>getRoomNumber()</td>
-				<td>getRoomType()</td>
+				<td><?=$course['CourseCode']?></td>
+				<td><?=$course['CourseDescription']?></td>
+				<td><?=$course['CRN']?></td>
+				<td><?=$course['RoomNumber']?></td>
+				<td><?=$course['RoomType']?></td>
+				<!-- TODO: Figure this out >: -->
 				<td><a href="#" class="sect" data-type="select" data-pk="1" data-url="" data-original-title="Select Class Section"></a></td>
 			</tr>
-			<tr class="warning">
+			<?php endforeach; ?>
+			<!-- <tr class="warning">
 				<td>getCourseCode()</td>
-				<td>getCOurseDesc()</td>
+			 	<td>getCOurseDesc()</td>
 				<td>getCRN()</td>
 				<td>getRoomNumber()</td>
 				<td>getRoomType()</td>
@@ -44,7 +48,7 @@
 				<td>getRoomNumber()</td>
 				<td>getRoomType()</td>
 				<td><a href="#" class="sect" data-type="select" data-pk="1" data-url="" data-original-title="Select Class Section"></a></td>
-			</tr>
+			</tr> -->
 
 		</tbody>
 	</table>

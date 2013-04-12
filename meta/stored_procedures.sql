@@ -216,7 +216,8 @@ BEGIN
     TimeOff.reason AS 'Reason',
     TimeOff.start_date AS 'Start',
     TimeOff.finish_date AS 'End',
-    TimeOffStatus.name AS 'Status'
+    TimeOffStatus.name AS 'Status',
+    TimeOffStatus.status_id AS 'StatusId'
   FROM
     TimeOff
       INNER JOIN User ON TimeOff.u_id = User.u_id
@@ -253,6 +254,7 @@ BEGIN
     User.contact AS 'ContactNumber',
     User.email AS 'EmailAddress',
     User.u_id AS 'EmployeeId',
+    Department.dept_id AS 'DepartmentId',
     Department.name AS 'Department'
   FROM
     User

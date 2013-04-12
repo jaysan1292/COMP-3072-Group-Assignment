@@ -49,7 +49,7 @@ INSERT INTO `Department` VALUES
 INSERT INTO `TimeOffStatus` VALUES
     (1, 'Under Review'),
     (2, 'Approved'),
-    (3, 'Rejected');
+    (3, 'Declined');
 
 INSERT INTO `User` (`first_name`,`last_name`,`u_type`,`email`,`dept_id`,`contact`) VALUES
     ('John',       'Smith',   2, 'jsmith@example.com',   1, '6475551234'),
@@ -116,9 +116,9 @@ UPDATE `ScheduleCourse` SET `thursday` = 1 WHERE `c_id` = 1 AND `type_id` = 2; -
 UPDATE `ScheduleCourse` SET `friday`   = 1 WHERE `c_id` = 1 AND `type_id` = 1; -- COMP3072 Lab on Friday
 
 INSERT INTO `TimeOff` (`u_id`,`start_date`,`finish_date`,`reason`,`status_id`) VALUES
-    (2, '2013-02-28', '2013-03-04', 'A reason', 1),
-    (3, '2013-04-01', '2013-04-02', 'Some reason', 3),
-    (5, '2013-04-09', '2013-04-09', 'Illness', 2),
+    (2, '2013-02-28', '2013-03-04', 'A reason',      1),
+    (3, '2013-04-01', '2013-04-02', 'Some reason',   3),
+    (5, '2013-04-09', '2013-04-09', 'Illness',       2),
     (4, '2013-04-02', '2013-04-07', 'Business trip', 1);
 
 COMMIT;

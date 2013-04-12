@@ -12,7 +12,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php professor_get_courses(); global $professor_courses; foreach($professor_courses as $course): ?>
+                <?php professor_init_courses(); global $professor_courses; foreach($professor_courses as $course): ?>
                 <tr>
                     <td><?=$course['CRN']?></td>
                     <td><?=$course['CourseCode']?></td>

@@ -20,6 +20,7 @@ function func_die($var) {
 
 function admin_init_courses() {
     global $courses;
+    if(isset($courses)) return;
 
     // fuck it I'm too tired to make a well-structured data access layer for this
     $db = DbProvider::openConnection();
@@ -56,6 +57,7 @@ function admin_init_courses() {
 
 function admin_init_professors() {
     global $professors;
+    if(isset($professors)) return;
 
     $db = DbProvider::openConnection();
     $db->beginTransaction();
@@ -90,6 +92,7 @@ function admin_init_professors() {
 
 function admin_init_timeoff_request() {
     global $requests;
+    if(isset($requests)) return;
 
     $db = DbProvider::openConnection();
     $db->beginTransaction();
@@ -112,6 +115,8 @@ function admin_init_timeoff_request() {
 
 function admin_init_course_sections() {
     global $sections;
+    if(isset($sections)) return;
+
     $db = DbProvider::openConnection();
     $db->beginTransaction();
 
@@ -132,6 +137,7 @@ function admin_init_course_sections() {
 
 function admin_init_timeoff_statuses() {
     global $timeoff_statuses;
+    if(isset($timeoff_statuses)) return;
 
     $db = DbProvider::openConnection();
     $db->beginTransaction();
@@ -151,6 +157,7 @@ function admin_init_timeoff_statuses() {
 
 function admin_init_departments() {
     global $departments;
+    if(isset($departments)) return;
 
     $db = DbProvider::openConnection();
     $db->beginTransaction();
@@ -168,10 +175,11 @@ function admin_init_departments() {
     $db->commit();
 }
 
-function professor_get_courses() {
+function professor_init_courses() {
     $profid = $_SESSION['current_user']->id;
 
     global $professor_courses;
+    if(isset($professor_courses)) return;
 
     $db = DbProvider::openConnection();
     $db->beginTransaction();

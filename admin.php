@@ -82,9 +82,9 @@ if(!isset($_SESSION['current_user'])) {
             <h3>Professors</h3>
             <div><?php include('aProfessor.php');?></div>
           </article>
-          <article class="tab-pane" id="aClasses"> 
+          <article class="tab-pane" id="aClasses">
             <h3>Classes</h3>
-            <?php include('aClasses.php');?> 
+            <?php include('aClasses.php');?>
           </article>
           <article class="tab-pane" id="aRequest">
             <h3>Time-Off Requests</h3>

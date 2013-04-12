@@ -19,24 +19,24 @@
 							<form class="form-inline">
 								<table id="user" class="table table-bordered table-striped">
 									<tbody>
-									<caption>**Click text to Edit**</caption> 
-										<tr>         
+									<caption>**Click text to Edit**</caption>
+										<tr>
 											<td width="40%">Contact Number:</td>
 											<td><a href="#" class="myeditable editable editable-click editable-empty" id="contact_number" data-type="text"><?= "contact_number"?></a></td>
 										</tr>
-										<tr>         
+										<tr>
 											<td>E-mail Address:</td>
 											<td><a href="#" class="myeditable editable editable-click editable-empty" id="email" data-type="email"><?= "email"?></a></td>
-										</tr>  
-										<tr>         
+										</tr>
+										<tr>
 											<td>Department:</td>
 											<td><a href="#" class="myeditable editable editable-click editable-empty" id="department" data-type="select"><?= "department"?></a></td>
-										</tr>     
-										<tr>         
+										</tr>
+										<tr>
 											<td>Courses:</td>
 											<td><a href="#" class="myeditable editable editable-click editable-empty" id="courses" data-type="checklist"></a></td>
-										</tr>  
-										<tr>         
+										</tr>
+										<tr>
 											<td>Request a Time-Off/Vaction</td>
 											<td>
 												<label for="date1">From:</label>
@@ -47,7 +47,7 @@
 												<br>
 												<a href="#" class="myeditable editable editable-click editable-empty" id="book_off_reason" data-type="textarea" placeholder="Request a Time-Off Here"><?= "Reason:"?></a>
 											</td>
-										</tr> 
+										</tr>
 									</tbody>
 								</table>
 

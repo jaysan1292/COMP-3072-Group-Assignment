@@ -1,7 +1,7 @@
 <form class="form-inline">
 	<table class="table table-condensed">
-		<tbody> 
-			<tr>         
+		<tbody>
+			<tr>
 				<th>Professor</th>
 				<th>Contact Number</th>
 				<th>Email Address</th>
@@ -9,7 +9,7 @@
 				<th>EmployeeID</th>
 				<th>Department</th>
 			</tr>
-			<tr class="success">         
+			<tr class="success">
 				<td>Professor 1</td>
 				<td>getContact()</td>
 				<td>getEmail()</td>
@@ -17,7 +17,7 @@
 				<td>getEmployeeID()</td>
 				<td><a href="#" class="department" data-type="select" data-pk="1" data-url="" data-original-title="Make a department"></a></td>
 			</tr>
-			<tr class="warning">         
+			<tr class="warning">
 				<td>Professor 2</td>
 				<td>getContact()</td>
 				<td>getEmail()</td>
@@ -25,7 +25,7 @@
 				<td>getEmployeeID()</td>
 				<td><a href="#" class="department" data-type="select" data-pk="1" data-url="" data-original-title="Make a department"></a></td>
 			</tr>
-			<tr class="error">         
+			<tr class="error">
 				<td>Professor 3</td>
 				<td>getContact()</td>
 				<td>getEmail()</td>
@@ -33,7 +33,7 @@
 				<td>getEmployeeID()</td>
 				<td><a href="#" class="department" data-type="select" data-pk="1" data-url="" data-original-title="Make a department"></a></td>
 			</tr>
-			<tr class="info">         
+			<tr class="info">
 				<td>Professor 4</td>
 				<td>getContact()</td>
 				<td>getEmail()</td>
@@ -42,7 +42,7 @@
 				<td ><a href="#" class="department" data-type="select" data-pk="1" data-url="" data-original-title="Make a department"></a></td>
 			</tr>
 
-			
+
 <div class="pagination pagination-centered">
   <ul>
     <li class="disabled"><a href="#">&laquo;</a></li>
@@ -63,14 +63,14 @@
 
 <form class="form-inline">
 	<table class="table table-condensed">
-		<tbody> 
+		<tbody>
 			<tr>
 				<th>First Name</th>
 				<th>Last Name</th>
 				<th>Employee ID</th>
 				<th>Course(s)</th>
 			</tr>
-			<tr>         
+			<tr>
 				<td><input class="input-medium" type="text" placeholder=".input-medium"></td>
 				<td><input class="input-medium" type="text" placeholder=".input-medium"></td>
 				<td><input class="input-medium" type="text" placeholder=".input-medium"></td>
@@ -120,7 +120,7 @@
 $(function(){
 	$.fn.editable.defaults.mode = 'inline';
 	$('.department').editable({
-		value: 1,    
+		value: 1,
 		source: [
 		{value: 1, text: 'Technology'},
 		{value: 2, text: 'Construction'},

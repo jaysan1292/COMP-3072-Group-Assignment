@@ -20,8 +20,12 @@ $pass = $_POST['password'];
 // TODO: Set cookie to remember user login info
 @$remember = (boolean) $_POST['remember'];
 
-$auth = new Authenticator();
-$success = $auth->authenticateUser($user, $pass, $login);
+try {
+    $auth = new Authenticator;
+    $success = $auth->authenticateUser($user, $pass, $login);
+} catch(PDOException $e) {
+    send_to_login_page('Couldn\'t connect to authentication server. Please try again later.');
+}
 
 if($success) {
     session_start();

@@ -4,7 +4,7 @@ class Schedule extends Entity {
     public $courses;   // Array of Courses
 
     public function __construct($id, User $user, $courses = array()) {
-        parent::__construct($id);
+        $this->id = $id;
         $this->user = $user;
         $this->courses = $courses;
     }

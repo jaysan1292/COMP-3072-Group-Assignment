@@ -3,7 +3,7 @@ class Course extends Entity {
     public $courseCode, $crn, $desc, $room, $type, $day, $start, $finish;
 
     public function __construct($id, $courseCode, $crn, $desc, $room, $type, $day, $start, $finish) {
-        parent::__construct($id);
+        $this->id = $id;
         $this->courseCode = $courseCode;
         $this->crn = $crn;
         $this->desc = $desc;

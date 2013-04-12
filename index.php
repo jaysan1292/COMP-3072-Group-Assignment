@@ -27,9 +27,9 @@ include 'php/includes/htmlheader.php';
                     <legend><strong>Sign In</strong></legend>
                     <form method="POST" action="authenticate.php" accept-charset="UTF-8">
 
-                        <?php if(isset($_GET['msg'])): ?>
+                        <?php if(isset($_POST['errmsg'])): ?>
                         <!-- TODO: Ew, inline styles -->
-                        <label style="color: red;"><?=$_GET['msg']?></label>
+                        <label style="cursor: default; color: red;"><?=$_POST['errmsg']?></label>
                         <?php endif; ?>
 
                         <input type="text" id="username" class="span6" name="username" placeholder="Username"><br>

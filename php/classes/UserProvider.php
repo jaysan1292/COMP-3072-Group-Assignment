@@ -7,15 +7,15 @@ class UserProvider extends DbProvider {
         $ln = $results['last_name'];
         $em = $results['email'];
         $de = $results['dept_name'];
+        $co = $results['contact'];
 
         switch($results['u_type']) {
             case 1:  $admin = false; break;
             case 2:  $admin = true;  break;
             default: $admin = false; break;
         }
-
-        if($id && $fn && $ln && $em && $de) {
-            $out = User::create($id, $fn, $ln, $em, $de, $admin);
+        if($id && $fn && $ln && $em && $de && $co) {
+            $out = User::create($id, $fn, $ln, $em, $de, $co, $admin);
             return $out;
         }
     }

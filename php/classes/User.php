@@ -4,6 +4,7 @@ class User extends Entity {
            $lastName,   // string
            $email,      // string
            $department, // string
+           $contact,    // string
            $isAdmin;    // boolean
 
     /**
@@ -17,11 +18,12 @@ class User extends Entity {
      * lastName     string    yes         default: ''
      * email        string    no          default: ''
      * department   string    no          default: ''
+     * contact      string    no          default: ''
      * isAdmin      boolean   no          default: false
      */
     static function create() {
         $numargs = func_num_args();
-        if($numargs < 3 || $numargs > 6) return false;
+        if($numargs < 3 || $numargs > 7) return false;
         $args = func_get_args();
 
         $u = new User;
@@ -34,13 +36,14 @@ class User extends Entity {
         // not required values
         $u->email      = isset($args[3]) ? $args[3] : '';
         $u->department = isset($args[4]) ? $args[4] : '';
-        $u->isAdmin    = isset($args[5]) ? $args[5] : false;
+        $u->contact    = isset($args[5]) ? $args[5] : '';
+        $u->isAdmin    = isset($args[6]) ? $args[6] : false;
 
         return $u;
     }
 
     static function fromUser(User $user) {
-        return User::create($user->id, $user->firstName, $user->lastName, $user->email, $user->department, $user->isAdmin);
+        return User::create($user->id, $user->firstName, $user->lastName, $user->email, $user->department, $user->contact, $user->isAdmin);
     }
 
     public function __toString() {

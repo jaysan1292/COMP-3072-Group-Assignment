@@ -122,13 +122,16 @@
 <script>
 $(function(){
 	$.fn.editable.defaults.mode = 'inline';
-	$('.department').editable({
-		value: 1,
-		source: [
-		{value: 1, text: 'Technology'},
-		{value: 2, text: 'Construction'},
-		{value: 3, text: 'Fashion'}
-		]
+	var source = [
+		<?php admin_init_departments(); global $departments; foreach($departments as $department): ?>
+		{value: <?=$department['Id']?>, text: "<?=$department['Name']?>"},
+		<?php endforeach; ?>
+	];
+	$('.department').each(function(){
+		$(this).editable({
+			value: $(this).data('pk'),
+			source: source
+		});
 	});
 });
 </script>

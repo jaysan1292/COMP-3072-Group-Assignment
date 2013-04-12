@@ -44,6 +44,7 @@ function admin_init_courses() {
                     'CRN'               => $result['CRN'],
                     'RoomNumber'        => $result['RoomNumber'],
                     'RoomType'          => $result['RoomType'],
+                    'SectionId'         => $result['SectionId'],
                     'Section'           => $result['Section'],
                 );
             }
@@ -77,6 +78,7 @@ function admin_init_professors() {
                     'ContactNumber' => $result['ContactNumber'],
                     'EmailAddress'  => $result['EmailAddress'],
                     'EmployeeId'    => $result['EmployeeId'],
+                    'DepartmentId'  => $result['DepartmentId'],
                     'Department'    => $result['Department'],
                 );
             }
@@ -100,6 +102,65 @@ function admin_init_timeoff_request() {
                 'Date'      => $result['Start'].' to '.$result['End'],
                 'Reason'    => $result['Reason'],
                 'Status'    => $result['Status'],
+                'StatusId'  => $result['StatusId'],
+            );
+        }
+    }
+
+    $db->commit();
+}
+
+function admin_init_course_sections() {
+    global $sections;
+    $db = DbProvider::openConnection();
+    $db->beginTransaction();
+
+    $cmd = $db->prepare('SELECT * FROM Section');
+    if($cmd->execute()) {
+        while($result = $cmd->fetch()) {
+            $sections[] = array(
+                'Id'            => $result['s_id'],
+                'Name'          => $result['s_name'],
+                'Description'   => $result['s_desc'],
+                'Size'          => $result['s_size'],
+            );
+        }
+    }
+
+    $db->commit();
+}
+
+function admin_init_timeoff_statuses() {
+    global $timeoff_statuses;
+
+    $db = DbProvider::openConnection();
+    $db->beginTransaction();
+
+    $cmd = $db->prepare('SELECT * FROM TimeOffStatus');
+    if($cmd->execute()) {
+        while($row = $cmd->fetch()) {
+            $timeoff_statuses[] = array(
+                'Id'   => $row['status_id'],
+                'Name' => $row['name'],
+            );
+        }
+    }
+
+    $db->commit();
+}
+
+function admin_init_departments() {
+    global $departments;
+
+    $db = DbProvider::openConnection();
+    $db->beginTransaction();
+
+    $cmd = $db->prepare('SELECT * FROM Department');
+    if($cmd->execute()) {
+        while($row = $cmd->fetch()) {
+            $departments[] = array(
+                'Id'   => $row['dept_id'],
+                'Name' => $row['name'],
             );
         }
     }

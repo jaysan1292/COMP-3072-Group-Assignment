@@ -50,13 +50,16 @@
 <script>
 $(function(){
 	$.fn.editable.defaults.mode = 'inline';
-	$('.decision').editable({
-		value: 3,
-		source: [
-		{value: 1, text: 'Approved'},
-		{value: 2, text: 'Declined'},
-		{value: 3, text: 'Under Review'}
-		]
+	var source = [
+		<?php admin_init_timeoff_statuses(); global $timeoff_statuses; foreach($timeoff_statuses as $status): ?>
+		{value: <?=$status['Id']?>, text: "<?=$status['Name']?>"},
+		<?php endforeach; ?>
+	];
+	$('.decision').each(function(){
+		$(this).editable({
+			value: $(this).data('pk'),
+			source: source
+		});
 	});
 });
 </script>

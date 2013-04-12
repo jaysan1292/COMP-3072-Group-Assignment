@@ -232,6 +232,7 @@ BEGIN
     Course.c_crn AS 'CRN',
     Room.rm_number AS 'RoomNumber',
     RoomType.name AS 'RoomType',
+    Section.s_id AS 'SectionId',
     Section.s_name AS 'Section'
   FROM
     Course

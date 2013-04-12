@@ -168,6 +168,40 @@ function admin_init_departments() {
     $db->commit();
 }
 
+function professor_get_courses() {
+    $profid = $_SESSION['current_user']->id;
+
+    global $professor_courses;
+
+    $db = DbProvider::openConnection();
+    $db->beginTransaction();
+
+    $cmd = $db->prepare('CALL GetProfessorSchedule(?)');
+    $cmd->bindParam(1, $profid);
+
+    if($cmd->execute()) {
+        while($row = $cmd->fetch()) {
+            $professor_courses[] = array(
+                'CourseId'          => $row['c_id'],
+                'CourseCode'        => $row['c_code'],
+                'CRN'               => $row['c_crn'],
+                'CourseDescription' => $row['c_description'],
+                'CourseType'        => $row['type_desc'],
+                'RoomNumber'        => $row['rm_number'],
+                'Monday'            => $row['monday'],
+                'Tuesday'           => $row['tuesday'],
+                'Wednesday'         => $row['wednesday'],
+                'Thursday'          => $row['thursday'],
+                'Friday'            => $row['friday'],
+                'StartTime'         => $row['start_time'],
+                'FinishTime'        => $row['finish_time'],
+            );
+        }
+    }
+
+    $db->commit();
+}
+
 /*
  * Redirects to the specified page. Please note, however,
  * that it will only redirect to pages within the application

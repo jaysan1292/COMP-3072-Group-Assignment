@@ -11,13 +11,16 @@
 				<th>Reason</th>
 				<th>Status</th>
 			</tr>
+			<?php /* See aProfessor.php and aClasses.php */ ?>
+			<?php admin_init_timeoff_request(); global $requests; foreach($requests as $request): ?>
 			<tr class="success">
-				<td>Professor 1</td>
-				<td>getDates()</td>
-				<td>getReason()</td>
+				<td><?=$request['Professor']?></td>
+				<td><?=$request['Date']?></td>
+				<td><?=$request['Reason']?></td>
 				<td><a href="#" class="decision" data-type="select" data-pk="1" data-url="" data-original-title="Make a decision"></a></td>
 			</tr>
-			<tr class="warning">
+			<?php endforeach; ?>
+			<!-- <tr class="warning">
 				<td>Professor 2</td>
 				<td>getDates()</td>
 				<td>getReason()</td>
@@ -34,7 +37,7 @@
 				<td>getDates()</td>
 				<td>getReason()</td>
 				<td ><a href="#" class="decision" data-type="select" data-pk="1" data-url="" data-original-title="Make a decision"></a></td>
-			</tr>
+			</tr> -->
 
 		</tbody>
 	</table>

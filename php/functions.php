@@ -85,6 +85,26 @@ function admin_init_professors() {
 
     $db->commit();
 }
+
+function admin_init_timeoff_request() {
+    global $requests;
+
+    $db = DbProvider::openConnection();
+    $db->beginTransaction();
+
+    $cmd = $db->prepare('CALL GetTimeOffRequests');
+    if($cmd->execute()) {
+        while(($result = $cmd->fetch())) {
+            $requests[] = array(
+                'Professor' => $result['Name'],
+                'Date'      => $result['Start'].' to '.$result['End'],
+                'Reason'    => $result['Reason'],
+                'Status'    => $result['Status'],
+            );
+        }
+    }
+
+    $db->commit();
 }
 
 /*

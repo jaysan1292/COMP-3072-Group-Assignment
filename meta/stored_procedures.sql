@@ -212,8 +212,7 @@ CREATE PROCEDURE GetTimeOffRequests ()
 BEGIN
   SELECT
     TimeOff.t_id AS 'Id',
-    User.first_name AS 'FirstName',
-    User.last_name AS 'LastName',
+    CONCAT(User.first_name, ' ', User.last_name) AS 'Name',
     TimeOff.reason AS 'Reason',
     TimeOff.start_date AS 'Start',
     TimeOff.finish_date AS 'End',
@@ -221,8 +220,7 @@ BEGIN
   FROM
     TimeOff
       INNER JOIN User ON TimeOff.u_id = User.u_id
-      INNER JOIN TimeOffStatus ON TimeOff.status_id = TimeOffStatus.status_id
-      INNER JOIN TimeOffDate ON TimeOffDate.t_id = TimeOff.t_id;
+      INNER JOIN TimeOffStatus ON TimeOff.status_id = TimeOffStatus.status_id;
 END //
 
 DROP PROCEDURE IF EXISTS GetAdminCourseInfo //

@@ -2,7 +2,9 @@
 require_once 'php/global.php';
 session_start();
 
-if(!$_SESSION['current_user']->isAdmin) {
+if(!isset($_SESSION['current_user'])) {
+    redirect_to_page(LOGIN_PAGE);
+} else if(!$_SESSION['current_user']->isAdmin) {
     redirect_to_page(HOME_PAGE);
 }
 ?>

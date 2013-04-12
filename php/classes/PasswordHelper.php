@@ -6,9 +6,6 @@ class PasswordHelper {
 
     static function checkPassword($plaintext, $encrypted) {
         $hash = PasswordHelper::encryptPassword($plaintext);
-        if($hash == $encrypted) {
-            return true;
-        }
-        return false;
+        return $hash == $encrypted;
     }
 }

@@ -1,3 +1,4 @@
+<?php $user = $_SESSION['current_user']; ?>
 <div id="profile" class="row-fluid">
 	<div class="span12">
 		<div class="widget no-margin">
@@ -10,7 +11,7 @@
 								<img alt="300x200" src="img/hero-image.jpg">
 								<div class="caption">
 									<span class="name"> <?=$_SESSION['current_user'] ?> </span> <br>
-									<span class="e_id"> <?= "Employee Number" ?> </span>
+									<span class="e_id"> <?="Employee " . $user->id?> </span>
 								</div>
 							</div>
 						</div>
@@ -21,22 +22,22 @@
 									<caption>**Click text to Edit**</caption>
 										<tr>
 											<td width="40%">Contact Number:</td>
-											<td><a href="#" class="myeditable editable editable-click editable-empty" id="contact_number" data-type="text"><?= "contact_number"?></a></td>
+											<td><a href="#" class="myeditable editable editable-click editable-empty" id="contact_number" data-type="text"><?=$user->contact?></a></td>
 										</tr>
 										<tr>
 											<td>E-mail Address:</td>
-											<td><a href="#" class="myeditable editable editable-click editable-empty" id="email" data-type="email"><?= "email"?></a></td>
+											<td><a href="#" class="myeditable editable editable-click editable-empty" id="email" data-type="email"><?=$user->email?></a></td>
 										</tr>
 										<tr>
 											<td>Department:</td>
-											<td><a href="#" class="myeditable editable editable-click editable-empty" id="department" data-type="select"><?= "department"?></a></td>
+											<td><a href="#" class="myeditable editable editable-click editable-empty" id="department" data-type="select"><?=$user->department?></a></td>
 										</tr>
 										<tr>
 											<td>Courses:</td>
 											<td><a href="#" class="myeditable editable editable-click editable-empty" id="courses" data-type="checklist"></a></td>
 										</tr>
 										<tr>
-											<td>Request a Time-Off/Vaction</td>
+											<td>Request a Time-Off/Vacation</td>
 											<td>
 												<label for="date1">From:</label>
 												<input type="text" id="date1" data-format="DD-MM-YYYY" data-template="D MMM YYYY" name="date" value="<?php echo date("d-m-Y"); ?>">
@@ -60,9 +61,14 @@
 				</div>
 			</div>
 		</div>
-	</div>	</div>
+	</div>
 </div>
-<script src="editrecord.js">
+<script type="text/javascript">
+<?php
+professor_init_courses();
+professor_init_departments();
+global $professor_courses, $departments;
+?>
 $(function(){
 	$.fn.editable.defaults.mode = 'inline';
 	$('#contact_number').editable({
@@ -78,22 +84,28 @@ $(function(){
 	// 	title: 'Department:'
 	// });
 	$('#department').editable({
-		value: 4,
+		<?php $d = professor_get_current_department(); ?>
+		value: <?=$d['Id']?>,
 		source: [
-		{value: 1, text: 'T127'},
-		{value: 2, text: 'T141'},
-		{value: 3, text: 'Free-Agent'},
-		{value: 4, text: 'Rockstar'}
+		<?php foreach($departments as $dept): ?>
+		{value: <?=$dept['Id']?>, text: "<?=$dept['Name']?>"},
+		<?php endforeach; ?>
 		]
 	});
 	$('#courses').editable({
-        value: [1,2,3,4],
+		<?php
+		$ids = array();
+		foreach($professor_courses as $course) {
+			if(!in_array($course['CourseId'], $ids)) {
+				$ids[] = $course['CourseId'];
+				$values[] = '{value: '.$course['CourseId'].', text: "'.$course['CourseCode'].': '.$course['CourseDescription'].'"}';
+			}
+		}
+		?>
+        value: [<?=implode(',', $ids)?>],
         source: [
-              {value: 1, text: 'option1'},
-              {value: 2, text: 'option2'},
-              {value: 3, text: 'option3'},
-              {value: 4, text: 'option4'}
-           ]
+        	<?=implode(',', $values)?>
+        ]
     });
 	$('#book_off_reason').editable({
         url: 'post.php',

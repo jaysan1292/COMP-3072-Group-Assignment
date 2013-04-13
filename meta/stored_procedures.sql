@@ -12,6 +12,7 @@ BEGIN
   SELECT
     User.*,
     UserType.type_desc,
+    Department.dept_id,
     Department.name AS dept_name
   FROM
     User
@@ -73,6 +74,7 @@ BEGIN
     CourseType.type_id,
     CourseType.type_desc,
     Room.rm_number,
+    Room.rm_size,
     ScheduleCourse.monday,
     ScheduleCourse.tuesday,
     ScheduleCourse.wednesday,

@@ -1,42 +1,22 @@
 <script src="editrecord.js"></script>
 <h4>Professor's View of Updates</h4>
-	<table class="table table-condensed">
+	<table class="table table-striped">
 		<tbody>
 			<tr>
-				<th>Class</th>
+				<th>Course Code</th>
+				<th>Course Name</th>
 				<th>Room Number</th>
-				<th>Room Type</th>
+				<th>Course Type</th>
 				<th>Room Size</th>
-				<th>Status</th>
 			</tr>
-			<tr class="success">
-				<td>Course 1</td>
-				<td>Insert Room Number</td>
-				<td>Insert Room Type</td>
-				<td>Insert Room Size</td>
-				<td>In-Progress</td>
+			<?php professor_init_courses(); global $professor_courses; foreach($professor_courses as $course): ?>
+			<tr>
+				<td><?=$course['CourseCode']?></td>
+				<td><?=$course['CourseDescription']?></td>
+				<td><?=$course['RoomNumber']?></td>
+				<td><?=$course['CourseType']?></td>
+				<td><?=$course['RoomSize']?></td>
 			</tr>
-			<tr class="warning">
-				<td>Course 2</td>
-				<td>Insert Room Number</td>
-				<td>Insert Room Type</td>
-				<td>Insert Room Size</td>
-				<td>Delayed</td>
-			</tr>
-			<tr class="error">
-				<td>Course 3</td>
-				<td>Insert Room Number</td>
-				<td>Insert Room Type</td>
-				<td>Insert Room Size</td>
-				<td>Canceled</td>
-			</tr>
-			<tr class="info">
-				<td>Course 4</td>
-				<td>Insert Room Number</td>
-				<td>Insert Room Type</td>
-				<td>Insert Room Size</td>
-				<td >Moved</td>
-			</tr>
-
+			<?php endforeach; ?>
 		</tbody>
 	</table>

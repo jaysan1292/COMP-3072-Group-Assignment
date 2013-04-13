@@ -1,3 +1,4 @@
+<?php if(isset($_SESSION['current_user'])): ?>
 <div class="container-fluid">
   <div class="row-fluid">
     <header class="span12">
@@ -33,3 +34,4 @@
     </header>
   </div>
 </div>
+<?php endif; ?>

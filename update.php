@@ -1,4 +1,3 @@
-<script src="editrecord.js"></script>
 <h4>Professor's View of Updates</h4>
 	<table class="table table-striped">
 		<tbody>

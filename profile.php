@@ -19,7 +19,6 @@
                             <form class="form-inline">
                                 <table id="user" class="table table-bordered table-striped">
                                     <tbody>
-                                    <caption>**Click text to Edit**</caption>
                                         <tr>
                                             <td width="40%">Contact Number:</td>
                                             <td><a href="#" class="myeditable editable editable-click editable-empty" id="contact_number" data-type="text"><?=$user->contact?></a></td>
@@ -64,61 +63,5 @@
     </div>
 </div>
 <script type="text/javascript">
-<?php
-professor_init_courses();
-professor_init_departments();
-global $professor_courses, $departments;
-?>
-$(function(){
-    $.fn.editable.defaults.mode = 'inline';
-    $('#contact_number').editable({
-        url: '',
-        title: 'Contact Info:'
-    });
-    $('#email').editable({
-        url: '',
-        title: 'Email Address:'
-    });
-    // $('#department').editable({
-    //  url: '',
-    //  title: 'Department:'
-    // });
-    $('#department').editable({
-        <?php $d = professor_get_current_department(); ?>
-        value: <?=$d['Id']?>,
-        source: [
-        <?php foreach($departments as $dept): ?>
-        {value: <?=$dept['Id']?>, text: "<?=$dept['Name']?>"},
-        <?php endforeach; ?>
-        ]
-    });
-    $('#courses').editable({
-        <?php
-        $ids = array();
-        foreach($professor_courses as $course) {
-            if(!in_array($course['CourseId'], $ids)) {
-                $ids[] = $course['CourseId'];
-                $values[] = '{value: '.$course['CourseId'].', text: "'.$course['CourseCode'].': '.$course['CourseDescription'].'"}';
-            }
-        }
-        ?>
-        value: [<?=implode(',', $ids)?>],
-        source: [
-            <?=implode(',', $values)?>
-        ]
-    });
-    $('#book_off_reason').editable({
-        url: 'post.php',
-        title: 'Enter comments',
-        rows: 5
-    });
-    $('#date1').combodate({
-    minYear: 2013,
-    maxYear: 2050,
-    });
-    $('#date2').combodate({
-    minYear: 2013,
-    maxYear: 2050,
-    });
-});
+
 </script>

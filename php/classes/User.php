@@ -31,7 +31,7 @@ class User extends Entity {
         // required values
         $u->id        = (integer) $args[0];
         $u->firstName = (string)  $args[1];
-        $u->lastname  = (string)  $args[2];
+        $u->lastName  = (string)  $args[2];
 
         // not required values
         $u->email      = isset($args[3]) ? $args[3] : '';

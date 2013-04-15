@@ -18,6 +18,19 @@ function func_die($var) {
     die;
 }
 
+function send_to_login_page($errmsg = '') {
+    // Have a javascript form which will POST to the login page with the given error message.
+    ?>
+    <form name="_form" method="POST" action="<?=ROOT_DIR?>/index.php">
+        <input type="hidden" name="errmsg" value="<?=$errmsg?>"/>
+    </form>
+    <script type="text/javascript">
+        document._form.submit();
+    </script>
+    <?php
+    die;
+}
+
 function admin_init_courses() {
     global $courses;
     if(isset($courses)) return;

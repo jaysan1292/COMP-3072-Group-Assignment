@@ -100,11 +100,15 @@
                                             $used = array();
                                             ?>
                                             <td>
+                                                <?php if(professor_has_courses()): ?>
                                                 <ul class="unstyled">
                                                     <?php foreach($professor_courses as $course): if(!in_array($course['CourseCode'], $used)): ?>
                                                     <li><?="$course[CourseCode]: $course[CourseDescription]"?></li>
                                                     <?php $used[] = $course['CourseCode']; endif; endforeach; ?>
                                                 </ul>
+                                                <?php else: ?>
+                                                You are not assigned to any courses yet.
+                                                <?php endif; ?>
                                             </td>
                                         </tr>
                                         <tr>

@@ -248,6 +248,12 @@ function professor_init_courses() {
     $db->commit();
 }
 
+function professor_has_courses() {
+    professor_init_courses();
+    global $professor_courses;
+    return (count($professor_courses) > 0);
+}
+
 function professor_init_departments() {
     admin_init_departments();
 }

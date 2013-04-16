@@ -1,4 +1,5 @@
 <div class="row-fluid">
+    <?php professor_init_courses(); global $professor_courses; if(professor_has_courses()): ?>
     <div class="span7 pull-left">
         <table class="table table-striped">
             <thead>
@@ -12,7 +13,7 @@
                 </tr>
             </thead>
             <tbody>
-                <?php professor_init_courses(); global $professor_courses; foreach($professor_courses as $course): ?>
+                <?php foreach($professor_courses as $course): ?>
                 <tr>
                     <td><?=$course['CRN']?></td>
                     <td><?=$course['CourseCode']?></td>
@@ -46,4 +47,7 @@
         <?php $schedule_img = ROOT_DIR.'/img/schedule.php'; ?>
         <a href="<?=$schedule_img?>"><img src="<?=$schedule_img?>"/></a>
     </div>
+        <?php else: ?>
+        You are not assigned to any courses yet.
+        <?php endif; ?>
 </div>

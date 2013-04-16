@@ -18,7 +18,7 @@
                             <?php if(!is_post_var_empty('message')): ?>
                             <div class="alert">
                                 <button type="button" class="close" data-dismiss="alert">&times;</button>
-                                    <?=$_POST['message']?>
+                                <?=$_POST['message']?>
                             </div>
                             <?php endif; ?>
                             <form id="timeoff-form" action="request.php" method="POST">

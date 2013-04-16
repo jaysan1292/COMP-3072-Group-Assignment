@@ -164,7 +164,7 @@ function admin_get_open_requests() {
     global $requests;
 
     return array_filter($requests, function($req) {
-        return admin_timeoff_status_open($req);
+        return timeoff_status_open($req);
     });
 }
 
@@ -174,16 +174,8 @@ function admin_get_closed_requests() {
     global $requests;
 
     return array_filter($requests, function($req) {
-        return admin_timeoff_status_closed($req);
+        return timeoff_status_closed($req);
     });
-}
-
-function admin_timeoff_status_open($request) {
-    return $request['StatusId'] == 1;
-}
-
-function admin_timeoff_status_closed($request) {
-    return !admin_timeoff_status_open($request);
 }
 
 function admin_init_departments() {

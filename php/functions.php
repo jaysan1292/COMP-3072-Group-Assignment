@@ -3,9 +3,6 @@
 // If you include this file, no need to include global.php
 require_once 'global.php';
 
-include 'admin-functions.php';
-include 'professor-functions.php';
-
 /*
  * var_export(), but echo'd inside <pre> and <code> tags
  */
@@ -42,6 +39,14 @@ function array_get_matches($array, $pattern) {
         if(preg_match($pattern, $key)) $output[$key] = $value;
     }
     return $output;
+}
+
+function timeoff_status_open($request) {
+    return $request['StatusId'] == 1;
+}
+
+function timeoff_status_closed($request) {
+    return !timeoff_status_open($request);
 }
 
 function is_get_var_empty($varname) {
@@ -125,3 +130,6 @@ function time24_to_string($time) {
 
     return "$hour:$min" . ($pm ? 'PM' : 'AM');
 }
+
+include 'admin-functions.php';
+include 'professor-functions.php';

@@ -299,6 +299,14 @@ BEGIN
   WHERE u_id = UserId;
 END //
 
+DROP PROCEDURE IF EXISTS AdminUpdateTimeOffStatus //
+CREATE PROCEDURE AdminUpdateTimeOffStatus (IN TimeOffId INT, IN StatusId INT)
+BEGIN
+  UPDATE TimeOff
+  SET status_id = StatusId
+  WHERE t_id = TimeOffId;
+END //
+
 DELIMITER ;
 
 COMMIT;

@@ -232,8 +232,47 @@ function admin_init_timeoff_statuses() {
     $db->commit();
 }
 
+function admin_has_requests() {
+    admin_init_timeoff_requests();
+    global $requests;
+    return (count($requests) > 0);
+}
+
+function admin_has_open_requests() {
+    admin_init_timeoff_requests();
+    global $requests;
+    foreach($requests as $request) {
+        if($request['StatusId'] == 1) return true;
+    }
+    return false;
+}
+
+function admin_get_open_requests() {
+    unset($GLOBALS['requests']);
+    admin_init_timeoff_requests();
+    global $requests;
+
+    return array_filter($requests, function($req) {
+        return admin_timeoff_status_open($req);
+    });
+}
+
+function admin_get_closed_requests() {
+    unset($GLOBALS['requests']);
+    admin_init_timeoff_requests();
+    global $requests;
+
+    return array_filter($requests, function($req) {
+        return admin_timeoff_status_closed($req);
+    });
+}
+
 function admin_timeoff_status_open($request) {
     return $request['StatusId'] == 1;
+}
+
+function admin_timeoff_status_closed($request) {
+    return !admin_timeoff_status_open($request);
 }
 
 function admin_init_departments() {

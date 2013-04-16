@@ -82,7 +82,7 @@ You have no open time-off requests.
 <?php endif; ?>
 
 <h4>Closed Requests</h4>
-<?php $closed_requests = admin_get_closed_requests(); if(count($closed_requests) > 0): ?>
+<?php if(admin_has_closed_requests()): $closed_requests = admin_get_closed_requests(); ?>
 <table class="table table-striped">
     <thead>
         <tr>
@@ -106,5 +106,5 @@ You have no open time-off requests.
     </tbody>
 </table>
 <?php else: ?>
-You have no closed requests.
+You have no closed time-off requests.
 <?php endif; ?>

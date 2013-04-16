@@ -93,19 +93,31 @@ function professor_init_timeoff_requests() {
 }
 
 function professor_has_open_requests() {
-    professor_init_timeoff_requests();
-    global $p_requests;
-    foreach($requests as $request) {
-        if($request['StatusId'] == 1) return true;
-    }
-    return false;
+    return count(professor_get_open_requests()) > 0;
 }
 
 function professor_has_closed_requests() {
+    return count(professor_get_closed_requests()) > 0;
+}
+
+function professor_get_open_requests() {
+    unset($GLOBALS['p_requests']);
     professor_init_timeoff_requests();
     global $p_requests;
-    foreach($requests as $request) {
-        if($request['StatusId'] != 1) return true;
-    }
-    return false;
+
+    if(is_null($p_requests)) return array();
+    return array_filter($p_requests, function($req) {
+        return timeoff_status_open($req);
+    });
+}
+
+function professor_get_closed_requests() {
+    unset($GLOBALS['p_requests']);
+    professor_init_timeoff_requests();
+    global $p_requests;
+
+    if(is_null($p_requests)) return array();
+    return array_filter($p_requests, function($req) {
+        return timeoff_status_closed($req);
+    });
 }

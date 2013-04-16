@@ -150,12 +150,11 @@ function admin_has_requests() {
 }
 
 function admin_has_open_requests() {
-    admin_init_timeoff_requests();
-    global $requests;
-    foreach($requests as $request) {
-        if($request['StatusId'] == 1) return true;
-    }
-    return false;
+    return count(admin_get_open_requests()) > 0;
+}
+
+function admin_has_closed_requests() {
+    return count(admin_get_closed_requests()) > 0;
 }
 
 function admin_get_open_requests() {

@@ -35,8 +35,9 @@ include 'php/includes/htmlheader.php';
                         <input type="text" id="username" class="span6" name="username" placeholder="Username"><br>
                         <input type="password" id="password" class="span6" name="password" placeholder="Password">
                         <label class="checkbox">
+                        <!-- <label class="checkbox">
                             <input type="checkbox" name="remember" value="1"> Remember Me
-                        </label>
+                        </label> -->
                         <button type="submit" name="submit" class="btn btn-info k">Sign in</button>
                     </form>
                 </div>

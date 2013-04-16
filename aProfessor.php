@@ -19,7 +19,17 @@
                 <td><?=$professor['ContactNumber']?></td>
                 <td><?=$professor['EmailAddress']?></td>
                 <td>getCourses()</td>
-                <td><a href="#" class="department" data-type="select" data-pk="<?=$professor['DepartmentId']?>" data-url="" data-original-title="Make a department"></a></td>
+                <td>
+                    <?php
+                    admin_init_departments();
+                    global $departments;
+                    ?>
+                    <select class="input-medium">
+                        <?php foreach($departments as $dept): ?>
+                        <option <?=$professor['DepartmentId'] != $dept['Id'] ? "" : "selected"?> value="<?=$dept['Id']?>"><?=$dept['Name']?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </td>
             </tr>
             <?php endforeach; ?>
 
@@ -97,21 +107,3 @@
         <button id="save-btn" class="btn btn-primary">Add New User</button>
     </div>
 </form>
-
-
-<script>
-$(function(){
-    $.fn.editable.defaults.mode = 'inline';
-    var source = [
-        <?php admin_init_departments(); global $departments; foreach($departments as $department): ?>
-        {value: <?=$department['Id']?>, text: "<?=$department['Name']?>"},
-        <?php endforeach; ?>
-    ];
-    $('.department').each(function(){
-        $(this).editable({
-            value: $(this).data('pk'),
-            source: source
-        });
-    });
-});
-</script>

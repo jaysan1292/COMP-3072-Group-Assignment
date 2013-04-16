@@ -23,28 +23,23 @@
                 <td><?=$course['CRN']?></td>
                 <td><?=$course['RoomNumber']?></td>
                 <td><?=$course['RoomType']?></td>
-                <td><a href="#" class="sect" data-type="select" data-pk="<?=$course['SectionId']?>" data-url="" data-original-title="Select Class Section"></a></td>
+                <!-- <td><a href="#" class="sect" data-type="select" data-pk="<?=$course['SectionId']?>" data-url="" data-original-title="Select Class Section"></a></td> -->
+                <td>
+                    <?php
+                    admin_init_course_sections();
+                    global $sections;
+                    ?>
+                    <select class="input-small">
+                        <?php foreach($sections as $section): ?>
+                        <option <?=$course['SectionId'] != $section['Id'] ? "" : "selected"?> value="<?=$section['Id']?>"><?=$section['Name']?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
-
-<div>
-    <button id="save-btn" class="btn btn-primary">Update Changes</button>
-</div>
+    <div>
+        <button id="save-btn" class="btn btn-primary">Update Changes</button>
+    </div>
 </form>
-
-<script>
-$(function(){
-    $.fn.editable.defaults.mode = 'inline';
-    var source = [
-        <?php admin_init_course_sections(); global $sections; foreach($sections as $section): ?>
-        {value: <?=$section['Id']?>, text: "<?=$section['Name']?>"},
-        <?php endforeach; ?>
-    ];
-    $('.sect').editable({
-        value: 1,
-        source: source
-    });
-});
-</script>

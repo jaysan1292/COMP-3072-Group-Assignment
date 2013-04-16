@@ -16,10 +16,11 @@
                         </div>
                         <div class="span9">
                             <?php if(!is_post_var_empty('message')): ?>
-                            <div class="alert">
+                            <div class="alert" id="alert-message">
                                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                                 <?=$_POST['message']?>
                             </div>
+                            <script type="text/javascript">setTimeout(function(){$('#alert-message').alert('close')}, 2500)</script>
                             <?php endif; ?>
                             <form id="timeoff-form" action="request.php" method="POST">
                                 <table class="table table-bordered table-striped">
@@ -76,10 +77,11 @@
                             $db->commit();
 
                             ?>
-                            <div class="alert">
+                            <div class="alert" id="alert-contact">
                                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                                 Contact information updated successfully!
                             </div>
+                            <script type="text/javascript">setTimeout(function(){$('#alert-contact').alert('close')}, 2500)</script>
                             <?php endif; ?>
                             <form class="form-inline" method="POST" action="<?=$_SERVER['PHP_SELF']?>">
                                 <table id="user" class="table table-bordered table-striped">

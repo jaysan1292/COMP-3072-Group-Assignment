@@ -37,6 +37,7 @@ function status_color($status = 1) {
 </div>
 <script type="text/javascript">
     $('#admin-nav a[href="#aRequest"]').tab('show');
+    setTimeout(function(){$('.alert').alert('close')}, 2500);
 </script>
 <?php endif; ?>
 <?php if(admin_has_open_requests()): $requests = admin_get_open_requests(); ?>

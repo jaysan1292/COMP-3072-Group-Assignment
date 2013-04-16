@@ -15,7 +15,7 @@
                             </div>
                         </div>
                         <div class="span9">
-                            <?php if(!is_post_empty('message')): ?>
+                            <?php if(!is_post_var_empty('message')): ?>
                             <div class="alert">
                                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                                     <?=$_POST['message']?>

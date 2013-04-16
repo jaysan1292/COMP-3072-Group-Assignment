@@ -12,7 +12,7 @@ function code_dump($var) {
     echo '</code></pre>';
 }
 
-function is_post_empty($varname) {
+function is_post_var_empty($varname) {
     return !isset($_POST[$varname]) || empty($_POST[$varname]);
 }
 

@@ -18,7 +18,6 @@ include 'php/includes/htmlheader.php';
          <ul class="nav nav-tabs">
           <li class="active"><a href="#profile" data-toggle="tab"><i class="icon-user"></i>Profile</a></li>
           <li><a href="#schedule" data-toggle="tab"><i class="icon-calendar"></i>Schedule</a></li>
-          <li><a href="#update" data-toggle="tab"><i class="icon-info-sign"></i>News</a></li>
         </ul>
 
         <section class="tab-content">
@@ -29,10 +28,6 @@ include 'php/includes/htmlheader.php';
           <article class="tab-pane" id="schedule">
             <h3>Schedule</h3>
             <?php include('schedule.php');?>
-          </article>
-          <article class="tab-pane" id="update">
-            <h3>Class Status</h3>
-            <?php include('update.php');?>
           </article>
         </section>
       </div>

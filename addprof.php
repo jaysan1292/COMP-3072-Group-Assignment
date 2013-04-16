@@ -22,8 +22,7 @@ function generate_password($length = 8) {
 }
 
 // Make sure we're an admin first
-session_start();
-if(!$_SESSION['current_user']->isAdmin) {
+if(!is_admin_logged_in()) {
     http_response_code(401); // Unauthorized
     die;
 }

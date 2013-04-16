@@ -19,9 +19,8 @@ $aspect = 1.41176471;
 $width = !is_get_var_empty('width') ? (int)$_GET['width'] : 600;
 $height = ceil($width / $aspect);
 
-session_start();
-if(is_session_var_empty('current_user') ||
-   $_SESSION['current_user']->isAdmin) {// Administrators don't have a 'schedule'
+if(!is_user_logged_in() ||
+   is_admin_logged_in()) { // Administrators don't have a 'schedule'
     fail();
 }
 

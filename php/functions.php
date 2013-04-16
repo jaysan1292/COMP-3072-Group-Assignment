@@ -31,6 +31,17 @@ function is_session_var_empty($varname) {
     return !isset($_SESSION[$varname]) || empty($_SESSION[$varname]);
 }
 
+function is_admin_logged_in() {
+    if(session_id() == '') session_start();
+    if(!is_user_logged_in()) return false;
+    return $_SESSION['current_user']->isAdmin;
+}
+
+function is_user_logged_in() {
+    if(session_id() == '') session_start();
+    return !is_session_var_empty('current_user');
+}
+
 function func_die($var) {
     header('Content-Type: text/plain');
     var_export($var);

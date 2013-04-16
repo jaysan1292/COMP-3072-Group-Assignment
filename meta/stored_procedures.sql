@@ -222,6 +222,7 @@ CREATE PROCEDURE GetTimeOffRequests ()
 BEGIN
   SELECT
     TimeOff.t_id AS 'Id',
+    User.u_id AS 'ProfessorId',
     CONCAT(User.first_name, ' ', User.last_name) AS 'Name',
     TimeOff.reason AS 'Reason',
     TimeOff.start_date AS 'Start',

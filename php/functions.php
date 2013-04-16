@@ -149,6 +149,7 @@ function admin_init_timeoff_request() {
     if($cmd->execute()) {
         while(($result = $cmd->fetch())) {
             $requests[] = array(
+                'Id'        => $result['ProfessorId'],
                 'Professor' => $result['Name'],
                 'Date'      => $result['Start'].' to '.$result['End'],
                 'Reason'    => $result['Reason'],
@@ -201,6 +202,10 @@ function admin_init_timeoff_statuses() {
     }
 
     $db->commit();
+}
+
+function admin_timeoff_status_open($request) {
+    return $request['StatusId'] == 1;
 }
 
 function admin_init_departments() {

@@ -15,7 +15,7 @@ include 'php/includes/htmlheader.php';
 
         <!-- Dashboard Tab Pane -->
         <div id="dashboard">
-         <ul class="nav nav-tabs">
+         <ul class="nav nav-tabs" id="admin-nav">
           <li class="active"><a href="#aProfessor" data-toggle="tab"><i class="icon-user"></i>Professors</a></li>
           <li><a href="#aClasses" data-toggle="tab"><i class="icon-calendar"></i>Classes</a></li>
           <li><a href="#aRequest" data-toggle="tab"><i class="icon-info-sign"></i>Time-Off Requests</a></li>

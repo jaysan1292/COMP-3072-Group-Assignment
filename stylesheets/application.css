@@ -2,7 +2,7 @@
 /* Metroesque Font Style */
 /* line 13, ../sass/_base.scss */
 * {
-  font-family: 'Open Sans';
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 /* line 4, ../sass/application.scss */

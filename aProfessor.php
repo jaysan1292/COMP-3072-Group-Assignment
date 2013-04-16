@@ -52,7 +52,7 @@
 </div>
 <div class="row">
     <div class="span6 offset2">
-        <form class="form-horizontal">
+        <form class="form-horizontal" method="POST" action="addprof.php">
             <fieldset>
                 <legend>Add New User</legend>
                 <div class="control-group">
@@ -70,7 +70,7 @@
                 <div class="control-group">
                     <label class="control-label" for="department">Department</label>
                     <div class="controls">
-                        <select>
+                        <select name="department">
                             <?php admin_init_departments(); global $departments; foreach($departments as $dept): ?>
                             <option value="<?=$dept['Id']?>"><?=$dept['Name']?></option>
                             <?php endforeach; ?>

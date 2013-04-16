@@ -1,5 +1,10 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300);
 /* Metroesque Font Style */
+/* line 13, ../sass/_base.scss */
+* {
+  font-family: 'Open Sans';
+}
+
 /* line 9, ../sass/screen.scss */
 * {
   margin: 0;

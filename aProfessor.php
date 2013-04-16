@@ -1,22 +1,24 @@
 <form class="form-inline">
-    <table class="table table-condensed">
-        <tbody>
+    <table class="table table-striped">
+        <thead>
             <tr>
+                <th>EmployeeID</th>
                 <th>Professor</th>
                 <th>Contact Number</th>
                 <th>Email Address</th>
                 <th>Course(s)</th>
-                <th>EmployeeID</th>
                 <th>Department</th>
             </tr>
+        </thead>
+        <tbody>
             <?php /* Same deal as aClasses.php, but with professors instead. */ ?>
             <?php admin_init_professors(); global $professors; foreach($professors as $professor): ?>
-            <tr class="success">
+            <tr>
+                <td><?=$professor['EmployeeId']?></td>
                 <td><?=$professor['Name']?></td>
                 <td><?=$professor['ContactNumber']?></td>
                 <td><?=$professor['EmailAddress']?></td>
                 <td>getCourses()</td>
-                <td><?=$professor['EmployeeId']?></td>
                 <td><a href="#" class="department" data-type="select" data-pk="<?=$professor['DepartmentId']?>" data-url="" data-original-title="Make a department"></a></td>
             </tr>
             <?php endforeach; ?>
@@ -41,14 +43,16 @@
 </form>
 
 <form class="form-inline">
-    <table class="table table-condensed">
-        <tbody>
+    <table class="table table-striped">
+        <thead>
             <tr>
                 <th>First Name</th>
                 <th>Last Name</th>
                 <th>Employee ID</th>
                 <th>Course(s)</th>
             </tr>
+        </thead>
+        <tbody>
             <tr>
                 <td><input class="input-medium" type="text" placeholder=".input-medium"></td>
                 <td><input class="input-medium" type="text" placeholder=".input-medium"></td>

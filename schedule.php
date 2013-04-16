@@ -1,6 +1,6 @@
 <div class="row-fluid">
     <div class="span7 pull-left">
-        <table class="table table-striped table-bordered">
+        <table class="table table-striped">
             <thead>
                 <tr>
                     <th>CRN</th>

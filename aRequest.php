@@ -3,17 +3,19 @@
 <h4>Requests Status</h4>
 
 <form class="form-inline">
-    <table class="table table-condensed">
-        <tbody>
+    <table class="table table-striped">
+        <thead>
             <tr>
                 <th>Professor</th>
                 <th>Date(s)</th>
                 <th>Reason</th>
                 <th>Status</th>
             </tr>
+        </thead>
+        <tbody>
             <?php /* See aProfessor.php and aClasses.php */ ?>
             <?php admin_init_timeoff_request(); global $requests; foreach($requests as $request): ?>
-            <tr class="success">
+            <tr>
                 <td><?=$request['Professor']?></td>
                 <td><?=$request['Date']?></td>
                 <td><?=$request['Reason']?></td>
@@ -22,10 +24,9 @@
             <?php endforeach; ?>
         </tbody>
     </table>
-
-<div>
+    <div>
     <button id="save-btn" class="btn btn-primary">Update Changes</button>
-</div>
+    </div>
 </form>
 
 <script>

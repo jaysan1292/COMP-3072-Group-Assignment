@@ -3,8 +3,8 @@
 <h4>Admin's Update Function</h4>
 
 <form class="form-inline">
-    <table class="table table-condensed">
-        <tbody>
+    <table class="table table-striped">
+        <thead>
             <tr>
                 <th>Course Code</th>
                 <th>Code Description</th>
@@ -13,9 +13,11 @@
                 <th>Room Type</th>
                 <th>Section</th>
             </tr>
+        </thead>
+        <tbody>
             <?php /* Fuck it, I'm tired. This will be an associative array, not a class object. */ ?>
             <?php admin_init_courses(); global $courses; foreach($courses as $course): ?>
-            <tr class="success">
+            <tr>
                 <td><?=$course['CourseCode']?></td>
                 <td><?=$course['CourseDescription']?></td>
                 <td><?=$course['CRN']?></td>

@@ -13,7 +13,6 @@
                     <th>Professor</th>
                     <th>Contact Number</th>
                     <th>Email Address</th>
-                    <th>Course(s)</th>
                     <th>Department</th>
                 </tr>
             </thead>
@@ -25,7 +24,6 @@
                     <td><?=$professor['Name']?></td>
                     <td><?=$professor['ContactNumber']?></td>
                     <td><?=$professor['EmailAddress']?></td>
-                    <td>getCourses()</td>
                     <td>
                         <?php
                         admin_init_departments();

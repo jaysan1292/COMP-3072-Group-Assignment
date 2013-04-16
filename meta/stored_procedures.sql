@@ -245,13 +245,20 @@ BEGIN
     Course.c_code AS 'CourseCode',
     Course.c_description AS 'CourseDescription',
     Course.c_crn AS 'CRN',
+    ScheduleCourse.type_id AS 'CourseTypeId',
+    CourseType.type_desc AS 'CourseType',
     Room.rm_number AS 'RoomNumber',
     RoomType.name AS 'RoomType',
     Section.s_id AS 'SectionId',
-    Section.s_name AS 'Section'
+    Section.s_name AS 'Section',
+    User.u_id AS 'ProfessorId',
+    CONCAT(User.first_name, ' ', User.last_name) AS 'Professor'
   FROM
     Course
       INNER JOIN ScheduleCourse ON Course.c_id = ScheduleCourse.c_id
+      INNER JOIN CourseType ON ScheduleCourse.type_id = CourseType.type_id
+      INNER JOIN ProfessorCourse ON Course.c_id = ProfessorCourse.c_id
+      INNEr JOIN User ON User.u_id = ProfessorCourse.u_id
       INNER JOIN Room ON Room.rm_id = ScheduleCourse.room
       INNER JOIN RoomType ON Room.rm_type = RoomType.type_id
       INNER JOIN SectionCourse ON Course.c_id = SectionCourse.c_id

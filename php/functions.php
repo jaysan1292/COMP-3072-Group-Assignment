@@ -91,10 +91,14 @@ function admin_init_courses() {
                     'CourseCode'        => $result['CourseCode'],
                     'CourseDescription' => $result['CourseDescription'],
                     'CRN'               => $result['CRN'],
+                    'CourseTypeId'      => $result['CourseTypeId'],
+                    'CourseType'        => $result['CourseType'],
                     'RoomNumber'        => $result['RoomNumber'],
                     'RoomType'          => $result['RoomType'],
                     'SectionId'         => $result['SectionId'],
                     'Section'           => $result['Section'],
+                    'ProfessorId'       => $result['ProfessorId'],
+                    'Professor'         => $result['Professor'],
                 );
             }
         }

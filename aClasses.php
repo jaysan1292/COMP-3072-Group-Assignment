@@ -3,10 +3,11 @@
         <thead>
             <tr>
                 <th>Course Code</th>
+                <th>CRN</th>
                 <th>Code Description</th>
-                <th>Course CRN</th>
+                <th>Course Type</th>
                 <th>Room Number</th>
-                <th>Room Type</th>
+                <th>Professor</th>
                 <th>Section</th>
             </tr>
         </thead>
@@ -15,11 +16,11 @@
             <?php admin_init_courses(); global $courses; foreach($courses as $course): ?>
             <tr>
                 <td><?=$course['CourseCode']?></td>
-                <td><?=$course['CourseDescription']?></td>
                 <td><?=$course['CRN']?></td>
+                <td><?=$course['CourseDescription']?></td>
+                <td><?=$course['CourseType']?></td>
                 <td><?=$course['RoomNumber']?></td>
-                <td><?=$course['RoomType']?></td>
-                <!-- <td><a href="#" class="sect" data-type="select" data-pk="<?=$course['SectionId']?>" data-url="" data-original-title="Select Class Section"></a></td> -->
+                <td><?=$course['Professor']?></td>
                 <td>
                     <?php
                     admin_init_course_sections();

@@ -136,7 +136,7 @@ start_date      DATE,
 finish_date     DATE,
 reason          TEXT,
 status_id       INT, -- Current status of this time off (i.e., Under Review, Accepted, Rejected)
-date_requested  DATETIME,
+date_requested  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 FOREIGN KEY (u_id) REFERENCES `User`(u_id),
 FOREIGN KEY (status_id) REFERENCES `TimeOffStatus`(status_id)
 );

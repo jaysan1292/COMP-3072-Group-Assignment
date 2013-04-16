@@ -271,8 +271,8 @@ END //
 DROP PROCEDURE IF EXISTS CreateTimeOffRequest //
 CREATE PROCEDURE CreateTimeOffRequest (IN UserId BIGINT, IN Start DATE, IN Finish DATE, IN Reason TEXT)
 BEGIN
-  INSERT INTO `TimeOff`(`u_id`,`start_date`,`finish_date`,`reason`,`status_id`,`date_requested`) VALUES
-    (UserId, Start, Finish, Reason, 1, NOW());
+  INSERT INTO `TimeOff`(`u_id`,`start_date`,`finish_date`,`reason`,`status_id`) VALUES
+    (UserId, Start, Finish, Reason, 1);
 END //
 
 DELIMITER ;

@@ -78,7 +78,7 @@ function professor_init_timeoff_requests() {
 
     if($cmd->execute()) {
         while(($result = $cmd->fetch())) {
-            $requests[] = array(
+            $p_requests[] = array(
                 'TimeOffId'     => $result['Id'],
                 'Date'          => $result['Start'].' to '.$result['End'],
                 'Reason'        => $result['Reason'],

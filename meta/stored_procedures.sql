@@ -299,6 +299,26 @@ BEGIN
   WHERE u_id = UserId;
 END //
 
+DROP PROCEDURE IF EXISTS GetUserTimeOffRequests //
+CREATE PROCEDURE GetUserTimeOffRequests (IN UserId BIGINT)
+BEGIN
+  SELECT
+    TimeOff.t_id AS 'Id',
+    TimeOff.reason AS 'Reason',
+    TimeOff.start_date AS 'Start',
+    TimeOff.finish_date AS 'End',
+    TimeOffStatus.name AS 'Status',
+    TimeOffStatus.status_id AS 'StatusId',
+    TimeOff.date_requested AS 'DateRequested'
+  FROM
+    TimeOff
+      INNER JOIN TimeOffStatus ON TimeOff.status_id = TimeOffStatus.status_id
+  WHERE
+    TimeOff.u_id = UserId
+  ORDER BY
+    TimeOff.date_requested;
+END //
+
 DROP PROCEDURE IF EXISTS AdminUpdateTimeOffStatus //
 CREATE PROCEDURE AdminUpdateTimeOffStatus (IN TimeOffId INT, IN StatusId INT)
 BEGIN

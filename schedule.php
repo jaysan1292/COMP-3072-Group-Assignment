@@ -43,7 +43,7 @@
         </table>
     </div>
     <div class="span5 pull-right">
-        <?php $schedule_img = ROOT_DIR.'/img/schedule.php?id='.$_SESSION['current_user']->id; ?>
+        <?php $schedule_img = ROOT_DIR.'/img/schedule.php'; ?>
         <a href="<?=$schedule_img?>"><img src="<?=$schedule_img?>"/></a>
     </div>
 </div>

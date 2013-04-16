@@ -16,11 +16,16 @@ function fail() {
 
 // Image dimensions (default 600 x 425)
 $aspect = 1.41176471;
-$width = isset($_GET['width']) ? (int)$_GET['width'] : 600;
+$width = !is_get_var_empty('width') ? (int)$_GET['width'] : 600;
 $height = ceil($width / $aspect);
 
-if(!isset($_GET['id'])) fail();
-$s_id = $_GET['id'];
+session_start();
+if(is_session_var_empty('current_user') ||
+   $_SESSION['current_user']->isAdmin) {// Administrators don't have a 'schedule'
+    fail();
+}
+
+$s_id = $_SESSION['current_user']->id;
 
 $s = new ScheduleProvider;
 $schedule = $s->get($s_id);

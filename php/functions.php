@@ -19,6 +19,28 @@ function default_if_null($var, $default = '') {
     return !is_null($var) ? $var : $default;
 }
 
+/*
+ * Returns the first value from the array whose key matches the
+ * given regular expression.
+ */
+function array_contains_partial_key($array, $pattern) {
+    foreach ($array as $key => $value) {
+        if(preg_match($pattern, $key)) return $value;
+    }
+    return false;
+}
+
+/*
+ * Gets all array key/values that matches the given regular expression.
+ */
+function array_get_matches($array, $pattern) {
+    $output = array();
+    foreach ($array as $key => $value) {
+        if(preg_match($pattern, $key)) $output[$key] = $value;
+    }
+    return $output;
+}
+
 function is_get_var_empty($varname) {
     return !isset($_GET[$varname]) || empty($_GET[$varname]);
 }
@@ -153,12 +175,14 @@ function admin_init_timeoff_request() {
     if($cmd->execute()) {
         while(($result = $cmd->fetch())) {
             $requests[] = array(
-                'Id'        => $result['ProfessorId'],
-                'Professor' => $result['Name'],
-                'Date'      => $result['Start'].' to '.$result['End'],
-                'Reason'    => $result['Reason'],
-                'Status'    => $result['Status'],
-                'StatusId'  => $result['StatusId'],
+                'TimeOffId'     => $result['Id'],
+                'ProfessorId'   => $result['ProfessorId'],
+                'Professor'     => $result['Name'],
+                'Date'          => $result['Start'].' to '.$result['End'],
+                'Reason'        => $result['Reason'],
+                'Status'        => $result['Status'],
+                'StatusId'      => $result['StatusId'],
+                'DateRequested' => $result['DateRequested'],
             );
         }
     }

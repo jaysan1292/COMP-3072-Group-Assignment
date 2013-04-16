@@ -219,11 +219,14 @@ BEGIN
     TimeOff.start_date AS 'Start',
     TimeOff.finish_date AS 'End',
     TimeOffStatus.name AS 'Status',
-    TimeOffStatus.status_id AS 'StatusId'
+    TimeOffStatus.status_id AS 'StatusId',
+    TimeOff.date_requested AS 'DateRequested'
   FROM
     TimeOff
       INNER JOIN User ON TimeOff.u_id = User.u_id
-      INNER JOIN TimeOffStatus ON TimeOff.status_id = TimeOffStatus.status_id;
+      INNER JOIN TimeOffStatus ON TimeOff.status_id = TimeOffStatus.status_id
+  ORDER BY
+    TimeOff.date_requested;
 END //
 
 DROP PROCEDURE IF EXISTS GetAdminCourseInfo //
@@ -263,6 +266,13 @@ BEGIN
       INNER JOIN Department ON User.dept_id = Department.dept_id
   WHERE
     User.u_id = ProfessorId;
+END //
+
+DROP PROCEDURE IF EXISTS CreateTimeOffRequest //
+CREATE PROCEDURE CreateTimeOffRequest (IN UserId BIGINT, IN Start DATE, IN Finish DATE, IN Reason TEXT)
+BEGIN
+  INSERT INTO `TimeOff`(`u_id`,`start_date`,`finish_date`,`reason`,`status_id`,`date_requested`) VALUES
+    (UserId, Start, Finish, Reason, 1, NOW());
 END //
 
 DELIMITER ;

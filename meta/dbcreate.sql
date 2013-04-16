@@ -130,12 +130,13 @@ name        VARCHAR(32) NOT NULL
 );
 
 CREATE TABLE `TimeOff`(
-t_id        BIGINT PRIMARY KEY AUTO_INCREMENT,
-u_id        BIGINT, -- User ID of the professor that requested this time off
-start_date  DATE,
-finish_date DATE,
-reason      TEXT,
-status_id   INT, -- Current status of this time off (i.e., Under Review, Accepted, Rejected)
+t_id            BIGINT PRIMARY KEY AUTO_INCREMENT,
+u_id            BIGINT, -- User ID of the professor that requested this time off
+start_date      DATE,
+finish_date     DATE,
+reason          TEXT,
+status_id       INT, -- Current status of this time off (i.e., Under Review, Accepted, Rejected)
+date_requested  DATETIME,
 FOREIGN KEY (u_id) REFERENCES `User`(u_id),
 FOREIGN KEY (status_id) REFERENCES `TimeOffStatus`(status_id)
 );

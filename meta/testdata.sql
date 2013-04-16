@@ -115,10 +115,10 @@ UPDATE `ScheduleCourse` SET `friday`   = 1 WHERE `c_id` = 3; -- COMP3071 on Frid
 UPDATE `ScheduleCourse` SET `thursday` = 1 WHERE `c_id` = 1 AND `type_id` = 2; -- COMP3072 Lecture on Thursday
 UPDATE `ScheduleCourse` SET `friday`   = 1 WHERE `c_id` = 1 AND `type_id` = 1; -- COMP3072 Lab on Friday
 
-INSERT INTO `TimeOff` (`u_id`,`start_date`,`finish_date`,`reason`,`status_id`) VALUES
-    (2, '2013-02-28', '2013-03-04', 'A reason',      1),
-    (3, '2013-04-01', '2013-04-02', 'Some reason',   3),
-    (5, '2013-04-09', '2013-04-09', 'Illness',       2),
-    (4, '2013-04-02', '2013-04-07', 'Business trip', 1);
+INSERT INTO `TimeOff` (`u_id`,`start_date`,`finish_date`,`reason`,`status_id`,`date_requested`) VALUES
+    (2, '2013-02-28', '2013-03-04', 'A reason',      3, '2013-02-14 12:00:00'),
+    (4, '2013-04-02', '2013-04-07', 'Business trip', 2, '2013-03-29 12:00:00'),
+    (3, '2013-04-01', '2013-04-02', 'Some reason',   1, '2013-03-31 12:00:00'),
+    (5, '2013-04-09', '2013-04-09', 'Illness',       1, '2013-04-01 12:00:00');
 
 COMMIT;

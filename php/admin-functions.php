@@ -143,6 +143,26 @@ function admin_init_timeoff_statuses() {
     $db->commit();
 }
 
+function admin_init_departments() {
+    global $departments;
+    if(isset($departments)) return;
+
+    $db = DbProvider::openConnection();
+    $db->beginTransaction();
+
+    $cmd = $db->prepare('SELECT * FROM Department');
+    if($cmd->execute()) {
+        while($row = $cmd->fetch()) {
+            $departments[] = array(
+                'Id'   => $row['dept_id'],
+                'Name' => $row['name'],
+            );
+        }
+    }
+
+    $db->commit();
+}
+
 function admin_has_requests() {
     admin_init_timeoff_requests();
     global $requests;
@@ -175,24 +195,4 @@ function admin_get_closed_requests() {
     return array_filter($requests, function($req) {
         return timeoff_status_closed($req);
     });
-}
-
-function admin_init_departments() {
-    global $departments;
-    if(isset($departments)) return;
-
-    $db = DbProvider::openConnection();
-    $db->beginTransaction();
-
-    $cmd = $db->prepare('SELECT * FROM Department');
-    if($cmd->execute()) {
-        while($row = $cmd->fetch()) {
-            $departments[] = array(
-                'Id'   => $row['dept_id'],
-                'Name' => $row['name'],
-            );
-        }
-    }
-
-    $db->commit();
 }

@@ -35,35 +35,8 @@ function professor_init_courses() {
     $db->commit();
 }
 
-function professor_has_courses() {
-    professor_init_courses();
-    global $professor_courses;
-    return (count($professor_courses) > 0);
-}
-
 function professor_init_departments() {
     admin_init_departments();
-}
-
-function professor_get_current_department() {
-    $profid = $_SESSION['current_user']->id;
-
-    $db = DbProvider::openConnection();
-    $db->beginTransaction();
-
-    $cmd = $db->prepare('CALL GetUser(?)');
-    $cmd->bindParam(1, $profid);
-
-    if($cmd->execute()) {
-        $row = $cmd->fetch();
-        $department = array(
-            'Id'      => $row['dept_id'],
-            'Name'    => $row['dept_name'],
-        );
-    }
-
-    $db->commit();
-    return $department;
 }
 
 function professor_init_timeoff_requests() {
@@ -90,6 +63,33 @@ function professor_init_timeoff_requests() {
     }
 
     $db->commit();
+}
+
+function professor_has_courses() {
+    professor_init_courses();
+    global $professor_courses;
+    return (count($professor_courses) > 0);
+}
+
+function professor_get_current_department() {
+    $profid = $_SESSION['current_user']->id;
+
+    $db = DbProvider::openConnection();
+    $db->beginTransaction();
+
+    $cmd = $db->prepare('CALL GetUser(?)');
+    $cmd->bindParam(1, $profid);
+
+    if($cmd->execute()) {
+        $row = $cmd->fetch();
+        $department = array(
+            'Id'      => $row['dept_id'],
+            'Name'    => $row['dept_name'],
+        );
+    }
+
+    $db->commit();
+    return $department;
 }
 
 function professor_has_open_requests() {

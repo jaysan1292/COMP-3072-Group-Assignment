@@ -1,16 +1,17 @@
 <?php
 require_once 'php/global.php';
 
+// Make sure we're logged in
+session_start();
+if(!isset($_SESSION['current_user'])) {
+    http_response_code(401); // Unauthorized
+    die;
+}
+
 if(!isset($_POST['timeoff-start']) ||
    !isset($_POST['timeoff-end']) ||
    !isset($_POST['timeoff-reason'])) {
     http_response_code(400); // Bad Request
-    die;
-}
-
-session_start();
-if(!isset($_SESSION['current_user'])) {
-    http_response_code(401); // Unauthorized
     die;
 }
 

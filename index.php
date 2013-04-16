@@ -32,9 +32,8 @@ include 'php/includes/htmlheader.php';
                         <label style="cursor: default; color: red;"><?=$_POST['errmsg']?></label>
                         <?php endif; ?>
 
-                        <input type="text" id="username" class="span6" name="username" placeholder="Username"><br>
-                        <input type="password" id="password" class="span6" name="password" placeholder="Password">
-                        <label class="checkbox">
+                        <input class="input-block-level" style="margin-bottom:5px;" type="text" id="username" name="username" placeholder="Username" />
+                        <input class="input-block-level" style="margin-bottom:5px;" type="password" id="password" name="password" placeholder="Password" />
                         <!-- <label class="checkbox">
                             <input type="checkbox" name="remember" value="1"> Remember Me
                         </label> -->

@@ -48,7 +48,7 @@
     <div class="span6 offset2">
         <form class="form-horizontal" method="POST" action="addprof.php">
             <fieldset>
-                <legend>Add New User</legend>
+                <legend>Add New Professor</legend>
                 <div class="control-group">
                     <label class="control-label" for="first-name">First Name</label>
                     <div class="controls">

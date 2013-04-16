@@ -9,7 +9,7 @@
                             <div class="thumbnail">
                                 <img alt="300x200" src="img/hero-image.jpg">
                                 <div class="caption">
-                                    <span class="name"> <?=$_SESSION['current_user'] ?> </span> <br>
+                                    <span class="name"> <?=$user?> </span> <br>
                                     <span class="e_id"> <?="Employee " . $user->id?> </span>
                                 </div>
                             </div>

@@ -12,8 +12,16 @@ function code_dump($var) {
     echo '</code></pre>';
 }
 
+function is_get_var_empty($varname) {
+    return !isset($_GET[$varname]) || empty($_GET[$varname]);
+}
+
 function is_post_var_empty($varname) {
     return !isset($_POST[$varname]) || empty($_POST[$varname]);
+}
+
+function is_session_var_empty($varname) {
+    return !isset($_SESSION[$varname]) || empty($_SESSION[$varname]);
 }
 
 function func_die($var) {

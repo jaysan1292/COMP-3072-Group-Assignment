@@ -27,7 +27,7 @@ include 'php/includes/htmlheader.php';
                     <legend><strong>Sign In</strong></legend>
                     <form method="POST" action="authenticate.php" accept-charset="UTF-8">
 
-                        <?php if(isset($_POST['errmsg']) && !empty($_POST['errmsg'])): ?>
+                        <?php if(is_post_empty('errmsg')): ?>
                         <!-- TODO: Ew, inline styles -->
                         <label style="cursor: default; color: red;"><?=$_POST['errmsg']?></label>
                         <?php endif; ?>

@@ -4,7 +4,6 @@
         <div class="widget no-margin">
             <div class="widget-body">
                 <div class="container-fluid">
-
                     <div class="row-fluid">
                         <div class="span3">
                             <div class="thumbnail">
@@ -16,45 +15,106 @@
                             </div>
                         </div>
                         <div class="span9">
+                            <?php if(!is_post_empty('message')): ?>
+                            <div class="alert">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                    <?=$_POST['message']?>
+                            </div>
+                            <?php endif; ?>
+                            <form id="timeoff-form" action="request.php" method="POST">
+                                <table class="table table-bordered table-striped">
+                                    <tbody>
+                                        <tr>
+                                            <td width="40%">Request a Time-Off/Vacation</td>
+                                            <td>
+                                                <style type="text/css">
+                                                /* Yup. CSS block in the middle of a form. See if I give a shit. */
+                                                .req-form-label { width:50px !important; }
+                                                </style>
+                                                <div class="input-append input-prepend date" id="timeoff-start">
+                                                    <span class="add-on req-form-label">From: </span>
+                                                    <input class="input-xlarge" name="timeoff-start" type="text"/>
+                                                    <span class="add-on"><i class="icon-calendar"></i></span>
+                                                </div>
+                                                <div class="input-append input-prepend date" id="timeoff-end">
+                                                    <span class="add-on req-form-label">To: </span>
+                                                    <input class="input-xlarge" name="timeoff-end" type="text"/>
+                                                    <span class="add-on"><i class="icon-calendar"></i></span>
+                                                </div>
+                                                <div class="input-prepend" id="timeoff-reason">
+                                                    <span class="add-on req-form-label">Reason: </span>
+                                                    <input class="input-xlarge" name="timeoff-reason" type="text" style="width:296px;" />
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <input class="btn btn-success pull-right" type="submit" value="Send Request"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </form>
                             <form class="form-inline">
                                 <table id="user" class="table table-bordered table-striped">
                                     <tbody>
                                         <tr>
                                             <td width="40%">Contact Number:</td>
-                                            <td><a href="#" class="myeditable editable editable-click editable-empty" id="contact_number" data-type="text"><?=$user->contact?></a></td>
+                                            <td>
+                                                <div class="input-prepend">
+                                                    <span class="add-on">#</span>
+                                                    <input id="contact-number"
+                                                           class="input-xlarge"
+                                                           name="contact-number"
+                                                           type="text"
+                                                           placeholder="Phone Number"
+                                                           value="<?=$user->contact?>" />
+                                                </div>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>E-mail Address:</td>
-                                            <td><a href="#" class="myeditable editable editable-click editable-empty" id="email" data-type="email"><?=$user->email?></a></td>
+                                            <td>
+                                                <div class="input-prepend">
+                                                    <span class="add-on"><i class="icon-envelope"></i></span>
+                                                    <input id="email"
+                                                           class="input-xlarge"
+                                                           name="email"
+                                                           type="text"
+                                                           placeholder="Email"
+                                                           value="<?=$user->email?>" />
+                                                </div>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Department:</td>
-                                            <td><a href="#" class="myeditable editable editable-click editable-empty" id="department" data-type="select"><?=$user->department?></a></td>
+                                            <td>
+                                                <?=professor_get_current_department()['Name']?>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>Courses:</td>
-                                            <td><a href="#" class="myeditable editable editable-click editable-empty" id="courses" data-type="checklist"></a></td>
+                                            <?php
+                                            professor_init_courses();
+                                            global $professor_courses;
+                                            $used = array();
+                                            ?>
+                                            <td>
+                                                <ul class="unstyled">
+                                                    <?php foreach($professor_courses as $course): if(!in_array($course['CourseCode'], $used)): ?>
+                                                    <li><?="$course[CourseCode]: $course[CourseDescription]"?></li>
+                                                    <?php $used[] = $course['CourseCode']; endif; endforeach; ?>
+                                                </ul>
+                                            </td>
                                         </tr>
                                         <tr>
-                                            <td>Request a Time-Off/Vacation</td>
-                                            <td>
-                                                <label for="date1">From:</label>
-                                                <input type="text" id="date1" data-format="DD-MM-YYYY" data-template="D MMM YYYY" name="date" value="<?php echo date("d-m-Y"); ?>">
-                                                <br>
-                                                <label for="date2">To: &nbsp;&nbsp;&nbsp;</label>
-                                                <input type="text" id="date2" data-format="DD-MM-YYYY" data-template="D MMM YYYY" name="date" value="<?php echo date("d-m-Y"); ?>">
-                                                <br>
-                                                <a href="#" class="myeditable editable editable-click editable-empty" id="book_off_reason" data-type="textarea" placeholder="Request a Time-Off Here"><?= "Reason:"?></a>
+                                            <td colspan="2">
+                                                <button id="save-btn" class="btn btn-primary pull-right" type="submit" name="profile">Save changes</button>
                                             </td>
                                         </tr>
                                     </tbody>
                                 </table>
-
-                                <div>
-                                    <button id="save-btn" class="btn btn-primary">Save changes</button>
-                                </div>
                             </form>
-
                         </div>
                     </div>
                 </div>
@@ -63,5 +123,33 @@
     </div>
 </div>
 <script type="text/javascript">
+$(document).ready(function($) {
+    var tmp = new Date();
+    var now = new Date(tmp.getFullYear(), tmp.getMonth(), tmp.getDate(), 0, 0, 0, 0);
 
+    var tfStart = $('#timeoff-start input').datepicker({
+        format: 'dd-mm-yyyy',
+        onRender: function(date) {
+            return date.valueOf() < now.valueOf() ? 'disabled' : '';
+        }
+    }).on('changeDate', function(e) {
+        if(e.date.valueOf() > tfEnd.date.valueOf()) {
+            console.log(e.date.valueOf() > tfEnd.date.valueOf());
+            var newdate = new Date(e.date);
+            newdate.setDate(newdate.getDate() + 1);
+            tfEnd.setValue(newdate);
+        }
+        tfStart.hide();
+        $('#timeoff-end input')[0].focus();
+    }).data('datepicker');
+    var tfEnd = $('#timeoff-end input').datepicker({
+        format: 'dd-mm-yyyy',
+        onRender: function (date) {
+            return date.valueOf() <= tfStart.date.valueOf() ? 'disabled' : '';
+        }
+    }).on('changeDate', function(e) {
+        tfEnd.hide();
+        $('#timeoff-reason input').focus();
+    }).data('datepicker');
+});
 </script>

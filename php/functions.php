@@ -12,10 +12,19 @@ function code_dump($var) {
     echo '</code></pre>';
 }
 
+function is_post_empty($varname) {
+    return !isset($_POST[$varname]) || empty($_POST[$varname]);
+}
+
 function func_die($var) {
     header('Content-Type: text/plain');
     var_export($var);
     die;
+}
+
+function get_request_header($header) {
+    $h = getallheaders();
+    return $h[$header];
 }
 
 function send_to_login_page($errmsg = '') {

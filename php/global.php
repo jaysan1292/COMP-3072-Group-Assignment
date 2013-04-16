@@ -9,3 +9,5 @@ function __autoload($class_name) {
         throw new Exception("Unable to load $class_name.");
     }
 }
+
+date_default_timezone_set('America/Toronto');

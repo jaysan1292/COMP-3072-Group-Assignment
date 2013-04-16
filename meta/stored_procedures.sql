@@ -160,12 +160,14 @@ DROP PROCEDURE IF EXISTS CreateUser;
 CREATE PROCEDURE CreateUser(IN FirstName VARCHAR(64),
                             IN LastName VARCHAR(64),
                             IN UserType TINYINT,
-                            IN Password TEXT,
-                            OUT NewId BIGINT)
+                            IN DeptId INT,
+                            IN Password TEXT)
 BEGIN
+  DECLARE NewId BIGINT;
+
   -- Insert the new user into the database
-  INSERT INTO `User` (`first_name`,`last_name`,`u_type`) VALUES
-    (FirstName, LastName, UserType);
+  INSERT INTO `User` (`first_name`,`last_name`,`u_type`,`dept_id`) VALUES
+    (FirstName, LastName, UserType, DeptId);
 
   -- Get the ID of the previous insert
   SET NewId = LAST_INSERT_ID();
@@ -177,6 +179,8 @@ BEGIN
     (NewId,
      LOWER(CONCAT(SUBSTRING(FirstName, 1, 1), LastName)),
      SHA2(Password, 256));
+
+  SELECT NewId;
 END //
 
 --
@@ -191,12 +195,14 @@ DROP PROCEDURE IF EXISTS CreateUserPrehashed;
 CREATE PROCEDURE CreateUserPrehashed(IN FirstName VARCHAR(64),
                                      IN LastName VARCHAR(64),
                                      IN UserType TINYINT,
-                                     IN Password CHAR(64),
-                                     OUT NewId BIGINT)
+                                     IN DeptId INT,
+                                     IN Password CHAR(64))
 BEGIN
+  DECLARE NewId BIGINT;
+
   -- Insert the new user into the database
-  INSERT INTO `User` (`first_name`,`last_name`,`u_type`) VALUES
-    (FirstName, LastName, UserType);
+  INSERT INTO `User` (`first_name`,`last_name`,`u_type`,`dept_id`) VALUES
+    (FirstName, LastName, UserType, DeptId);
 
   -- Get the ID of the previous insert
   SET NewId = LAST_INSERT_ID();
@@ -207,6 +213,8 @@ BEGIN
     (NewId,
      LOWER(CONCAT(SUBSTRING(FirstName, 1, 1), LastName)),
      Password);
+
+  SELECT NewId;
 END //
 
 DROP PROCEDURE IF EXISTS GetTimeOffRequests //

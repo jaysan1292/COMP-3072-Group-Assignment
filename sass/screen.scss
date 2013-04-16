@@ -90,3 +90,14 @@ header{
         }
     }
 }
+
+.generic-list {
+    border        : 1px solid lighten($color_blue, 30%);
+    margin-bottom : 20px;
+    max-height    : 300px;
+    overflow-y    : scroll;
+
+    table {
+        margin : 0;
+    }
+}

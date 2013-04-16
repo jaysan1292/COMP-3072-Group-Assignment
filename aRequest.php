@@ -42,6 +42,50 @@ function status_color($status = 1) {
 <?php endif; ?>
 <?php if(admin_has_open_requests()): $requests = admin_get_open_requests(); ?>
 <form class="form-inline" method="POST" action="<?=$_SERVER['PHP_SELF']?>">
+    <div class="generic-list">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Professor</th>
+                    <th>Date</th>
+                    <th>Reason</th>
+                    <th>Date Requested</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php /* See aProfessor.php and aClasses.php */ ?>
+                <?php foreach($requests as $request): ?>
+                <tr <?=status_color($request['StatusId'])?>>
+                    <td><?=$request['Professor']?></td>
+                    <td><?=$request['Date']?></td>
+                    <td><?=$request['Reason']?></td>
+                    <td><?=$request['DateRequested']?></td>
+                    <td>
+                        <?php
+                        admin_init_timeoff_statuses();
+                        global $timeoff_statuses;
+                        ?>
+                        <select class="input-medium" name="request-<?=$request['TimeOffId']?>">
+                            <?php foreach($timeoff_statuses as $status): ?>
+                            <option <?=$request['StatusId'] != $status['Id'] ? "" : "selected"?> value="<?=$status['Id']?>"><?=$status['Name']?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </td>
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <button id="save-btn" class="btn btn-primary" type="submit">Update Changes</button>
+</form>
+<?php else: ?>
+You have no open time-off requests.
+<?php endif; ?>
+
+<h4>Closed Requests</h4>
+<?php if(admin_has_closed_requests()): $closed_requests = admin_get_closed_requests(); ?>
+<div class="generic-list">
     <table class="table table-striped">
         <thead>
             <tr>
@@ -53,58 +97,18 @@ function status_color($status = 1) {
             </tr>
         </thead>
         <tbody>
-            <?php /* See aProfessor.php and aClasses.php */ ?>
-            <?php foreach($requests as $request): ?>
+            <?php foreach($closed_requests as $request): ?>
             <tr <?=status_color($request['StatusId'])?>>
                 <td><?=$request['Professor']?></td>
                 <td><?=$request['Date']?></td>
                 <td><?=$request['Reason']?></td>
                 <td><?=$request['DateRequested']?></td>
-                <td>
-                    <?php
-                    admin_init_timeoff_statuses();
-                    global $timeoff_statuses;
-                    ?>
-                    <select class="input-medium" name="request-<?=$request['TimeOffId']?>">
-                        <?php foreach($timeoff_statuses as $status): ?>
-                        <option <?=$request['StatusId'] != $status['Id'] ? "" : "selected"?> value="<?=$status['Id']?>"><?=$status['Name']?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </td>
+                <td><?=$request['Status']?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
-    <button id="save-btn" class="btn btn-primary" type="submit">Update Changes</button>
-</form>
-<?php else: ?>
-You have no open time-off requests.
-<?php endif; ?>
-
-<h4>Closed Requests</h4>
-<?php if(admin_has_closed_requests()): $closed_requests = admin_get_closed_requests(); ?>
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>Professor</th>
-            <th>Date</th>
-            <th>Reason</th>
-            <th>Date Requested</th>
-            <th>Status</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach($closed_requests as $request): ?>
-        <tr <?=status_color($request['StatusId'])?>>
-            <td><?=$request['Professor']?></td>
-            <td><?=$request['Date']?></td>
-            <td><?=$request['Reason']?></td>
-            <td><?=$request['DateRequested']?></td>
-            <td><?=$request['Status']?></td>
-        </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
+</div>
 <?php else: ?>
 You have no closed time-off requests.
 <?php endif; ?>

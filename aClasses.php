@@ -1,7 +1,3 @@
-<!-- Admin's Update Function -->
-
-<h4>Admin's Update Function</h4>
-
 <form class="form-inline">
     <table class="table table-striped">
         <thead>

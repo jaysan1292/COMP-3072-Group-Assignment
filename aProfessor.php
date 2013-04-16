@@ -1,4 +1,10 @@
 <div class="row-fluid">
+    <?php if(!is_post_var_empty('message')): ?>
+    <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <?=$_POST['message']?>
+    </div>
+    <?php endif; ?>
     <form class="">
         <table class="table table-striped">
             <thead>

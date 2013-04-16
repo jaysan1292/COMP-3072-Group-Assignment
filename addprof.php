@@ -3,7 +3,7 @@
 include 'php/global.php';
 
 function generate_password($length = 8) {
-    $chars = '1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*()=-+';
+    $chars = '1234567890abcdefghjkmnpqrstuvwxyzACDEFGHJKLMNPQRSTUVWXYZ';
 
     $len = strlen($chars);
 
@@ -60,7 +60,7 @@ $cmd->execute();
 $newid = $cmd->fetch()['NewId'];
 // $db->commit();
 
-$message = "Successfully added new professor! New Employee ID is <strong>$newid</strong>, and new password is <strong>$params[Password]<strong>.";
+$message = "Successfully added new professor! New Employee ID is <strong>$newid</strong>, and their new password is <strong>$params[Password]</strong>.";
 
 ?>
 <form name="m" method="POST" action="admin.php">

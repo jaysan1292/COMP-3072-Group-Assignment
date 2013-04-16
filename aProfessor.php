@@ -25,23 +25,12 @@
                         <td><?=$professor['Name']?></td>
                         <td><?=$professor['ContactNumber']?></td>
                         <td><?=$professor['EmailAddress']?></td>
-                        <td>
-                            <?php
-                            admin_init_departments();
-                            global $departments;
-                            ?>
-                            <select class="input-medium">
-                                <?php foreach($departments as $dept): ?>
-                                <option <?=$professor['DepartmentId'] != $dept['Id'] ? "" : "selected"?> value="<?=$dept['Id']?>"><?=$dept['Name']?></option>
-                                <?php endforeach; ?>
-                            </select>
-                        </td>
+                        <td><?=$professor['Department']?></td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
-        <button id="save-btn" class="btn btn-primary pull-right">Update Changes</button>
     </form>
 </div>
 <div class="row">

@@ -164,7 +164,7 @@ function admin_init_professors() {
     $db->commit();
 }
 
-function admin_init_timeoff_request() {
+function admin_init_timeoff_requests() {
     global $requests;
     if(isset($requests)) return;
 

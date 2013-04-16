@@ -43,7 +43,7 @@ function is_user_logged_in() {
 }
 
 function func_die($var) {
-    header('Content-Type: text/plain');
+    if(!headers_sent()) header('Content-Type: text/plain');
     var_export($var);
     die;
 }

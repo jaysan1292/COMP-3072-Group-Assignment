@@ -55,7 +55,33 @@
                                     </tbody>
                                 </table>
                             </form>
-                            <form class="form-inline">
+                            <?php if(!is_post_var_empty('contact-number') && !is_post_var_empty('email')):
+                            $contact = $_POST['contact-number'];
+                            $email = $_POST['email'];
+                            $db = DbProvider::openConnection();
+                            $db->beginTransaction();
+
+                            $cmd = $db->prepare('CALL UpdateContactInfo(?, ?, ?)');
+                            $cmd->bindParam(1, $user->id);
+                            $cmd->bindParam(2, $contact);
+                            $cmd->bindParam(3, $email);
+
+                            if($cmd->execute()) {
+                                // Update the session variables to contain the new info
+                                $_SESSION['current_user']->contact = $contact;
+                                $_SESSION['current_user']->email = $email;
+                                $user = $_SESSION['current_user'];
+                            }
+
+                            $db->commit();
+
+                            ?>
+                            <div class="alert">
+                                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                                Contact information updated successfully!
+                            </div>
+                            <?php endif; ?>
+                            <form class="form-inline" method="POST" action="<?=$_SERVER['PHP_SELF']?>">
                                 <table id="user" class="table table-bordered table-striped">
                                     <tbody>
                                         <tr>

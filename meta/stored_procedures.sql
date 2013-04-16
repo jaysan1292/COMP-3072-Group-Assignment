@@ -291,6 +291,14 @@ BEGIN
     (UserId, Start, Finish, Reason, 1);
 END //
 
+DROP PROCEDURE IF EXISTS UpdateContactInfo //
+CREATE PROCEDURE UpdateContactInfo (IN UserId BIGINT, IN _Contact CHAR(10), IN _Email VARCHAR(64))
+BEGIN
+  UPDATE User
+  SET contact = _Contact, email = _Email
+  WHERE u_id = UserId;
+END //
+
 DELIMITER ;
 
 COMMIT;

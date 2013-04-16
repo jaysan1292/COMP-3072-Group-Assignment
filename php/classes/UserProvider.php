@@ -2,19 +2,19 @@
 class UserProvider extends DbProvider {
     private $query = 'CALL GetUser(?)';
     protected function buildObject($results) {
-        $id = $results['u_id'];
-        $fn = $results['first_name'];
-        $ln = $results['last_name'];
-        $em = $results['email'];
-        $de = $results['dept_name'];
-        $co = $results['contact'];
+        $id = default_if_null($results['u_id'], -1);
+        $fn = default_if_null($results['first_name']);
+        $ln = default_if_null($results['last_name']);
+        $em = default_if_null($results['email']);
+        $de = default_if_null($results['dept_name']);
+        $co = default_if_null($results['contact']);
 
         switch($results['u_type']) {
             case 1:  $admin = false; break;
             case 2:  $admin = true;  break;
             default: $admin = false; break;
         }
-        if($id && $fn && $ln && $em && $de && $co) {
+        if($id && $fn && $ln /*&& $em*/ && $de /*&& $co*/) {
             $out = User::create($id, $fn, $ln, $em, $de, $co, $admin);
             return $out;
         }

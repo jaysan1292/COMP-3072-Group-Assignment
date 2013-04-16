@@ -12,6 +12,13 @@ function code_dump($var) {
     echo '</code></pre>';
 }
 
+/*
+ * Returns a default value if the given variable is null.
+ */
+function default_if_null($var, $default = '') {
+    return !is_null($var) ? $var : $default;
+}
+
 function is_get_var_empty($varname) {
     return !isset($_GET[$varname]) || empty($_GET[$varname]);
 }

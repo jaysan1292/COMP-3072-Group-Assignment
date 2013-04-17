@@ -105,16 +105,19 @@ if(isset($_POST['new-course'])) {
         $db = DbProvider::openConnection();
         $db->beginTransaction();
 
+        $labday = day_string_to_db($_POST['lab-day']);
+        $lectureday = day_string_to_db($_POST['lecture-day']);
+
         $cmd = $db->prepare('CALL CreateNewCourse(:ccode, :cdesc, :crn, :profid, :sectid, :labday, :labtime, :labrmid, :lectday, :lecttime, :lectrmid)');
-        $cmd->bindParam(':ccode', $_POST['course-code']);
-        $cmd->bindParam(':cdesc', $_POST['course-name']);
-        $cmd->bindParam(':crn', $_POST['crn']);
-        $cmd->bindParam(':profid', $_POST['professor']);
-        $cmd->bindParam(':sectid', $_POST['section']);
-        $cmd->bindParam(':labday', day_string_to_db($_POST['lab-day']));
-        $cmd->bindParam(':labtime', $_POST['lab-time']);
-        $cmd->bindParam(':labrmid', $_POST['lab-room']);
-        $cmd->bindParam(':lectday', day_string_to_db($_POST['lecture-day']));
+        $cmd->bindParam(':ccode',    $_POST['course-code']);
+        $cmd->bindParam(':cdesc',    $_POST['course-name']);
+        $cmd->bindParam(':crn',      $_POST['crn']);
+        $cmd->bindParam(':profid',   $_POST['professor']);
+        $cmd->bindParam(':sectid',   $_POST['section']);
+        $cmd->bindParam(':labday',   $labday);
+        $cmd->bindParam(':labtime',  $_POST['lab-time']);
+        $cmd->bindParam(':labrmid',  $_POST['lab-room']);
+        $cmd->bindParam(':lectday',  $lectureday);
         $cmd->bindParam(':lecttime', $_POST['lecture-time']);
         $cmd->bindParam(':lectrmid', $_POST['lecture-room']);
 

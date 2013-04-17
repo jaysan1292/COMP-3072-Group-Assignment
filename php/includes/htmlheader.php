@@ -25,6 +25,10 @@ require_once __DIR__ . '/../lib/php-markdown/markdown.php';
 
     <!-- Le Scripts -->
     <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script type="text/javascript">
+        // Load our copy of jQuery if the one above fails to load
+        window.jQuery || document.write('<' + 'script src="<?=ROOT_DIR.'/assets/js/jquery-1.9.1.js'?>"><' + '/script>');
+    </script>
     <script src="<?=ROOT_DIR?>/js/bootstrap.min.js"></script>
     <script src="<?=ROOT_DIR?>/js/bootstrap-datepicker.js"></script>
     <!-- HTML5 shim for IE backwards compatibility -->

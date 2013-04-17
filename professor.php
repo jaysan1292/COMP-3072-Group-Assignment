@@ -27,7 +27,7 @@ include 'php/includes/htmlheader.php';
             <div><?php include('uProfile.php');?></div>
           </article>
           <article class="tab-pane" id="schedule">
-            <h3>Schedule</h3>
+            <h3 style="float:none;">Schedule</h3>
             <?php include('uSchedule.php');?>
           </article>
           <article class="tab-pane" id="requests">

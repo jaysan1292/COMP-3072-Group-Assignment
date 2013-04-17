@@ -358,6 +358,12 @@ BEGIN
     User.u_type = 1;
 END //
 
+DROP PROCEDURE IF EXISTS GetRooms //
+CREATE PROCEDURE GetRooms ()
+BEGIN
+  SELECT * FROM Room;
+END //
+
 DELIMITER ;
 
 COMMIT;

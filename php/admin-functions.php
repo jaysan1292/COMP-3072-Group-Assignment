@@ -7,7 +7,7 @@ function admin_init_courses() {
     $db = DbProvider::openConnection();
     $db->beginTransaction();
 
-    $cmd = $db->prepare('SELECT c_id FROM Course');
+    $cmd = $db->prepare('SELECT c_id FROM Course ORDER BY c_crn');
     if($cmd->execute()) {
         while(($result = $cmd->fetch())) {
             $ids[] = $result['c_id'];
@@ -195,4 +195,54 @@ function admin_get_closed_requests() {
     return array_filter($requests, function($req) {
         return timeoff_status_closed($req);
     });
+}
+
+function admin_get_available_professors() {
+    $db = DbProvider::openConnection();
+    $db->beginTransaction();
+
+    $cmd = $db->prepare('CALL GetAvailableProfessors');
+    $professors = array();
+    if($cmd->execute()) {
+        while(($result = $cmd->fetch())) {
+            $professors[] = array(
+                'EmployeeId'    => $result['EmployeeId'],
+                'Name'          => $result['Professor'],
+                'ContactNumber' => $result['ContactNumber'],
+                'EmailAddress'  => $result['EmailAddress'],
+                'DepartmentId'  => $result['DepartmentId'],
+                'Department'    => $result['Department'],
+            );
+        }
+    }
+
+    $db->commit();
+
+    return $professors;
+}
+
+function admin_get_rooms() {
+    $db = DbProvider::openConnection();
+    $db->beginTransaction();
+
+    $results = $db->query('CALL GetRooms');
+    $rooms = array();
+    while(($result = $results->fetch())) {
+        $room = array(
+            'Id'     => $result['rm_id'],
+            'Number' => $result['rm_number'],
+            'Size'   => $result['rm_size'],
+        );
+
+        switch($result['rm_type']) {
+            case 1: $room['Type'] = 'Lab'; break;
+            case 2: $room['Type'] = 'Classroom'; break;
+        }
+
+        $rooms[] = $room;
+    }
+
+    $db->commit();
+
+    return $rooms;
 }

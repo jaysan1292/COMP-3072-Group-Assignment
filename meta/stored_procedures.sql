@@ -96,10 +96,16 @@ DROP PROCEDURE IF EXISTS GetRoomClasses;
 CREATE PROCEDURE GetRoomClasses(IN RoomId BIGINT)
 BEGIN
   SELECT
-    Room.rm_id, Room.rm_number, Room.rm_size,
-    RoomType.type_id, RoomType.name,
-    User.first_name, User.last_name,
-    Course.*,
+    Room.rm_id,
+    Room.rm_number,
+    Room.rm_size,
+    RoomType.type_id,
+    RoomType.name,
+    CONCAT(User.first_name, ' ', User.last_name) AS 'prof_name',
+    Course.c_id,
+    Course.c_code,
+    Course.c_description,
+    Course.c_crn,
     ScheduleCourse.day,
     ScheduleCourse.start_time,
     ScheduleCourse.finish_time

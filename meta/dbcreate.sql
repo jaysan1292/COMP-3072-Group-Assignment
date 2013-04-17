@@ -65,7 +65,7 @@ FOREIGN KEY (u_id) REFERENCES `User`(u_id)
 
 CREATE TABLE `Course`(
 c_id            BIGINT PRIMARY KEY AUTO_INCREMENT,
-c_code          VARCHAR(16),
+c_code          CHAR(8),
 c_description   VARCHAR(256),
 c_crn           CHAR(5) NOT NULL
 );

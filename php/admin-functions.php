@@ -246,3 +246,36 @@ function admin_get_rooms() {
 
     return $rooms;
 }
+
+function admin_get_room_classes($roomid) {
+    $db = DbProvider::openConnection();
+    $db->beginTransaction();
+
+    $cmd = $db->prepare('CALL GetRoomClasses(?)');
+    $cmd->bindParam(1, $roomid);
+
+    $rooms = array();
+    if($cmd->execute()) {
+        while(($result = $cmd->fetch())) {
+            $rooms[] = array(
+                'RoomId'            => $result['rm_id'],
+                'RoomNumber'        => $result['rm_number'],
+                'RoomSize'          => $result['rm_size'],
+                'RoomTypeId'        => $result['type_id'],
+                'RoomType'          => $result['name'],
+                'Professor'         => $result['prof_name'],
+                'CourseId'          => $result['c_id'],
+                'CourseCode'        => $result['c_code'],
+                'CourseDescription' => $result['c_description'],
+                'CourseCrn'         => $result['c_crn'],
+                'Day'               => $result['day'],
+                'StartTime'         => $result['start_time'],
+                'FinishTime'        => $result['finish_time'],
+            );
+        }
+    }
+
+    $db->commit();
+
+    return $rooms;
+}

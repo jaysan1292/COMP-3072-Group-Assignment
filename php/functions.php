@@ -144,5 +144,16 @@ function db_day_to_string($day) {
     }
 }
 
+function day_string_to_db($day) {
+    $day = strtolower($day);
+    switch($day) {
+        case 'monday':    return 1;
+        case 'tuesday':   return 2;
+        case 'wednesday': return 3;
+        case 'thursday':  return 4;
+        case 'friday':    return 5;
+    }
+}
+
 include 'admin-functions.php';
 include 'professor-functions.php';

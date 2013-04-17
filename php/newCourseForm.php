@@ -49,9 +49,10 @@ if(isset($_POST['new-course'])) {
         // Check if all of our fields have been filled out
         if(!is_post_var_empty('course-code') && !is_post_var_empty('course-name') &&
            !is_post_var_empty('crn') && !is_post_var_empty('professor') &&
-           !is_post_var_empty('lab-day') && !is_post_var_empty('lab-time') &&
-           !is_post_var_empty('lab-room') && !is_post_var_empty('lecture-day') &&
-           !is_post_var_empty('lecture-time') && !is_post_var_empty('lecture-room')) {
+           !is_post_var_empty('section') && !is_post_var_empty('lab-day') &&
+           !is_post_var_empty('lab-time') && !is_post_var_empty('lab-room') &&
+           !is_post_var_empty('lecture-day') && !is_post_var_empty('lecture-time') &&
+           !is_post_var_empty('lecture-room')) {
             $valid = true;
 
             // Validate the course code

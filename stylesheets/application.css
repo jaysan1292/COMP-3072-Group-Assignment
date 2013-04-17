@@ -5,6 +5,13 @@ body {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+/* line 15, ../sass/_base.scss */
+.center {
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* line 4, ../sass/application.scss */
 body {
   font-family: 'Open Sans', sans-serif;

@@ -5,6 +5,13 @@ body {
   font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+/* line 15, ../sass/_base.scss */
+.center {
+  float: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* line 9, ../sass/screen.scss */
 * {
   margin: 0;
@@ -112,4 +119,26 @@ header .navbar-inner {
 /* line 101, ../sass/screen.scss */
 .generic-list table tbody tr:last-child {
   border-bottom: 1px solid #ddd;
+}
+
+/* line 108, ../sass/screen.scss */
+.subnav {
+  width: 300px;
+}
+/* line 110, ../sass/screen.scss */
+.subnav li {
+  text-align: center;
+  width: 50%;
+}
+/* line 115, ../sass/screen.scss */
+.subnav + section {
+  box-shadow: 0 0 70px -30px black;
+}
+/* line 118, ../sass/screen.scss */
+.subnav + section article {
+  border-top: 1px solid #bbd9fa;
+}
+/* line 120, ../sass/screen.scss */
+.subnav + section article .alert {
+  margin-top: 20px;
 }

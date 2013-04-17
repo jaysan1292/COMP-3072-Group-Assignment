@@ -1,5 +1,15 @@
-<div class="row">
-    <div class="span6 offset2">
+<div class="row-fluid">
+    <div class="span6 offset3">
+        <?php if(!is_post_var_empty('error-message')): ?>
+        <div class="alert alert-error">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <?=$_POST['error-message']?>
+        </div>
+        <script type="text/javascript">
+            $('#admin-nav a[href="#aProfessor"]').tab('show');
+            $('#professor-nav a[href="#professor-new"]').tab('show');
+        </script>
+        <?php endif; ?>
         <form class="form-horizontal" method="POST" action="addprof.php">
             <fieldset>
                 <legend>Add New Professor</legend>
@@ -31,7 +41,7 @@
                 <!-- Submit Button -->
                 <div class="control-group">
                     <div class="controls">
-                        <button id="save-btn" type="submit" class="btn btn-primary" value="new-user">Submit</button>
+                        <button id="save-btn" type="submit" class="btn btn-primary" name="new-user">Submit</button>
                     </div>
                 </div>
             </fieldset>

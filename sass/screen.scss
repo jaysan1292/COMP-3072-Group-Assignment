@@ -104,3 +104,23 @@ header{
         }
     }
 }
+
+.subnav {
+    width : 300px;
+    li {
+        text-align : center;
+        width      : 50%;
+    }
+
+    & + section {
+        box-shadow : 0 0 70px -30px black;
+
+        article {
+            border-top : 1px solid lighten($color_blue, 30%);
+            .alert {
+                margin-top : 20px;
+            }
+        }
+    }
+}
+

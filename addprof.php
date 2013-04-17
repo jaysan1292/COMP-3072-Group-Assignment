@@ -28,16 +28,22 @@ if(!is_admin_logged_in()) {
 }
 
 // Make sure all of the parameters are set
-if(!isset($_POST['first-name']) ||
-   !isset($_POST['last-name']) ||
-   !isset($_POST['department'])) {
-    http_response_code(400); // Bad Request
+if(!isset($_POST['first-name']) || empty($_POST['first-name']) ||
+   !isset($_POST['last-name']) || empty($_POST['last-name']) ||
+   !isset($_POST['department']) || empty($_POST['department'])) {
+    $message = 'All fields are required.';
+    ?>
+    <form name="m" method="POST" action="admin.php">
+        <input type="hidden" name="error-message" value="<?=$message?>" />
+    </form>
+    <script type="text/javascript">document.m.submit()</script>
+    <?php
     die;
 }
 
 $params = array(
-    'FirstName'      => $_POST['first-name'],
-    'LastName'       => $_POST['last-name'],
+    'FirstName'      => ucwords($_POST['first-name']),
+    'LastName'       => ucwords($_POST['last-name']),
     'UserType'       => 1,
     'DepartmentId'   => (int)$_POST['department'],
     'Password'       => generate_password(),

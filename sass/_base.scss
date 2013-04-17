@@ -11,3 +11,9 @@
 @import url(http://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300);
 
 body { font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+
+.center {
+    float        : none;
+    margin-left  : auto;
+    margin-right : auto;
+}

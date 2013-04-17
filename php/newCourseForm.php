@@ -17,7 +17,13 @@ $form_defaults = array (
 );
 
 if(isset($_POST['new-course'])) {
-    ?><script type="text/javascript">$('#admin-nav a[href="#aClasses"]').tab('show')</script><?php
+    // Show the page we're on currently if this is a POST
+    ?>
+    <script type="text/javascript">
+    $('#admin-nav a[href="#aClasses"]').tab('show');
+    $('#class-nav a[href="#class-new"]').tab('show');
+    </script>
+    <?php
 
     function check_room_available($roomid, $day, $time) {
         $rooms = admin_get_room_classes($roomid);

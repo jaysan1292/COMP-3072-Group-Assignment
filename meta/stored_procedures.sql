@@ -75,11 +75,7 @@ BEGIN
     CourseType.type_desc,
     Room.rm_number,
     Room.rm_size,
-    ScheduleCourse.monday,
-    ScheduleCourse.tuesday,
-    ScheduleCourse.wednesday,
-    ScheduleCourse.thursday,
-    ScheduleCourse.friday,
+    ScheduleCourse.day,
     ScheduleCourse.start_time,
     ScheduleCourse.finish_time
   FROM
@@ -104,11 +100,7 @@ BEGIN
     RoomType.type_id, RoomType.name,
     User.first_name, User.last_name,
     Course.*,
-    ScheduleCourse.monday,
-    ScheduleCourse.tuesday,
-    ScheduleCourse.wednesday,
-    ScheduleCourse.thursday,
-    ScheduleCourse.friday,
+    ScheduleCourse.day,
     ScheduleCourse.start_time,
     ScheduleCourse.finish_time
   FROM
@@ -135,11 +127,7 @@ BEGIN
     Course.c_crn,
     Room.rm_number,
     ScheduleCourse.type_id,
-    ScheduleCourse.monday,
-    ScheduleCourse.tuesday,
-    ScheduleCourse.wednesday,
-    ScheduleCourse.thursday,
-    ScheduleCourse.friday,
+    ScheduleCourse.day,
     ScheduleCourse.start_time,
     ScheduleCourse.finish_time
   FROM

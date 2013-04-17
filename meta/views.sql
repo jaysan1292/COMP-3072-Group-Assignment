@@ -14,11 +14,7 @@ CREATE OR REPLACE VIEW ProfessorSchedule AS
     Course.c_description,
     CourseType.type_id,
     CourseType.type_desc,
-    ScheduleCourse.monday,
-    ScheduleCourse.tuesday,
-    ScheduleCourse.wednesday,
-    ScheduleCourse.thursday,
-    ScheduleCourse.friday,
+    ScheduleCourse.day,
     ScheduleCourse.start_time,
     ScheduleCourse.finish_time
   FROM

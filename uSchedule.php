@@ -18,24 +18,7 @@
                     <td><?=$course['CRN']?></td>
                     <td><?=$course['CourseCode']?></td>
                     <td><?=$course['CourseDescription']?></td>
-                    <td>
-                        <?php
-                        $keys = array(
-                            'Monday',
-                            'Tuesday',
-                            'Wednesday',
-                            'Thursday',
-                            'Friday',
-                        );
-                        $day = false;
-                        foreach($keys as $key) {
-                            if($course[$key]) {
-                                $day = $key;
-                            }
-                        }
-                        echo $day;
-                        ?>
-                    </td>
+                    <td><?=$course['Day']?></td>
                     <td><?=time24_to_string($course['StartTime'])?></td>
                     <td><?=time24_to_string($course['FinishTime'])?></td>
                 </tr>

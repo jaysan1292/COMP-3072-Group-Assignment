@@ -131,5 +131,18 @@ function time24_to_string($time) {
     return "$hour:$min" . ($pm ? 'PM' : 'AM');
 }
 
+/*
+ * Converts a day value stored in the database to a day (in words)
+ */
+function db_day_to_string($day) {
+    switch($day) {
+        case 1: return 'Monday';
+        case 2: return 'Tuesday';
+        case 3: return 'Wednesday';
+        case 4: return 'Thursday';
+        case 5: return 'Friday';
+    }
+}
+
 include 'admin-functions.php';
 include 'professor-functions.php';

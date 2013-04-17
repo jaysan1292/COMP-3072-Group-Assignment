@@ -25,15 +25,7 @@ class ScheduleProvider extends DbProvider {
                     $desc = $results['c_description'];
                     $room = $results['rm_number'];
                     $type = $results['type_desc'];
-                    $days = array(
-                        'monday'    => $results['monday'],
-                        'tuesday'   => $results['tuesday'],
-                        'wednesday' => $results['wednesday'],
-                        'thursday'  => $results['thursday'],
-                        'friday'    => $results['friday']
-                    );
-                    $day = array_filter($days);
-                    $day = ucwords(key($day));
+                    $day = db_day_to_string($results['day']);
                     $start = $results['start_time'];
                     $finish = $results['finish_time'];
                     $courses[] = new Course($c_id, $code, $crn, $desc, $room, $type, $day, $start, $finish);

@@ -21,13 +21,9 @@ function professor_init_courses() {
                 'CourseType'        => $row['type_desc'],
                 'RoomNumber'        => $row['rm_number'],
                 'RoomSize'          => $row['rm_size'],
-                'Monday'            => $row['monday'],
-                'Tuesday'           => $row['tuesday'],
-                'Wednesday'         => $row['wednesday'],
-                'Thursday'          => $row['thursday'],
-                'Friday'            => $row['friday'],
                 'StartTime'         => $row['start_time'],
                 'FinishTime'        => $row['finish_time'],
+                'Day'               => db_day_to_string($row['day']),
             );
         }
     }

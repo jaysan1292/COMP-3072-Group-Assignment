@@ -1,6 +1,7 @@
 <?php
 if(!is_post_var_empty('course-code')) {
     ?><script type="text/javascript">$('#admin-nav a[href="#aClasses"]').tab('show')</script><?php
+    func_die($_POST);
 }
 ?>
 
@@ -75,6 +76,44 @@ if(!is_post_var_empty('course-code')) {
                     <label class="control-label" for="lab-room">Room</label>
                     <div class="controls">
                         <select name="lab-room">
+                            <option value="0">-- Select Room --</option>
+                            <?php $rooms = admin_get_rooms(); foreach($rooms as $room): ?>
+                            <option value="<?=$room['Id']?>"><?=$room['Number']?> - <?=$room['Type']?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Lecture Information</legend>
+                <!-- Day -->
+                <div class="control-group">
+                    <label class="control-label" for="lecture-day">Day</label>
+                    <div class="controls">
+                        <label class="radio"><input type="radio" name="lecture-day" value="monday"/>Monday</label>
+                        <label class="radio"><input type="radio" name="lecture-day" value="tuesday"/>Tuesday</label>
+                        <label class="radio"><input type="radio" name="lecture-day" value="wednesday"/>Wednesday</label>
+                        <label class="radio"><input type="radio" name="lecture-day" value="thursday"/>Thursday</label>
+                        <label class="radio"><input type="radio" name="lecture-day" value="friday"/>Friday</label>
+                    </div>
+                </div>
+                <!-- Time -->
+                <div class="control-group">
+                    <label class="control-label" for="lecture-time">Time</label>
+                    <div class="controls">
+                        <select name="lecture-time">
+                            <option value="0">-- Select Time --</option>
+                            <?php for($time = 800; $time <= 1800; $time += 200): ?>
+                            <option value="<?=$time?>"><?=time24_to_string($time)?></option>
+                            <?php endfor; ?>
+                        </select>
+                    </div>
+                </div>
+                <!-- Room -->
+                <div class="control-group">
+                    <label class="control-label" for="lecture-room">Room</label>
+                    <div class="controls">
+                        <select name="lecture-room">
                             <option value="0">-- Select Room --</option>
                             <?php $rooms = admin_get_rooms(); foreach($rooms as $room): ?>
                             <option value="<?=$room['Id']?>"><?=$room['Number']?> - <?=$room['Type']?></option>

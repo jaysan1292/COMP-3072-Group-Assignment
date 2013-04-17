@@ -348,5 +348,49 @@ BEGIN
   SELECT * FROM Room;
 END //
 
+--
+-- Adds a new course into the database.
+--
+DROP PROCEDURE IF EXISTS CreateNewCourse //
+CREATE PROCEDURE CreateNewCourse (IN CourseCode CHAR(8), IN CourseDescription VARCHAR(256), IN Crn CHAR(5), IN ProfessorId BIGINT,
+                                  IN LabDay TINYINT, IN LabTime INT, IN LabRoomId BIGINT,
+                                  IN LectureDay TINYINT, IN LectureTime INT, IN LectureRoomId BIGINT)
+BEGIN
+  DECLARE CourseId BIGINT;
+  DECLARE HasSchedule BOOLEAN;
+  DECLARE ScheduleId BIGINT;
+
+  -- Create the new course
+  INSERT INTO Course (c_code,c_description,c_crn) VALUES
+    (CourseCode, CourseDescription, Crn);
+
+  SET CourseId = LAST_INSERT_ID();
+
+  -- Associate it with the professor
+  INSERT INTO ProfessorCourse (u_id,c_id) VALUES
+    (ProfessorId, CourseId);
+
+  -- First check if this professor has a schedule
+  SET HasSchedule = ProfessorHasSchedule(ProfessorId);
+
+  IF HasSchedule = TRUE THEN
+    -- If they do, then get their schedule ID
+    SET ScheduleId = (SELECT s_id FROM Schedule WHERE u_id = ProfessorId);
+  ELSE
+    -- Otherwise, create it.
+    INSERT INTO Schedule (u_id) VALUES (ProfessorId);
+    SET ScheduleId = LAST_INSERT_ID();
+  END IF;
+
+  -- Now add the new course to the professor's schedule.
+  -- Starting with the lab class.
+  INSERT INTO ScheduleCourse(s_id,c_id,room,type_id,day,start_time,finish_time) VALUES
+    (ScheduleId, CourseId, LabRoomId, 1, LabDay, LabTime, (LabTime + 200)); -- Add 200 to the start time to get the finish time
+
+  -- Now insert the lecture class.
+  INSERT INTO ScheduleCourse(s_id,c_id,room,type_id,day,start_time,finish_time) VALUES
+    (ScheduleId, CourseId, LectureRoomId, 2, LectureDay, LectureTime, (LectureTime + 200));
+END //
+
 DELIMITER ;
 COMMIT;

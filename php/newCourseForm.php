@@ -100,6 +100,29 @@ if(isset($_POST['new-course'])) {
 
     if(run_check()) {
         // Hey, the form checked out alright! Let's add it to the database.
+        $db = DbProvider::openConnection();
+        $db->beginTransaction();
+
+        $cmd = $db->prepare('CALL CreateNewCourse(:ccode, :cdesc, :crn, :profid, :labday, :labtime, :labrmid, :lectday, :lecttime, :lectrmid)');
+        $cmd->bindParam(':ccode', $_POST['course-code']);
+        $cmd->bindParam(':cdesc', $_POST['course-name']);
+        $cmd->bindParam(':crn', $_POST['crn']);
+        $cmd->bindParam(':profid', $_POST['professor']);
+        $cmd->bindParam(':labday', day_string_to_db($_POST['lab-day']));
+        $cmd->bindParam(':labtime', $_POST['lab-time']);
+        $cmd->bindParam(':labrmid', $_POST['lab-room']);
+        $cmd->bindParam(':lectday', day_string_to_db($_POST['lecture-day']));
+        $cmd->bindParam(':lecttime', $_POST['lecture-time']);
+        $cmd->bindParam(':lectrmid', $_POST['lecture-room']);
+
+        if($cmd->execute()) {
+            $general_message = 'Successfully added new course!';
+            $genmsgflag = true;
+            $db->commit();
+        } else {
+            $general_message = 'There was an error adding the course.';
+            $db->rollBack();
+        }
     }
 }
 ?>
@@ -109,7 +132,7 @@ if(isset($_POST['new-course'])) {
             <fieldset>
                 <legend>General</legend>
                 <?php if(isset($general_message)): ?>
-                <div class="alert alert-error" id="general-message">
+                <div class="alert alert-<?=isset($genmsgflag) ? 'success' : 'error'?>" id="general-message">
                     <button type="button" class="close" data-dismiss="alert">&times;</button>
                     <?=$general_message?>
                 </div>

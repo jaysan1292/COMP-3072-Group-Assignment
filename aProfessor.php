@@ -15,6 +15,7 @@
                         <th>Contact Number</th>
                         <th>Email Address</th>
                         <th>Department</th>
+                        <th>Schedule</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,6 +27,7 @@
                         <td><?=$professor['ContactNumber']?></td>
                         <td><?=$professor['EmailAddress']?></td>
                         <td><?=$professor['Department']?></td>
+                        <td><a href="<?=ROOT_DIR?>/img/schedule.php?id=<?=$professor['EmployeeId']?>">Schedule</a>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>

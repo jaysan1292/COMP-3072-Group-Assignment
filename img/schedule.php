@@ -19,13 +19,14 @@ $aspect = 1.41176471;
 $width = !is_get_var_empty('width') ? (int)$_GET['width'] : 600;
 $height = ceil($width / $aspect);
 
-if(!is_user_logged_in() ||
-   is_admin_logged_in()) { // Administrators don't have a 'schedule'
+if(is_admin_logged_in() && !is_get_var_empty('id')) {
+    // Admin will be able to see any professor's schedule
+    $s_id = (int)$_GET['id'];
+} else if(is_user_logged_in()) {
+    $s_id = $_SESSION['current_user']->id;
+} else {
     fail();
 }
-
-$s_id = $_SESSION['current_user']->id;
-
 $s = new ScheduleProvider;
 $schedule = $s->get($s_id);
 

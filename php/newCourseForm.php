@@ -215,7 +215,7 @@ if(isset($_POST['new-course'])) {
                     <div class="controls">
                         <select name="lab-time">
                             <option value="0">-- Select Time --</option>
-                            <?php for($time = 800; $time <= 1800; $time += 200): ?>
+                            <?php for($time = 800; $time <= 1600; $time += 200): ?>
                             <option value="<?=$time?>"><?=time24_to_string($time)?> to <?=time24_to_string($time + 200)?></option>
                             <?php endfor; ?>
                         </select>
@@ -262,7 +262,7 @@ if(isset($_POST['new-course'])) {
                     <div class="controls">
                         <select name="lecture-time">
                             <option value="0">-- Select Time --</option>
-                            <?php for($time = 800; $time <= 1800; $time += 200): ?>
+                            <?php for($time = 800; $time <= 1600; $time += 200): ?>
                             <option value="<?=$time?>"><?=time24_to_string($time)?> to <?=time24_to_string($time + 200)?></option>
                             <?php endfor; ?>
                         </select>

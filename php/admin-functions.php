@@ -279,3 +279,9 @@ function admin_get_room_classes($roomid) {
 
     return $rooms;
 }
+
+function admin_get_course_sections() {
+    admin_init_course_sections();
+    global $sections;
+    return $sections;
+}

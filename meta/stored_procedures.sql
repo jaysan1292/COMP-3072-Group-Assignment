@@ -352,7 +352,7 @@ END //
 -- Adds a new course into the database.
 --
 DROP PROCEDURE IF EXISTS CreateNewCourse //
-CREATE PROCEDURE CreateNewCourse (IN CourseCode CHAR(8), IN CourseDescription VARCHAR(256), IN Crn CHAR(5), IN ProfessorId BIGINT,
+CREATE PROCEDURE CreateNewCourse (IN CourseCode CHAR(8), IN CourseDescription VARCHAR(256), IN Crn CHAR(5), IN ProfessorId BIGINT, IN SectionId BIGINT,
                                   IN LabDay TINYINT, IN LabTime INT, IN LabRoomId BIGINT,
                                   IN LectureDay TINYINT, IN LectureTime INT, IN LectureRoomId BIGINT)
 BEGIN
@@ -365,6 +365,10 @@ BEGIN
     (CourseCode, CourseDescription, Crn);
 
   SET CourseId = LAST_INSERT_ID();
+
+  -- Associate it with the given section
+  INSERT INTO SectionCourse (s_id,c_id) VALUES
+    (SectionId, CourseId);
 
   -- Associate it with the professor
   INSERT INTO ProfessorCourse (u_id,c_id) VALUES

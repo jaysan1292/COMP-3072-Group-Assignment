@@ -7,6 +7,7 @@ $form_defaults = array (
   'course-name'  => '',
   'crn'          => '',
   'professor'    => '0',
+  'section'      => '0',
   'lab-day'      => '',
   'lab-time'     => '0',
   'lab-room'     => '0',
@@ -103,11 +104,12 @@ if(isset($_POST['new-course'])) {
         $db = DbProvider::openConnection();
         $db->beginTransaction();
 
-        $cmd = $db->prepare('CALL CreateNewCourse(:ccode, :cdesc, :crn, :profid, :labday, :labtime, :labrmid, :lectday, :lecttime, :lectrmid)');
+        $cmd = $db->prepare('CALL CreateNewCourse(:ccode, :cdesc, :crn, :profid, :sectid, :labday, :labtime, :labrmid, :lectday, :lecttime, :lectrmid)');
         $cmd->bindParam(':ccode', $_POST['course-code']);
         $cmd->bindParam(':cdesc', $_POST['course-name']);
         $cmd->bindParam(':crn', $_POST['crn']);
         $cmd->bindParam(':profid', $_POST['professor']);
+        $cmd->bindParam(':sectid', $_POST['section']);
         $cmd->bindParam(':labday', day_string_to_db($_POST['lab-day']));
         $cmd->bindParam(':labtime', $_POST['lab-time']);
         $cmd->bindParam(':labrmid', $_POST['lab-room']);
@@ -121,6 +123,7 @@ if(isset($_POST['new-course'])) {
             $db->commit();
         } else {
             $general_message = 'There was an error adding the course.';
+            $form_defaults = array_combine(array_keys($form_defaults), array_values($_POST));
             $db->rollBack();
         }
     }
@@ -156,6 +159,19 @@ if(isset($_POST['new-course'])) {
                     <label class="control-label" for="crn">CRN</label>
                     <div class="controls">
                         <input type="text" name="crn" placeholder="CRN" value="<?=$form_defaults['crn']?>"/>
+                    </div>
+                </div>
+                <!-- Section -->
+                <div class="control-group">
+                    <label class="control-label" for="section">Section</label>
+                    <div class="controls">
+                        <select name="section">
+                            <option value="0">-- Select Section --</option>
+                            <?php $sections = admin_get_course_sections(); foreach($sections as $section): ?>
+                            <option value="<?=$section['Id']?>"><?=$section['Name']?>: <?=$section['Description']?></option>
+                            <?php endforeach; ?>
+                        </select>
+                        <script type="text/javascript">$('select[name=section]').val('<?=$form_defaults['section']?>')</script>
                     </div>
                 </div>
                 <!-- Professor -->

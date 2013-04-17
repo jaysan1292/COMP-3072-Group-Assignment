@@ -67,32 +67,46 @@ INSERT INTO `Login` VALUES
     (5, 'bvucetic', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92');
 
 INSERT INTO `Room` (`rm_size`,`rm_number`,`rm_type`) VALUES
-    (50,  'C418', 1),
-    (50,  'C416', 1),
-    (50,  'C422', 1),
-    (100, 'E322', 2),
-    (100, 'E218', 2);
+    (50,  'C418', 1), -- 1
+    (50,  'C416', 1), -- 2
+    (50,  'C422', 1), -- 3
+    (100, 'E322', 2), -- 4
+    (100, 'E218', 2); -- 5
 
 INSERT INTO `Course` (`c_code`,`c_description`,`c_crn`) VALUES
-    ('COMP3072', 'Open Source Application Development',             '60001'),
-    ('COMP3064', 'PC Game Development',                             '60002'),
-    ('COMP3071', 'Designing and Implementing Database',             '60003'),
-    ('COMP3073', 'System Implementation, Testing, and Maintenance', '60004');
+    ('COMP3072', 'Open Source Application Development',             '60001'), -- 1
+    ('COMP3064', 'PC Game Development',                             '60002'), -- 2
+    ('COMP3071', 'Designing and Implementing Database',             '60003'), -- 3
+    ('COMP3073', 'System Implementation, Testing, and Maintenance', '60004'), -- 4
+    ('COMP2075', 'Introduction to Web Services',                    '40001'), -- 5
+    ('COMP3074', 'Mobile Application Development',                  '50001'), -- 6
+    ('COMP3063', 'Applied Systems Analysis and Design',             '50002'), -- 7
+    ('COMP3062', 'Advanced Web Application Development - Java',     '50003'); -- 8
 
 INSERT INTO `ProfessorCourse` (`u_id`,`c_id`) VALUES
     (2, 1),
-    (3, 2),
-    (4, 3),
-    (5, 4);
+    (4, 2),
+    (3, 3),
+    (5, 4),
+    (4, 5),
+    (4, 6),
+    (5, 7),
+    (4, 8);
 
 INSERT INTO `Section` (`s_name`,`s_desc`,`s_size`) VALUES
-    ('T127-A', 'Computer Programmer/Analyst', 50);
+    ('T127-6A', 'Computer Programmer/Analyst', 50), -- 1
+    ('T127-5A', 'Computer Programmer/Analyst', 50), -- 2
+    ('T127-4A', 'Computer Programmer/Analyst', 50); -- 3
 
 INSERT INTO `SectionCourse` (`s_id`,`c_id`) VALUES
     (1, 1),
     (1, 2),
     (1, 3),
-    (1, 4);
+    (1, 4),
+    (2, 6),
+    (2, 7),
+    (2, 8),
+    (3, 5);
 
 INSERT INTO `Schedule` (`u_id`) VALUES
     (2), -- rverma
@@ -107,13 +121,28 @@ INSERT INTO `ScheduleCourse` (`s_id`,`c_id`,`room`,`type_id`,`start_time`,`finis
     (2, 3, 1, 1, 1200, 1400), -- arana,    C418, COMP3071, Lab,     12PM,  2PM
     (3, 2, 3, 2, 1200, 1400), -- ppawluk,  C422, COMP3064, Lecture, 12PM,  2PM
     (3, 2, 3, 1, 1400, 1600), -- ppawluk,  C422, COMP3064, Lab,      2PM,  4PM
+    (3, 5, 4, 2, 1200, 1400), -- ppawluk,  E322, COMP2075, Lecture, 12PM,  2PM
+    (3, 5, 3, 1, 1400, 1600), -- ppawluk,  C422, COMP2075, Lab,      2PM,  4PM
+    (3, 6, 5, 2, 1000, 1200), -- ppawluk,  E218, COMP3074, Lecture, 10AM, 12PM
+    (3, 6, 1, 1, 1400, 1600), -- ppawluk,  C418, COMP3074, Lab       2PM,  4PM
+    (3, 8, 4, 2, 1200, 1400), -- ppawluk,  E322, COMP3062, Lecture, 12PM,  2PM
+    (3, 8, 1, 1, 1000, 1200), -- ppawluk,  C418, COMP3062, Lab      10AM, 12PM
     (4, 4, 2, 2,  800, 1000), -- bvucetic, C416, COMP3073, Lecture,  8AM, 10AM
-    (4, 4, 2, 1, 1000, 1200); -- bvucetic, C416, COMP3073, Lab,     10AM, 12PM
-UPDATE `ScheduleCourse` SET `monday`   = 1 WHERE `c_id` = 4; -- COMP3073 on Mondays
-UPDATE `ScheduleCourse` SET `thursday` = 1 WHERE `c_id` = 2; -- COMP3064 on Thursdays
-UPDATE `ScheduleCourse` SET `friday`   = 1 WHERE `c_id` = 3; -- COMP3071 on Fridays
-UPDATE `ScheduleCourse` SET `thursday` = 1 WHERE `c_id` = 1 AND `type_id` = 2; -- COMP3072 Lecture on Thursday
-UPDATE `ScheduleCourse` SET `friday`   = 1 WHERE `c_id` = 1 AND `type_id` = 1; -- COMP3072 Lab on Friday
+    (4, 4, 2, 1, 1000, 1200), -- bvucetic, C416, COMP3073, Lab,     10AM, 12PM
+    (4, 7, 5, 2,  800, 1000), -- bvucetic, E218, COMP3063, Lecture,  8AM, 10AM
+    (4, 7, 2, 1, 1200, 1400); -- bvucetic, E416, COMP3063, Lab,     12PM,  2PM
+UPDATE `ScheduleCourse` SET `thursday`  = 1 WHERE `c_id` = 2; -- COMP3064
+UPDATE `ScheduleCourse` SET `friday`    = 1 WHERE `c_id` = 3; -- COMP3071
+UPDATE `ScheduleCourse` SET `monday`    = 1 WHERE `c_id` = 4; -- COMP3073
+UPDATE `ScheduleCourse` SET `monday`    = 1 WHERE `c_id` = 5; -- COMP2075
+UPDATE `ScheduleCourse` SET `friday`    = 1 WHERE `c_id` = 1 AND `type_id` = 1; -- COMP3072 Lab
+UPDATE `ScheduleCourse` SET `thursday`  = 1 WHERE `c_id` = 1 AND `type_id` = 2; -- COMP3072 Lecture
+UPDATE `ScheduleCourse` SET `wednesday` = 1 WHERE `c_id` = 6 AND `type_id` = 1; -- COMP3074 Lab
+UPDATE `ScheduleCourse` SET `thursday`  = 1 WHERE `c_id` = 6 AND `type_id` = 2; -- COMP3074 Lecture
+UPDATE `ScheduleCourse` SET `monday`    = 1 WHERE `c_id` = 7 AND `type_id` = 1; -- COMP3063 Lab
+UPDATE `ScheduleCourse` SET `wednesday` = 1 WHERE `c_id` = 7 AND `type_id` = 2; -- COMP3063 Lecture
+UPDATE `ScheduleCourse` SET `tuesday`   = 1 WHERE `c_id` = 8 AND `type_id` = 1; -- COMP3062 Lab
+UPDATE `ScheduleCourse` SET `wednesday` = 1 WHERE `c_id` = 8 AND `type_id` = 2; -- COMP3062 Lecture
 
 INSERT INTO `TimeOff` (`u_id`,`start_date`,`finish_date`,`reason`,`status_id`,`date_requested`) VALUES
     (2, '2013-02-28', '2013-03-04', 'A reason',      3, '2013-02-14 12:00:00'),

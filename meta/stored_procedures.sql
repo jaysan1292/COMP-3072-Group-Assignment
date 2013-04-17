@@ -327,6 +327,37 @@ BEGIN
   WHERE t_id = TimeOffId;
 END //
 
+
+DROP FUNCTION IF EXISTS CountProfessorCourses //
+CREATE FUNCTION CountProfessorCourses(ProfessorID BIGINT)
+RETURNS INT
+BEGIN
+  DECLARE Course INT;
+  SELECT COUNT(u_id) INTO Course FROM ProfessorCourse WHERE u_id = ProfessorId;
+  RETURN Course;
+END //
+
+--
+-- Gets all professors except for those who are teaching more than 4 courses
+--
+DROP PROCEDURE IF EXISTS GetAvailableProfessors //
+CREATE PROCEDURE GetAvailableProfessors ()
+BEGIN
+  SELECT
+    CONCAT(User.first_name, ' ', User.last_name) AS 'Professor',
+    User.contact AS 'ContactNumber',
+    User.email AS 'EmailAddress',
+    User.u_id AS 'EmployeeId',
+    Department.dept_id AS 'DepartmentId',
+    Department.name AS 'Department'
+  FROM
+    User
+      INNER JOIN Department ON User.dept_id = Department.dept_id
+  WHERE
+    CountProfessorCourses(User.u_id) < 4 AND
+    User.u_type = 1;
+END //
+
 DELIMITER ;
 
 COMMIT;

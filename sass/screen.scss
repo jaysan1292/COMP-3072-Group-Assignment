@@ -120,7 +120,22 @@ header{
             .alert {
                 margin-top : 20px;
             }
+
+            h3 {
+                float      : left;
+                margin-top : -8px;
+            }
         }
     }
 }
 
+#dashboard {
+    section {
+        article {
+            h3 {
+                float      : left;
+                margin-top : -8px;
+            }
+        }
+    }
+}

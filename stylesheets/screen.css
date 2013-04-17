@@ -142,3 +142,14 @@ header .navbar-inner {
 .subnav + section article .alert {
   margin-top: 20px;
 }
+/* line 124, ../sass/screen.scss */
+.subnav + section article h3 {
+  float: left;
+  margin-top: -8px;
+}
+
+/* line 135, ../sass/screen.scss */
+#dashboard section article h3 {
+  float: left;
+  margin-top: -8px;
+}
